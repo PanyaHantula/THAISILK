@@ -33,6 +33,61 @@ class Database:
         self.db.commit()
         return self.cursor.fetchall()
 
+    # reslute 
+    def DBloadResulte(self,id):
+        sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(id)
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        total = returnDB[0][0]
+        
+        #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
+        sql = "SELECT orders.time " +\
+                ", orders.basketNumber " +\
+                ", orders.grade " +\
+                ", grade.weightReject " +\
+                "FROM orders " +\
+                "LEFT JOIN grade ON orders.grade = grade.grade " +\
+                "WHERE orderID='" + str(id) + "'"
+        
+        self.cursor.execute(sql)
+        recordDetal = self.cursor.fetchall()
+        return total,recordDetal
+    # weight record
+    def DBweightRecord(self,val):
+        # (`orderID`, `weight`, `basketNumber`, `grade`, `materialType`, `staffID`, `customerID`, `building`, `container`) VALUES ('20250304002', '21', '02', 'B', 'buriram', '0010', '102', 'A', 'basket');
+        sql = "INSERT INTO orders (orderID, weight, basketNumber, grade, materialType, staffID, customerID, building, container) VALUES " + str(val) 
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall()
+    
+    def DBloadRecord(self,id):
+        sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(id)
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        total = returnDB[0][0]
+        
+        sql = "SELECT * FROM orders WHERE orderID='" + str(id) + "' ORDER BY time DESC"
+        self.cursor.execute(sql)
+        recordDetal = self.cursor.fetchall()
+        column = 10
+        
+        return (column,total,recordDetal)
+    
+    def DBdeleteRecord(self, time):
+        sql = "DELETE FROM orders WHERE time='" + str(time) + "'"
+
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall()
+    
+    # Get Last Order
+    def GetLastOrder(self):
+        # Get All customer data
+        self.cursor.execute("SELECT orderID FROM orders ORDER BY id DESC LIMIT 1")
+        recordDetal = self.cursor.fetchall()
+        
+        return recordDetal[0][0]
+    
     # Check for login form
     def CheckPassword(self, id):
         # ตรวจสอบ username และ password
@@ -42,9 +97,14 @@ class Database:
         password = returnDB[0][0]
         
         return password
+
+    def loadSigleCustomer(self,id):
+        sql = "SELECT * FROM customers WHERE id=" + str(id)
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
     
-    def LoadNameFromUserID(self,uID):
-        sql = "SELECT name FROM users WHERE id=" + str(uID)
+    def LoadNameFromUserID(self,id):
+        sql = "SELECT name FROM users WHERE id=" + str(id)
         self.cursor.execute(sql)
         returnDB = self.cursor.fetchall()
         name = returnDB[0][0]
@@ -52,36 +112,36 @@ class Database:
     
     # config weight reject 
     def updateDB_BasketWeight(self,weight):
-        sql="UPDATE basket SET weight=" + weight + "WHERE id=1"
+        sql="UPDATE baskets SET weightReject='" + weight + "' WHERE type = 'baskert'"
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()  
         
     def LoadDB_BasketWeight(self):
-        self.cursor.execute("SELECT * FROM basket")
+        self.cursor.execute("SELECT * FROM baskets")
         return self.cursor.fetchall()
     
     # config weight reject 
-    def updateDB_MaterialPrice(self,sakon,buriram):
-        sql="UPDATE material SET sakon=%s, buriram=%s WHERE id=1"
-        val = (sakon,buriram)
+    def updateDB_MaterialPrice(self,price,type):
+        sql="UPDATE material SET price=%s, buriram=%s WHERE type=1"
+        val = (price,type)
         self.cursor.execute(sql,val)
         self.db.commit()
         return self.cursor.fetchall()  
     
-    def LoadDB_MaterialPrice(self):
+    def LoadMaterialPrice(self):
         self.cursor.execute("SELECT * FROM material")
         return self.cursor.fetchall()
     
     # config weight reject 
-    def updateWeightReject(self,A,B,C,D,E,F):
-        sql="UPDATE grade SET A=%s, B=%s, C=%s, D=%s, E=%s, F=%s WHERE idgrade=1"
-        val = (A,B,C,D,E,F)
+    def updateWeightReject(self,grade,weightReject):
+        sql="UPDATE grade SET weightReject=%s WHERE grade=%s"
+        val = (weightReject,grade)
         self.cursor.execute(sql,val)
         self.db.commit()
         return self.cursor.fetchall()  
     
-    def loadGradematerial(self):
+    def loadALLGradematerial(self):
         self.cursor.execute("SELECT * FROM grade")
         return self.cursor.fetchall()
         
@@ -153,8 +213,11 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    password = db.CheckPassword("0040")
-    print(password)
+    DB_Resulte = db.DBloadResulte('20250305005')
+    print(DB_Resulte)
+    
+    # password = db.CheckPassword("0040")
+    # print(password)
     
     # sql = "INSERT INTO customer (id, name) VALUES ('001', 'AOM')"            
     # db.query(sql)    

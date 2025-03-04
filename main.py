@@ -3,38 +3,56 @@
 ############################################
 import sys
 from PySide6 import QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QPushButton, \
-                            QMessageBox, QWidget, QVBoxLayout, QLabel, QLineEdit, QHeaderView
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView
 from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
-
-import datetime
-import time
-
 from main_GUI import Ui_MainWindow
 from Login_GUI import Ui_Dialog
 from DB import Database
-          
+
+import datetime
+import time
+import random 
+
+############################################
+#       sunford get weigth Thread          #
+############################################
+class SunfordWeightWorker(QObject):
+    # PyQt Signals
+    WeightThreadProgress = Signal(float)
+    
+    @Slot()
+    def getWeight(self):
+        # while True:
+        #     self.weightDummy = random.uniform(10, 20)
+        #     self.WeightThreadProgress.emit(self.weightDummy)
+        #     print(self.weightDummy)
+        #     time.sleep(10)
+        pass
+        
+    def reset(self):
+        self.weightDummy = 0
+                  
 class MainWindow(QMainWindow):
-    def __init__(self, userID):
+    def __init__(self, UserID_Login):
         super().__init__()
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.db = Database()
-        
-        self.setcmb()
-        self.btnLink()
-        
+              
+        self.LoadUserStaffName(UserID_Login)
         self.loadCustomerTable()
         self.loadStaffTable()
         self.loadGradeMaterial()
         self.loadMaterialPrice()
         self.loadBasketWeight()
-        
-        StaffName = self.db.LoadNameFromUserID(userID)
-        self.ui.lbl_Staff_ID.setText(userID)
-        self.ui.lbl_Staff_name.setText(StaffName)
-    
+              
+        self.setClock()
+        self.setcmb()
+        self.btnLink()
+        self.GenetareOrderID()
+        # self.setThread()
+                
     # Config btn link to function
     def btnLink(self):   
         # Button of customer config 
@@ -55,8 +73,272 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveWeightOfGradeConfig.clicked.connect(self.updateGradeMatrial)
         self.ui.btn_SavePriceMaterial.clicked.connect(self.updateDB_MaterialPrice)
         self.ui.btn_Save_ConfigWeigthBasket.clicked.connect(self.updateDB_BasketWeight)
+        
+        # Button main Page setup
+        self.ui.btn_customerSelect.clicked.connect(self.SelectCustomerToMainpage)
+        self.ui.btn_orderSet.clicked.connect(self.OrderID_Set)
+        self.ui.btn_Create_Order.clicked.connect(self.CreateOrder)
+        self.ui.btn_RandomWeight.clicked.connect(self.randomweight)
+        self.ui.btn_Save_Main.clicked.connect(self.RecordWeight)
+        self.ui.btn_DeleteData_main.clicked.connect(self.DeleteRecordMain)
+        self.ui.cmb_container.activated.connect(self.changeContanierType)
+        self.GradeSelectSetup()
+        
+        # Reslutes Page
+        self.ui.btn_CreateResulte.clicked.connect(self.LoadRecordToResultes)
+        
+    # Resulte Page
+    def LoadRecordToResultes(self):
+        id = self.ui.txt_OrderID_Search.text()
+        total,recordDetal = self.db.DBloadResulte('20250305005')
+        
+        column_names = ['เวลา','ตะกร้า','เกรด','น้ำหนัก']
+
+        # Set Table Dimensions
+        self.ui.tb_ReslutesDetail.setRowCount(len(recordDetal))
+        self.ui.tb_ReslutesDetail.setColumnCount(len(column_names))
+        self.ui.tb_ReslutesDetail.setHorizontalHeaderLabels(column_names)
+
+        header = self.ui.tb_ReslutesDetail.horizontalHeader()         
+        for col in range(len(column_names)):
+            header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
+
+        # Populate Table
+        for row_idx, row_data in enumerate(recordDetal):
+            for col_idx, cell_data in enumerate(row_data):
+                self.ui.tb_ReslutesDetail.setItem(row_idx, col_idx, QTableWidgetItem(str(cell_data)))
+               
+        # show ORder Details
+        # lbl_OrderID_3
+        # lbl_Order_Date_3
+        # lbl_Order_Time_3
+        # lbl_Staff_ID_2
+        # lbl_Staff_name_3
+        # lbl_customer_ID_2
+        # lbl_customer_name_3
+        # lbl_customer_Group_2
+        # lbl_customer_HeadGroup_2
+        # lbl_building_2
+        # lbl_MaterialType_2
+    # Record Page
+    def RecordWeight(self):
+        orderID = self.ui.lbl_OrderID_main.text()
+        weight = self.ui.lbl_weight.text()
+        basketNumber = self.ui.txt_basketName.text()
+        grade = self.ui.lbl_MaterialGrade_main.text()
+        MaterialType = self.ui.lbl_MaterialType_main.text()
+        Staff_ID = self.ui.lbl_Staff_ID.text()
+        customer_ID = self.ui.lbl_customer_ID.text()
+        building_main = self.ui.lbl_building_main.text()
+        container = self.ui.cmb_container.currentText()
+        
+        if (orderID != "-"):
+            if (basketNumber != "") and (grade != "?"):
+                # (orderID, weight, basketNumber, grade, materialType, staffID, customerID, building, container)
+                val = (orderID, weight, basketNumber, grade, MaterialType, Staff_ID, customer_ID, building_main, container)
+                self.db.DBweightRecord(val)
+                self.LoadRecordToMain()
+                self.ui.lbl_weight.setText('00.00')
+                self.ui.lbl_MaterialGrade_main.setText("?")
+                
+                if (self.ui.cmb_container.currentText() == "basket"):
+                    self.ui.txt_basketName.clear()
+            else:
+                dlg = QMessageBox(self)
+                dlg.setWindowTitle("ผิดพลาด")
+                dlg.setText("โปรดใส่เบอร์ตระกร้า \nและ เลือกเกรดวัตุดิบ")
+                dlg.setStandardButtons(QMessageBox.Ok)
+                dlg.exec()  
+        else:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("ผิดพลาด")
+            dlg.setText("โปรดสร้างรายการการรับซื้อก่อน")
+            dlg.setStandardButtons(QMessageBox.Ok)
+            dlg.exec() 
+            
+    def LoadRecordToMain(self):
+        id = self.ui.lbl_OrderID.text()
+        column,row,recordData = self.db.DBloadRecord(id)
+
+        # create Table
+        self.ui.tb_MainRecordDetail.setRowCount(row)
+        self.ui.tb_MainRecordDetail.setColumnCount(column)
+        #self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(0, QTableWidgetItem("order ID"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(0, QTableWidgetItem("เวลา"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(1, QTableWidgetItem("เลขที่"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(2, QTableWidgetItem("น้ำหนัก"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(3, QTableWidgetItem("ตะกร้า"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(4, QTableWidgetItem("เกรด"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(5, QTableWidgetItem("ชนิดพันธุ์"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(6, QTableWidgetItem("ผู้ซื้อ"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(7, QTableWidgetItem("ผู้ขาย"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(8, QTableWidgetItem("อาคาร"))
+        self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(9, QTableWidgetItem("พาชนะ"))
+        
+        header = self.ui.tb_MainRecordDetail.horizontalHeader()         
+        for col in range(column):
+            header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
+            
+        tablerow = 0
+        for row in recordData:
+            # self.ui.tb_MainRecordDetail.setItem(tablerow,0,QTableWidgetItem(str(row[0])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,0,QTableWidgetItem(str(row[1])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,1,QTableWidgetItem(str(row[2])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,2,QTableWidgetItem(str(row[3])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,3,QTableWidgetItem(str(row[4])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,4,QTableWidgetItem(str(row[5])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,5,QTableWidgetItem(str(row[6])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,6,QTableWidgetItem(str(row[7])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,7,QTableWidgetItem(str(row[8])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,8,QTableWidgetItem(str(row[9])))
+            self.ui.tb_MainRecordDetail.setItem(tablerow,9,QTableWidgetItem(str(row[10])))
+            tablerow += 1
     
-    # Load basket weight
+    def DeleteRecordMain(self):
+        Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),1).text()
+        SelectRowToDetete = self.ui.tb_MainRecordDetail.currentRow()
+        
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("ลบข้อมูล")
+        dlg.setText("ต้องการลบข้อมูลหรือไม่ ??\n เวลาที่ต้องการลบ : \n" + Time)
+        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        button = dlg.exec()
+        
+        if button == QMessageBox.Yes:
+            if SelectRowToDetete < 0:
+                return
+            self.ui.tb_MainRecordDetail.removeRow(SelectRowToDetete)
+            self.db.DBdeleteRecord(Time)
+            self.LoadRecordToMain()
+    
+    # Change container type
+    def changeContanierType(self):
+        self.ui.cmb_container.currentText()
+        if (self.ui.cmb_container.currentText() == "bag"):
+            self.ui.txt_basketName.setText("0")
+            self.ui.txt_basketName.setEnabled(False) # disable comboBox
+        else:
+            self.ui.txt_basketName.clear()
+            self.ui.txt_basketName.setEnabled(True)  # enable comboBox 
+    
+    # Grade Select
+    def GradeSelectSetup(self):
+        self.ui.btn_Grade_A.clicked.connect(self.grade_A_set)
+        self.ui.btn_Grade_B.clicked.connect(self.grade_B_set)
+        self.ui.btn_Grade_C.clicked.connect(self.grade_C_set)
+        self.ui.btn_Grade_D.clicked.connect(self.grade_D_set)
+        self.ui.btn_Grade_E.clicked.connect(self.grade_E_set)
+        self.ui.btn_Grade_F.clicked.connect(self.grade_F_set)
+    
+    def grade_A_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("A")
+    def grade_B_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("B")
+    def grade_C_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("C")
+    def grade_D_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("D")
+    def grade_E_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("E")
+    def grade_F_set(self):
+        self.ui.lbl_MaterialGrade_main.setText("F")        
+    
+    # sunford 
+    def setThread(self):
+        # Initialize worker and thread
+        self.SunfordThread = QThread()
+        self.SunfordThread.setObjectName('SunfordWeight')   # Create thread 
+        self.SunfordWorker = SunfordWeightWorker()                # Create worker
+        self.SunfordWorker.moveToThread(self.SunfordThread) # move worker to thread 
+        self.SunfordThread.started.connect(self.SunfordWorker.getWeight)     # Connect Thread
+        self.SunfordWorker.WeightThreadProgress.connect(self.UpdateWeight)     # Connect signals and slots
+        self.SunfordThread.start()    # Start Thread
+        
+    def UpdateWeight(self,weight):
+        self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
+    
+    def randomweight(self):
+        self.UpdateWeight(random.uniform(10, 20))
+        
+    # Create Order
+    def CreateOrder(self):
+        orderID = self.ui.lbl_OrderID.text()
+        customerID = self.ui.lbl_customer_name.text()
+        material = self.ui.cmb_MaterialType.currentText()
+        if ((orderID != "-") and (customerID != "-") and (material != "-")):
+            self.ui.lbl_OrderID_main.setText(orderID)
+            self.ui.lbl_Order_Date_main.setText(self.ui.lbl_Order_Date.text())
+            self.ui.lbl_Order_Time_main.setText(self.ui.lbl_Order_Time.text())
+            self.ui.lbl_customer_name_main.setText(customerID)
+            self.ui.lbl_Staff_name_main.setText(self.ui.lbl_Staff_name.text())
+            self.ui.lbl_building_main.setText(self.ui.cmd_building.currentText())
+            self.ui.lbl_MaterialType_main.setText(material)
+            self.ui.lbl_customer_NameLeadGroup_main.setText(self.ui.lbl_customer_LeadGroupName.text())
+
+        else:
+            self.msgBoxError()
+            
+    # OrderID Setup   
+    def OrderID_Set(self):
+        now = datetime.datetime.now()
+        
+        self.ui.lbl_Order_Time.setText(now.strftime("%H:%M:%S"))
+        self.ui.lbl_Order_Date.setText(now.strftime("%d-%b-%Y"))
+        self.ui.lbl_OrderID.setText(self.ui.txt_OrderID_Set.text())
+        self.ui.txt_OrderID_Search.setText(str(self.ui.lbl_OrderID.text()))    # Set OrderID to Resulte Page
+        self.ui.txt_OrderID_Set.clear()
+        
+        # Load record to main table
+        self.LoadRecordToMain()
+
+    def GenetareOrderID(self):
+        # Get Last Order
+        LastOrder = self.db.GetLastOrder()
+        LastOrder = LastOrder[8:]
+        
+        now = datetime.datetime.now()
+        NowOrder = str(now.strftime("%Y%m%d")) + LastOrder
+        NowOrder = int(NowOrder) + 1
+        
+        self.ui.txt_OrderID_Set.setText(str(NowOrder))
+    
+    # Load Customer Detail    
+    def SelectCustomerToMainpage(self):
+        customerID = self.ui.txt_customerID.text()
+        try:
+            customerDetails = self.db.loadSigleCustomer(customerID)
+            # print(customerDetails[0][0])
+            self.ui.lbl_customer_ID.setText(str(customerDetails[0][0]))
+            self.ui.lbl_customer_name.setText(str(customerDetails[0][1]))
+            self.ui.lbl_customer_Address.setText(str(customerDetails[0][2]))
+            self.ui.lbl_customer_Group.setText(str(customerDetails[0][3]))
+            self.ui.lbl_customer_LeadGroupName.setText(str(customerDetails[0][4]))
+            self.ui.lbl_customer_phone.setText(str(customerDetails[0][5]))
+            
+        except:
+            QMessageBox.warning(self, "ผิดพลาด", "ไม่มีรหัสผู้ขายนี้อยู่ในฐานข้อมูล")
+
+        self.ui.txt_customerID.clear()
+        
+    def LoadUserStaffName (self, userID):
+        StaffName = self.db.LoadNameFromUserID(userID)
+        self.ui.lbl_Staff_ID.setText(userID)
+        self.ui.lbl_Staff_name.setText(StaffName)
+    
+    # Set Clock
+    def setClock(self):
+        timer = QTimer(self)
+        timer.timeout.connect(self.showTime)
+        timer.start(1000)
+    
+    def showTime(self):
+        label_time = datetime.datetime.now().strftime("%H:%M")
+        self.ui.lbl_Clock.setText(label_time)
+        
+        dateNow = datetime.datetime.now().strftime("%d-%b-%Y")
+        self.ui.lbl_dateNow.setText(dateNow)
+        
+    # Update Basket 
     def updateDB_BasketWeight(self):
         weight = self.ui.txt_ConfigWeigthBasket.text()
         
@@ -75,12 +357,12 @@ class MainWindow(QMainWindow):
             
     def loadBasketWeight(self):
         weight = self.db.LoadDB_BasketWeight()
-        self.ui.txt_ConfigWeigthBasket.setText(str(weight[0][1]))
+        self.ui.txt_ConfigWeigthBasket.setText(str(weight[0][2]))
         
     # Load material price
     def updateDB_MaterialPrice(self):
-        sakon = self.ui.txt_Price_material_SAKON.text()
-        buriram = self.ui.txt_Price_material_BURIRAM.text()
+        price_sakon = self.ui.txt_Price_material_SAKON.text()
+        price_buriram = self.ui.txt_Price_material_BURIRAM.text()
         
         dlg = QMessageBox(self)
         dlg.setWindowTitle("แก้ไขข้อมูล")
@@ -89,16 +371,17 @@ class MainWindow(QMainWindow):
         button = dlg.exec()
         
         if button == QMessageBox.Yes:
-            if ((sakon != "") or (buriram != "") ):
-                self.db.updateDB_MaterialPrice(sakon,buriram)
+            if ((price_sakon != "") or (price_buriram != "") ):
+                self.db.updateDB_MaterialPrice(price_buriram,'buriram')
+                self.db.updateDB_MaterialPrice(price_sakon,'sakonnakhon')
                 self.loadMaterialPrice()
             else:
                 return
             
     def loadMaterialPrice(self):
-        price = self.db.LoadDB_MaterialPrice()
-        self.ui.txt_Price_material_SAKON.setText(str(price[0][1]))
+        price = self.db.LoadMaterialPrice()
         self.ui.txt_Price_material_BURIRAM.setText(str(price[0][2]))
+        self.ui.txt_Price_material_SAKON.setText(str(price[1][2]))
            
     # Load Grade for set weight reject 
     def updateGradeMatrial(self):
@@ -117,22 +400,27 @@ class MainWindow(QMainWindow):
         
         if button == QMessageBox.Yes:
             if ((A != "") or (B != "") or (C != "") or (D != "") or (E != "") or (F != "")):
-                self.db.updateWeightReject(A,B,C,D,E,F)
+                self.db.updateWeightReject('A',A)
+                self.db.updateWeightReject('B',B)
+                self.db.updateWeightReject('C',C)
+                self.db.updateWeightReject('D',D)
+                self.db.updateWeightReject('E',E)
+                self.db.updateWeightReject('F',F)
                 self.loadGradeMaterial()
             else:
                 return
             
     def loadGradeMaterial(self):
-        grade = self.db.loadGradematerial()
+        grade = self.db.loadALLGradematerial()
         # print((grade))
         # print(grade[0][2])
 
-        self.ui.txt_config_Grade_A.setText(str(grade[0][1]))
-        self.ui.txt_config_Grade_B.setText(str(grade[0][2]))
-        self.ui.txt_config_Grade_C.setText(str(grade[0][3]))
-        self.ui.txt_config_Grade_D.setText(str(grade[0][4]))
-        self.ui.txt_config_Grade_E.setText(str(grade[0][5]))
-        self.ui.txt_config_Grade_F.setText(str(grade[0][6]))
+        self.ui.txt_config_Grade_A.setText(str(grade[0][2]))
+        self.ui.txt_config_Grade_B.setText(str(grade[1][2]))
+        self.ui.txt_config_Grade_C.setText(str(grade[2][2]))
+        self.ui.txt_config_Grade_D.setText(str(grade[3][2]))
+        self.ui.txt_config_Grade_E.setText(str(grade[4][2]))
+        self.ui.txt_config_Grade_F.setText(str(grade[5][2]))
     
     # ---------- staff Config ------------    
     def loadTextboxStaff(self):
@@ -357,8 +645,9 @@ class MainWindow(QMainWindow):
     
     def setcmb(self):
         # add item to material type
-        self.ui.cmb_MaterialType.addItem("บุรีรัมย์]")     
-        self.ui.cmb_MaterialType.addItem("สกลนคร")     
+        self.ui.cmb_MaterialType.addItem("-")     
+        self.ui.cmb_MaterialType.addItem("buriram")     
+        self.ui.cmb_MaterialType.addItem("sakonnakhon")     
         
         self.ui.cmd_building.addItem("A") 
         self.ui.cmd_building.addItem("B") 
@@ -368,6 +657,9 @@ class MainWindow(QMainWindow):
         self.ui.cmb_level_staff_config.addItem("employee")
         self.ui.cmb_level_staff_config.addItem("manager")
         self.ui.cmb_level_staff_config.addItem("admin")
+        
+        self.ui.cmb_container.addItem("basket")
+        self.ui.cmb_container.addItem("bag")
 
 class LoginWindow(QWidget):
     def __init__(self):
@@ -391,7 +683,10 @@ class LoginWindow(QWidget):
                 QMessageBox.warning(self, "ผิดพลาด", "Password ไม่ถูกต้อง")
         except:
             QMessageBox.warning(self, "ผิดพลาด", "ไม่มี User ID นี้ในระบบ")
-  
+
+        self.ui.txt_Password.clear()
+        self.ui.txt_userID.clear()
+        
     def open_main_window(self,uID):
         self.main_window = MainWindow(uID)
         self.main_window.show()
@@ -399,6 +694,12 @@ class LoginWindow(QWidget):
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    login_window = LoginWindow()
-    login_window.show()
-    app.exec()    
+    MainWindow = MainWindow("0010")
+    MainWindow.show()
+    app.exec()  
+    
+    # for login form
+    # app = QApplication(sys.argv)
+    # login_window = LoginWindow()
+    # login_window.show()
+    # app.exec()    

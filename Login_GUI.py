@@ -49,7 +49,7 @@ class Ui_Dialog(object):
         self.btnLogin.setGeometry(QRect(120, 165, 121, 32))
         self.label_3 = QLabel(Dialog)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(50, 80, 261, 16))
+        self.label_3.setGeometry(QRect(50, 75, 261, 16))
 
         self.retranslateUi(Dialog)
 
