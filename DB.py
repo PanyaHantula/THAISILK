@@ -33,25 +33,82 @@ class Database:
         self.db.commit()
         return self.cursor.fetchall()
 
-    # reslute 
-    def DBloadResulte(self,id):
-        sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(id)
+    # orderWeightRejects
+    def SearchWastWeightByOrder(self,id):
+        sql = "SELECT WasteWeight, ContainerWeight FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
         self.cursor.execute(sql)
-        returnDB = self.cursor.fetchall()
-        total = returnDB[0][0]
-        
+        return self.cursor.fetchall()
+    
+    def DBUpdateWastWeightByOrder(self,id,weight):
+        sql="UPDATE WeightLossByOrder SET WasteWeight='" + weight + "' WHERE orderID = " + str(id)
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall() 
+    
+    def DBUpdateContainerWeightByOrder(self,id,weight):
+        sql="UPDATE WeightLossByOrder SET ContainerWeight='" + weight + "' WHERE orderID = " + str(id)
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall() 
+    
+    def AddNewOrderWeightRejects(self,val):
+        sql = "INSERT INTO WeightLossByOrder (orderID, WasteWeight, BagWeight) VALUES " + str(val)
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall()
+    
+    # reslute 
+    def DBloadResulte(self,id):      
         #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
         sql = "SELECT orders.time " +\
                 ", orders.basketNumber " +\
+                ", orders.weight " +\
                 ", orders.grade " +\
                 ", grade.weightReject " +\
+                ", orders.container " +\
+                ", baskets.weightBasket " +\
+                ", customers.name " +\
+                ", customers.village " +\
+                ", customers.leaderName " +\
                 "FROM orders " +\
                 "LEFT JOIN grade ON orders.grade = grade.grade " +\
+                "LEFT JOIN baskets ON orders.container = baskets.type " +\
+                "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
                 "WHERE orderID='" + str(id) + "'"
         
         self.cursor.execute(sql)
         recordDetal = self.cursor.fetchall()
-        return total,recordDetal
+        return recordDetal
+    
+    def DBloadOrderDetails(self,id):
+        #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
+        sql = "SELECT orders.orderID " +\
+                ", orders.time " +\
+                ", users.uid " +\
+                ", users.name " +\
+                ", customers.customerID " +\
+                ", customers.leaderName " +\
+                ", orders.building " +\
+                ", orders.materialType " +\
+                ", baskets.weightBasket " +\
+                ", material.price " +\
+                "FROM orders " +\
+                "LEFT JOIN users ON orders.staffID = users.uid " +\
+                "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
+                "LEFT JOIN baskets ON orders.container = baskets.type " +\
+                "LEFT JOIN material ON orders.materialType = material.type " +\
+                "WHERE orderID='" + str(id) + "' ORDER BY time ASC LIMIT 1"
+        
+        self.cursor.execute(sql)
+        recordDetal = self.cursor.fetchall()
+        return recordDetal
+    
+    def DB_CountBasket(self,id):
+        sql = "SELECT COUNT(*) FROM orders WHERE container='basket' AND orderID = '" + str(id) + "'"
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        return returnDB[0][0]
+        
     # weight record
     def DBweightRecord(self,val):
         # (`orderID`, `weight`, `basketNumber`, `grade`, `materialType`, `staffID`, `customerID`, `building`, `container`) VALUES ('20250304002', '21', '02', 'B', 'buriram', '0010', '102', 'A', 'basket');
@@ -91,7 +148,7 @@ class Database:
     # Check for login form
     def CheckPassword(self, id):
         # ตรวจสอบ username และ password
-        sql = "SELECT password FROM users WHERE id=" + str(id)
+        sql = "SELECT password FROM users WHERE uid=" + str(id)
         self.cursor.execute(sql)
         returnDB = self.cursor.fetchall()
         password = returnDB[0][0]
@@ -99,12 +156,19 @@ class Database:
         return password
 
     def loadSigleCustomer(self,id):
-        sql = "SELECT * FROM customers WHERE id=" + str(id)
+        sql = "SELECT * FROM customers WHERE customerID=" + str(id)
         self.cursor.execute(sql)
         return self.cursor.fetchall()
     
     def LoadNameFromUserID(self,id):
-        sql = "SELECT name FROM users WHERE id=" + str(id)
+        sql = "SELECT name FROM users WHERE uid=" + str(id)
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        name = returnDB[0][0]
+        return name
+    
+    def LoadLevelFromUserID(self,id):
+        sql = "SELECT level FROM users WHERE uid=" + str(id)
         self.cursor.execute(sql)
         returnDB = self.cursor.fetchall()
         name = returnDB[0][0]
@@ -112,7 +176,7 @@ class Database:
     
     # config weight reject 
     def updateDB_BasketWeight(self,weight):
-        sql="UPDATE baskets SET weightReject='" + weight + "' WHERE type = 'baskert'"
+        sql="UPDATE baskets SET weightBasket='" + weight + "' WHERE type = 'baskert'"
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()  
@@ -155,39 +219,39 @@ class Database:
         # Get All customer data
         self.cursor.execute("SELECT * FROM users")
         StaffDetail = self.cursor.fetchall()
-        column = 5
+        column = 6
         
         return (column,Totalstaff,StaffDetail)
     
     def AddNewStaff(self,val):
-        sql = "INSERT INTO users (id, username, password, level, name) VALUES " + str(val) 
+        sql = "INSERT INTO users (uid, username, password, level, name) VALUES " + str(val) 
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
     
     def DeleteStaff(self,id):
-        sql = "DELETE FROM users WHERE id=" + str(id)
+        sql = "DELETE FROM users WHERE uid=" + str(id)
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
     
-    def EditStaff(self, id, username, password, level, name):
-        sql="UPDATE users SET username = %s, password=%s, level=%s,name=%s  WHERE id=%s"
-        val = (username, password, level, name, id)
+    def EditStaff(self, id, uid, username, password, level, name):
+        sql="UPDATE users SET uid = %s, username = %s, password=%s, level=%s,name=%s  WHERE id=%s"
+        val = (uid, username, password, level, name, id)
         self.cursor.execute(sql,val)
         self.db.commit()
         return self.cursor.fetchall()                    
                         
     # Customer 
     def AddNewCustomer(self,val):
-        sql = "INSERT INTO customers (id, name, address, village, leaderName, phone) VALUES " + str(val) 
+        sql = "INSERT INTO customers (customerID, name, address, village, leaderName, phone) VALUES " + str(val) 
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
     
-    def EditCustomer(self, id, name, address, village_group, leader,phone):
-        sql="UPDATE customers SET name = %s, address=%s , village=%s ,leaderName=%s ,phone=%s WHERE id=%s"
-        val = (name, address, village_group, leader,phone, id)
+    def EditCustomer(self, id, customerID, name, address, village_group, leader,phone):
+        sql="UPDATE customers SET customerID=%s, name = %s, address=%s , village=%s ,leaderName=%s ,phone=%s WHERE id=%s"
+        val = (customerID, name, address, village_group, leader,phone, id)
         self.cursor.execute(sql,val)
         self.db.commit()
         return self.cursor.fetchall()
@@ -201,7 +265,7 @@ class Database:
         # Get All customer data
         self.cursor.execute("SELECT * FROM customers")
         CustomerDetail = self.cursor.fetchall()
-        column = 6
+        column = 7
         
         return (column,TotalCustomer,CustomerDetail)
 
@@ -213,21 +277,8 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    DB_Resulte = db.DBloadResulte('20250305005')
-    print(DB_Resulte)
-    
-    # password = db.CheckPassword("0040")
-    # print(password)
-    
-    # sql = "INSERT INTO customer (id, name) VALUES ('001', 'AOM')"            
-    # db.query(sql)    
-    #db.select_all()
-    
-    # cmd = "SELECT * FROM dataLoger WHERE total_product = 9"
-    # resultes = db.query(cmd)
-    # for row in resultes:
-    #     print (row)   
-   # INSERT INTO `ThaiSilkProducts`.`customer` (`id`, `name`, `surname`, `address`, `phone`, `group`, `headgroup`) VALUES ('003', 'A', 'A', 'A', 'A', 'D', 'B');
+    ret = db.SearchWastWeightByOrder('202503060001')
+    print(ret[0][0])
 
-
+    
 

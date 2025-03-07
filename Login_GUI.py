@@ -41,6 +41,7 @@ class Ui_Dialog(object):
         self.txt_Password = QLineEdit(Dialog)
         self.txt_Password.setObjectName(u"txt_Password")
         self.txt_Password.setGeometry(QRect(120, 135, 125, 21))
+        self.txt_Password.setEchoMode(QLineEdit.Password)
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(50, 135, 65, 21))
@@ -63,6 +64,9 @@ class Ui_Dialog(object):
         self.label.setText(QCoreApplication.translate("Dialog", u"User ID", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Password", None))
         self.btnLogin.setText(QCoreApplication.translate("Dialog", u"Login", None))
+#if QT_CONFIG(shortcut)
+        self.btnLogin.setShortcut(QCoreApplication.translate("Dialog", u"Return", None))
+#endif // QT_CONFIG(shortcut)
         self.label_3.setText(QCoreApplication.translate("Dialog", u"\u0e01\u0e23\u0e38\u0e13\u0e32\u0e43\u0e2a\u0e48\u0e23\u0e2b\u0e31\u0e2a\u0e1b\u0e23\u0e30\u0e08\u0e33\u0e15\u0e31\u0e27\u0e40\u0e08\u0e49\u0e32\u0e2b\u0e19\u0e49\u0e32\u0e17\u0e35\u0e48\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e40\u0e02\u0e49\u0e32\u0e2a\u0e39\u0e48\u0e23\u0e30\u0e1a\u0e1a", None))
     # retranslateUi
 

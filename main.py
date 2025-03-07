@@ -4,7 +4,7 @@
 import sys
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView
-from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
+from PySide6.QtCore import Qt, QThread, QObject, Signal, Slot, QTimer
 from main_GUI import Ui_MainWindow
 from Login_GUI import Ui_Dialog
 from DB import Database
@@ -86,40 +86,164 @@ class MainWindow(QMainWindow):
         
         # Reslutes Page
         self.ui.btn_CreateResulte.clicked.connect(self.LoadRecordToResultes)
+        self.ui.btn_SaveWasteWeight.clicked.connect(self.RecordWasteWeight)
+        self.ui.btn_SaveContainerWeight.clicked.connect(self.RecordContainerWeight)
+        
+        self.ui.btn_SaveWasteWeight.setDisabled(True)
+        self.ui.btn_SaveContainerWeight.setDisabled(True)
         
     # Resulte Page
-    def LoadRecordToResultes(self):
-        id = self.ui.txt_OrderID_Search.text()
-        total,recordDetal = self.db.DBloadResulte('20250305005')
+    def RecordWasteWeight(self):
+        wastWeight = self.ui.txt_wasteWeight.text()
+        orderID = self.ui.lbl_OrderID_3.text()
         
-        column_names = ['เวลา','ตะกร้า','เกรด','น้ำหนัก']
+        self.ui.lbl_Resulte_TotalWeightReject_west.setText(wastWeight)      
+        self.db.DBUpdateWastWeightByOrder(orderID,wastWeight)
+        self.calOrder()
+        # self.LoadRecordToResultes()             # Update reslute
+
+    def RecordContainerWeight(self):
+        ContainerWeight = self.ui.txt_ContainerWeight.text()
+        orderID = self.ui.lbl_OrderID_3.text()
+        
+        self.ui.lbl_Resulte_ContainerWeight.setText(ContainerWeight)    
+        self.ui.lbl_Resulte_ContainerWeight_2.setText(ContainerWeight)     
+        self.db.DBUpdateContainerWeightByOrder(orderID,ContainerWeight)
+        self.calOrder()
+        
+    def LoadRecordToResultes(self):
+        # id = '20250305005'
+        id = self.ui.txt_OrderID_Search.text()
+        recordDetal = self.db.DBloadResulte(id)
+        
+        column_names = ['เวลา','ตะกร้า','น้ำหนัก','เกรด','หักน้ำหนัก','ภาชนะ','น้ำหนักภาชนะ','น้ำหนักสุทธิ','ชื่อผู้ขาย','หมู่บ้าน','หัวหน้ากลุ่ม']
 
         # Set Table Dimensions
         self.ui.tb_ReslutesDetail.setRowCount(len(recordDetal))
         self.ui.tb_ReslutesDetail.setColumnCount(len(column_names))
         self.ui.tb_ReslutesDetail.setHorizontalHeaderLabels(column_names)
 
+        # create Table
         header = self.ui.tb_ReslutesDetail.horizontalHeader()         
         for col in range(len(column_names)):
             header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
 
-        # Populate Table
-        for row_idx, row_data in enumerate(recordDetal):
-            for col_idx, cell_data in enumerate(row_data):
-                self.ui.tb_ReslutesDetail.setItem(row_idx, col_idx, QTableWidgetItem(str(cell_data)))
-               
-        # show ORder Details
-        # lbl_OrderID_3
-        # lbl_Order_Date_3
-        # lbl_Order_Time_3
-        # lbl_Staff_ID_2
-        # lbl_Staff_name_3
-        # lbl_customer_ID_2
-        # lbl_customer_name_3
-        # lbl_customer_Group_2
-        # lbl_customer_HeadGroup_2
-        # lbl_building_2
-        # lbl_MaterialType_2
+        tablerow = 0
+        for row in recordDetal:
+            self.ui.tb_ReslutesDetail.setItem(tablerow,0,QTableWidgetItem(str(row[0])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,1,QTableWidgetItem(str(row[1])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,2,QTableWidgetItem(str(row[2])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,3,QTableWidgetItem(str(row[3])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,4,QTableWidgetItem(str(row[4])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,5,QTableWidgetItem(str(row[5])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,6,QTableWidgetItem(str(row[6])))
+            
+            self.ui.tb_ReslutesDetail.setItem(tablerow,8,QTableWidgetItem(str(row[7])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,9,QTableWidgetItem(str(row[8])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,10,QTableWidgetItem(str(row[9])))
+            tablerow += 1
+            
+        # header = self.ui.tb_ReslutesDetail.horizontalHeader()         
+        # for col in range(len(column_names)):
+        #     header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
+
+        # # Populate Table
+        # for row_idx, row_data in enumerate(recordDetal):
+        #     for col_idx, cell_data in enumerate(row_data):
+        #         self.ui.tb_ReslutesDetail.setItem(row_idx, col_idx, QTableWidgetItem(str(cell_data)))
+
+        # calculate final weight per basket
+        colIndex = 7
+        for rowIndex in range (tablerow):
+            weight = float(self.ui.tb_ReslutesDetail.item(rowIndex, 2).text())
+            weightReject = float(self.ui.tb_ReslutesDetail.item(rowIndex, 4).text())
+            weightBasket = float(self.ui.tb_ReslutesDetail.item(rowIndex, 6).text())
+            finalWeightPerUnit = weight - weightReject - weightBasket
+            self.ui.tb_ReslutesDetail.setItem(rowIndex, colIndex, QTableWidgetItem(str(("{0:.2f}".format(finalWeightPerUnit)))))
+        
+        # calculate final weight per basket
+        SumRawWeight = 0.0
+        SumWeightReject = 0.0
+        for rowIndex in range (tablerow):
+            SumRawWeight += float(self.ui.tb_ReslutesDetail.item(rowIndex, 2).text())
+            SumWeightReject += float(self.ui.tb_ReslutesDetail.item(rowIndex, 4).text())
+            
+        self.ui.lbl_Resulte_TotalWeightMeterial.setText(str(("{0:.2f}".format(SumRawWeight))))    
+        self.ui.lbl_Resulte_TotalWeightMeterial_2.setText(str(("{0:.2f}".format(SumRawWeight))))   
+        self.ui.lbl_Resulte_TotalWeightReject.setText(str(("{0:.2f}".format(SumWeightReject))))
+        self.ui.lbl_Resulte_TotalWeightReject_2.setText(str(("{0:.2f}".format(SumWeightReject))))
+        
+        OrderDetails = self.db.DBloadOrderDetails(id) 
+        orderID = OrderDetails[0][0]
+        # show Order Details
+        self.ui.lbl_OrderID_3.setText(str(orderID))
+        datettime = str(OrderDetails[0][1])
+        self.ui.lbl_Order_Date_3.setText(datettime[:10])
+        self.ui.lbl_Order_Time_3.setText((datettime[10:]))
+        self.ui.lbl_Staff_ID_2.setText(OrderDetails[0][2])
+        self.ui.lbl_Staff_name_3.setText(OrderDetails[0][3])
+        self.ui.lbl_customer_ID_2.setText(OrderDetails[0][4])
+        self.ui.lbl_customer_HeadGroup_2.setText(OrderDetails[0][5])
+        self.ui.lbl_building_2.setText(OrderDetails[0][6])
+        self.ui.lbl_MaterialType_2.setText(OrderDetails[0][7])
+        
+        # Load wast and bag weight
+        weightLoss = self.db.SearchWastWeightByOrder(str(orderID))
+        wastWeight = weightLoss[0][0]
+        Bagweight = weightLoss[0][1]
+        
+        self.ui.lbl_Resulte_TotalWeightReject_west.setText(str(wastWeight))
+        self.ui.txt_wasteWeight.setText(str(wastWeight))
+        
+        self.ui.lbl_Resulte_ContainerWeight.setText(str(Bagweight))
+        self.ui.lbl_Resulte_ContainerWeight_2.setText(str(Bagweight)) 
+        self.ui.txt_ContainerWeight.setText(str(Bagweight))
+        
+        # load basket weight and materail typr
+        self.ui.lbl_Resulte_weightBasket.setText(str(OrderDetails[0][8]))
+        self.ui.lbl_Resulte_weightBasket_2.setText(str(OrderDetails[0][8]))
+        self.ui.lbl_Resulte_Type.setText(self.ui.lbl_MaterialType_2.text())
+        self.ui.lbl_Resulte_TotalWeightMeterial_3.setText(str(OrderDetails[0][9]))
+
+        # Update TotalBasket
+        totalBasket = self.db.DB_CountBasket(id)
+        weightBasket = self.ui.lbl_Resulte_weightBasket.text()
+        totalBasketWeight = float(totalBasket) * float(weightBasket)
+        
+        self.ui.lbl_Resulte_TotalBasket.setText(str(totalBasket))
+        self.ui.lbl_Resulte_TotalBasket_2.setText(str(totalBasket))
+        self.ui.lbl_Resulte_TotalWeightBasket.setText(str(("{0:.2f}".format(totalBasketWeight))))
+        self.ui.lbl_Resulte_TotalWeightBasket_2.setText(str(("{0:.2f}".format(totalBasketWeight))))       
+    
+        self.calOrder()
+        
+    def calOrder(self):
+        # Cal final weight to processing line 
+        Raw_Weight = float(self.ui.lbl_Resulte_TotalWeightMeterial.text())
+        WeightReject = float(self.ui.lbl_Resulte_TotalWeightReject.text())
+        WeightBasket = float(self.ui.lbl_Resulte_TotalWeightBasket.text())
+        ContainerWeight = float(self.ui.lbl_Resulte_ContainerWeight.text())
+        
+        finalWeightToProcessing = Raw_Weight - WeightReject - WeightBasket - ContainerWeight
+        self.ui.lbl_Resulte_TotalWeight_toManuFactory.setText(str(("{0:.2f}".format(finalWeightToProcessing))))
+        
+        # cal final weight to accouting
+        WestWeightReject_west = float(self.ui.lbl_Resulte_TotalWeightReject_west.text())
+        
+        finalWeightToAccounting = finalWeightToProcessing - WestWeightReject_west
+        self.ui.lbl_Resulte_TotalWeight_Accounting.setText(str(("{0:.2f}".format(finalWeightToAccounting))))
+        self.ui.lbl_Resulte_TotalWeight_Accounting_2.setText(self.ui.lbl_Resulte_TotalWeight_Accounting.text())
+        
+        # calculate payment
+        Price = float(self.ui.lbl_Resulte_TotalWeightMeterial_3.text())
+        TotalWeight = float(self.ui.lbl_Resulte_TotalWeight_Accounting_2.text())
+        
+        finalPayment = finalWeightToAccounting * Price
+        self.ui.lbl_Resulte_TotalPrice.setText(str(("{0:.2f}".format(finalPayment))))
+        
+        self.ui.btn_SaveWasteWeight.setDisabled(False)
+        self.ui.btn_SaveContainerWeight.setDisabled(False)    
+        
     # Record Page
     def RecordWeight(self):
         orderID = self.ui.lbl_OrderID_main.text()
@@ -158,10 +282,10 @@ class MainWindow(QMainWindow):
             
     def LoadRecordToMain(self):
         id = self.ui.lbl_OrderID.text()
-        column,row,recordData = self.db.DBloadRecord(id)
+        column,self.rowRecordTotal,recordData = self.db.DBloadRecord(id)
 
         # create Table
-        self.ui.tb_MainRecordDetail.setRowCount(row)
+        self.ui.tb_MainRecordDetail.setRowCount(self.rowRecordTotal)
         self.ui.tb_MainRecordDetail.setColumnCount(column)
         #self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(0, QTableWidgetItem("order ID"))
         self.ui.tb_MainRecordDetail.setHorizontalHeaderItem(0, QTableWidgetItem("เวลา"))
@@ -195,7 +319,7 @@ class MainWindow(QMainWindow):
             tablerow += 1
     
     def DeleteRecordMain(self):
-        Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),1).text()
+        Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),0).text()
         SelectRowToDetete = self.ui.tb_MainRecordDetail.currentRow()
         
         dlg = QMessageBox(self)
@@ -274,7 +398,15 @@ class MainWindow(QMainWindow):
             self.ui.lbl_building_main.setText(self.ui.cmd_building.currentText())
             self.ui.lbl_MaterialType_main.setText(material)
             self.ui.lbl_customer_NameLeadGroup_main.setText(self.ui.lbl_customer_LeadGroupName.text())
-
+            
+            # check old orderID on DB with data in mainWeight table if emtry orderID that it create
+            LastOrderWeightRejects = self.db.SearchOrderWeightRejects()
+            
+            if (LastOrderWeightRejects != orderID):
+                print('Create a AddNewOrderWeightRejects')
+                val = (orderID,'0','0')
+                self.db.AddNewOrderWeightRejects(val)
+                
         else:
             self.msgBoxError()
             
@@ -308,12 +440,12 @@ class MainWindow(QMainWindow):
         try:
             customerDetails = self.db.loadSigleCustomer(customerID)
             # print(customerDetails[0][0])
-            self.ui.lbl_customer_ID.setText(str(customerDetails[0][0]))
-            self.ui.lbl_customer_name.setText(str(customerDetails[0][1]))
-            self.ui.lbl_customer_Address.setText(str(customerDetails[0][2]))
-            self.ui.lbl_customer_Group.setText(str(customerDetails[0][3]))
-            self.ui.lbl_customer_LeadGroupName.setText(str(customerDetails[0][4]))
-            self.ui.lbl_customer_phone.setText(str(customerDetails[0][5]))
+            self.ui.lbl_customer_ID.setText(str(customerDetails[0][1]))
+            self.ui.lbl_customer_name.setText(str(customerDetails[0][2]))
+            self.ui.lbl_customer_Address.setText(str(customerDetails[0][3]))
+            self.ui.lbl_customer_Group.setText(str(customerDetails[0][4]))
+            self.ui.lbl_customer_LeadGroupName.setText(str(customerDetails[0][5]))
+            self.ui.lbl_customer_phone.setText(str(customerDetails[0][6]))
             
         except:
             QMessageBox.warning(self, "ผิดพลาด", "ไม่มีรหัสผู้ขายนี้อยู่ในฐานข้อมูล")
@@ -324,7 +456,24 @@ class MainWindow(QMainWindow):
         StaffName = self.db.LoadNameFromUserID(userID)
         self.ui.lbl_Staff_ID.setText(userID)
         self.ui.lbl_Staff_name.setText(StaffName)
-    
+        
+        self.UserLevel = self.db.LoadLevelFromUserID(userID)
+        showLevel = "(" + self.UserLevel + ")"
+        self.ui.lbl_UserLevelShow.setText(showLevel)
+        
+        if (self.UserLevel == "admin"):
+            pass
+        elif (self.UserLevel == "manager"):
+            self.ui.groupBox_19.setDisabled(True)       # user edit
+            self.ui.groupBox_3.hide()                   # hidden uer table
+        elif (self.UserLevel == "employee"):
+            self.ui.groupBox_4.setDisabled(True)        # customer edit
+            self.ui.groupBox_12.setDisabled(True)       # grade edit
+            self.ui.groupBox_13.setDisabled(True)       # basket weight edit
+            self.ui.groupBox_15.setDisabled(True)       # type Price edit
+            self.ui.groupBox_19.setDisabled(True)       # user edit
+            self.ui.groupBox_3.hide()                   # hidden uer table
+ 
     # Set Clock
     def setClock(self):
         timer = QTimer(self)
@@ -424,20 +573,21 @@ class MainWindow(QMainWindow):
     
     # ---------- staff Config ------------    
     def loadTextboxStaff(self):
-        id = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),0).text()
-        username = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),1).text()
-        password = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),2).text()
-        level = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),3).text()
-        name = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),4).text()
+        self.id_EditUser = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),0).text()
+        uid = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),1).text()
+        username = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),2).text()
+        password = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),3).text()
+        level = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),4).text()
+        name = self.ui.tb_staffDetail.item(self.ui.tb_staffDetail.currentIndex().row(),5).text()
         
-        self.ui.txt_staff_id_config.setText(id)
+        self.ui.txt_staff_id_config.setText(uid)
         self.ui.txt_username_staff_config.setText(username)
         self.ui.txt_password_staff_config.setText(password)
         self.ui.cmb_level_staff_config.setCurrentText(level)
         self.ui.txt_name_staff_config.setText(name)
             
     def edit_staff(self):
-        id = self.ui.txt_staff_id_config.text()
+        uid = self.ui.txt_staff_id_config.text()
         username = self.ui.txt_username_staff_config.text()
         password = self.ui.txt_password_staff_config.text()
         level = self.ui.cmb_level_staff_config.currentText()
@@ -451,7 +601,7 @@ class MainWindow(QMainWindow):
         
         if button == QMessageBox.Yes:
             if (self.ui.txt_name_staff_config.text() != ""):
-                self.db.EditStaff(id, username, password, level, name)
+                self.db.EditStaff(self.id_EditUser,uid, username, password, level, name)
                 self.loadStaffTable()
                 self.clear_from_addNewStaff()
             else:
@@ -483,11 +633,12 @@ class MainWindow(QMainWindow):
         # create Table
         self.ui.tb_staffDetail.setRowCount(row)
         self.ui.tb_staffDetail.setColumnCount(column)
-        self.ui.tb_staffDetail.setHorizontalHeaderItem(0, QTableWidgetItem("id"))
-        self.ui.tb_staffDetail.setHorizontalHeaderItem(1, QTableWidgetItem("username"))
-        self.ui.tb_staffDetail.setHorizontalHeaderItem(2, QTableWidgetItem("password"))
-        self.ui.tb_staffDetail.setHorizontalHeaderItem(3, QTableWidgetItem("level"))
-        self.ui.tb_staffDetail.setHorizontalHeaderItem(4, QTableWidgetItem("name"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(0, QTableWidgetItem("ON"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(1, QTableWidgetItem("id"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(2, QTableWidgetItem("username"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(3, QTableWidgetItem("password"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(4, QTableWidgetItem("level"))
+        self.ui.tb_staffDetail.setHorizontalHeaderItem(5, QTableWidgetItem("name"))
         
         header = self.ui.tb_staffDetail.horizontalHeader()         
         for col in range(column):
@@ -499,18 +650,19 @@ class MainWindow(QMainWindow):
             self.ui.tb_staffDetail.setItem(tablerow,1,QTableWidgetItem(row[1]))
             self.ui.tb_staffDetail.setItem(tablerow,2,QTableWidgetItem(row[2]))
             self.ui.tb_staffDetail.setItem(tablerow,3,QTableWidgetItem(row[3]))
-            self.ui.tb_staffDetail.setItem(tablerow,4,QTableWidgetItem(row[3]))
+            self.ui.tb_staffDetail.setItem(tablerow,4,QTableWidgetItem(row[4]))
+            self.ui.tb_staffDetail.setItem(tablerow,5,QTableWidgetItem(row[5]))
             tablerow += 1
     
     def add_staff(self):      
         if (self.ui.txt_staff_id_config.text() != ""):
-                id = self.ui.txt_staff_id_config.text()
+                uid = self.ui.txt_staff_id_config.text()
                 username = self.ui.txt_username_staff_config.text()
                 password = self.ui.txt_password_staff_config.text()
                 level = self.ui.cmb_level_staff_config.currentText()
                 name = self.ui.txt_name_staff_config.text()
                 
-                val = (id, username, password, level, name)
+                val = (uid, username, password, level, name)
                 self.db.AddNewStaff(val)
                 self.loadStaffTable()
                 self.clear_from_addNewStaff()
@@ -529,26 +681,27 @@ class MainWindow(QMainWindow):
         pass
         
     def loadTextboxCustomer(self):
-        id = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),0).text()
-        name = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),1).text()
-        address = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),2).text()
-        village_group = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),3).text()
-        leader = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),4).text()
-        phone = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),5).text()
+        self.ID_EditCustomer = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),0).text()
+        customerID = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),1).text()
+        name = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),2).text()
+        address = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),3).text()
+        village_group = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),4).text()
+        leader = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),5).text()
+        phone = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),6).text()
         
-        self.ui.txt_customerID_DB.setText(id)
+        self.ui.txt_customerID_DB.setText(customerID)
         self.ui.txt_name_customer_DB.setText(name)
         self.ui.txt_address_customer_DB.setText(address)
         self.ui.txt_group_customer_DB.setText(village_group)
-        self.ui.txt_leaderName_customer_DB.setText(leader)
+        self.ui.cmb_leaderName_customer_DB.setCurrentText(leader)
         self.ui.txt_phone_customer_DB.setText(phone)
-    
+
     def edit_Customer(self):
-        id = self.ui.txt_customerID_DB.text()
+        customerID = self.ui.txt_customerID_DB.text()
         name = self.ui.txt_name_customer_DB.text()
         address = self.ui.txt_address_customer_DB.text()
         village_group = self.ui.txt_group_customer_DB.text()
-        leader = self.ui.txt_leaderName_customer_DB.text()
+        leader = self.ui.cmb_leaderName_customer_DB.currentText()
         phone = self.ui.txt_phone_customer_DB.text()
         
         dlg = QMessageBox(self)
@@ -559,14 +712,14 @@ class MainWindow(QMainWindow):
         
         if button == QMessageBox.Yes:
             if (self.ui.txt_customerID_DB.text() != ""):
-                self.db.EditCustomer(id, name, address, village_group, leader, phone)
+                self.db.EditCustomer(self.ID_EditCustomer , customerID, name, address, village_group, leader, phone)
                 self.loadCustomerTable()
                 self.clear_from_addnewCustomer()
             else:
                 return
           
     def delete_Customer(self):
-        customerID = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),0).text()
+        id = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),0).text()
         name = self.ui.tb_customerDetail.item(self.ui.tb_customerDetail.currentIndex().row(),1).text()
         SelectRowToDetete = self.ui.tb_customerDetail.currentRow()
         
@@ -580,7 +733,7 @@ class MainWindow(QMainWindow):
             if SelectRowToDetete < 0:
                 return
             self.ui.tb_customerDetail.removeRow(SelectRowToDetete)
-            self.db.DeleteCustomer(customerID)
+            self.db.DeleteCustomer(id)
             self.loadCustomerTable()
             
     def loadCustomerTable(self):
@@ -590,12 +743,13 @@ class MainWindow(QMainWindow):
         # create Table
         self.ui.tb_customerDetail.setRowCount(row)
         self.ui.tb_customerDetail.setColumnCount(column)
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(0, QTableWidgetItem("รหัสผู้ขาย"))
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(1, QTableWidgetItem("ชื่อ"))
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(2, QTableWidgetItem("จังหวัด"))
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(3, QTableWidgetItem("กลุ่ม/หมู่บ้าน"))
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(4,QTableWidgetItem("หัวหน้ากลุ่ม"))
-        self.ui.tb_customerDetail.setHorizontalHeaderItem(5, QTableWidgetItem("เบอร์โทรศัพท์"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(0, QTableWidgetItem("ON"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(1, QTableWidgetItem("รหัสผู้ขาย"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(2, QTableWidgetItem("ชื่อ"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(3, QTableWidgetItem("จังหวัด"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(4, QTableWidgetItem("กลุ่ม/หมู่บ้าน"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(5,QTableWidgetItem("หัวหน้ากลุ่ม"))
+        self.ui.tb_customerDetail.setHorizontalHeaderItem(6, QTableWidgetItem("เบอร์โทรศัพท์"))
         
         header = self.ui.tb_customerDetail.horizontalHeader()         
         for col in range(column):
@@ -609,15 +763,16 @@ class MainWindow(QMainWindow):
             self.ui.tb_customerDetail.setItem(tablerow,3,QTableWidgetItem(row[3]))
             self.ui.tb_customerDetail.setItem(tablerow,4,QTableWidgetItem(row[4]))
             self.ui.tb_customerDetail.setItem(tablerow,5,QTableWidgetItem(row[5]))
+            self.ui.tb_customerDetail.setItem(tablerow,6,QTableWidgetItem(row[6]))
             tablerow += 1
 
     def add_customer(self):      
         if (self.ui.txt_name_customer_DB.text() != ""):
-                id = self.ui.txt_customerID_DB.text()
+                id = self.ui.txt_customerID_DB.text() 
                 name = self.ui.txt_name_customer_DB.text()
                 address = self.ui.txt_address_customer_DB.text()
                 group = self.ui.txt_group_customer_DB.text()
-                leader = self.ui.txt_leaderName_customer_DB.text()
+                leader = self.ui.cmb_leaderName_customer_DB.currentText()
                 phone = self.ui.txt_phone_customer_DB.text()
                                 
                 val = (id, name, address, group, leader, phone)
@@ -633,7 +788,7 @@ class MainWindow(QMainWindow):
         self.ui.txt_address_customer_DB.clear()
         self.ui.txt_phone_customer_DB.clear()
         self.ui.txt_group_customer_DB.clear()
-        self.ui.txt_leaderName_customer_DB.clear()  
+        self.ui.cmb_leaderName_customer_DB.setCurrentText("-")
         self.ui.txt_phone_customer_DB.clear()
              
     def msgBoxError(self):
@@ -660,6 +815,14 @@ class MainWindow(QMainWindow):
         
         self.ui.cmb_container.addItem("basket")
         self.ui.cmb_container.addItem("bag")
+        
+        self.ui.cmb_leaderName_customer_DB.addItem("-")
+        self.ui.cmb_leaderName_customer_DB.addItem("บริษัท ไทยซิลค์โปรดัคส์ จำกัด")
+        self.ui.cmb_leaderName_customer_DB.addItem("คุณนันทพัทธ  พุกกะนะสุตร")
+        self.ui.cmb_leaderName_customer_DB.addItem("คุณอารียา  แสไธสง")
+        self.ui.cmb_leaderName_customer_DB.addItem("คุณบุญรอด  สร้างการนอก")
+        self.ui.cmb_leaderName_customer_DB.addItem("คุณอำนวย  มีสถาน")
+        self.ui.cmb_leaderName_customer_DB.addItem("บริษัท ไร่นายจุล คุ้นวงศ์ จำกัด")
 
 class LoginWindow(QWidget):
     def __init__(self):
@@ -693,13 +856,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
         
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    MainWindow = MainWindow("0010")
-    MainWindow.show()
-    app.exec()  
-    
-    # for login form
     # app = QApplication(sys.argv)
     # login_window = LoginWindow()
     # login_window.show()
     # app.exec()    
+    
+    # For Testing Program
+    app = QApplication(sys.argv)
+    MainWindow = MainWindow("0010")
+    MainWindow.show()
+    app.exec()  
