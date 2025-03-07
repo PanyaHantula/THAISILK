@@ -32,7 +32,20 @@ class Database:
         self.cursor.execute(cmd)
         self.db.commit()
         return self.cursor.fetchall()
-
+    
+    # Config Serial port
+    def updateSerialPortName(self,name):
+        sql="UPDATE serial SET name='" + name + "' WHERE id = 1"
+        self.cursor.execute(sql)
+        self.db.commit()
+        return self.cursor.fetchall() 
+    
+    def LoadSerialPortName(self):
+        sql = "SELECT * FROM serial"
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        name = returnDB[0][1]
+        return name
     # orderWeightRejects
     def LoadWastWeightByOrder(self,id):
         sql = "SELECT WasteWeight, ContainerWeight FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
@@ -283,8 +296,9 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    ret = db.SearchWastWeightByOrder('202503060001')
-    print(ret[0][0])
+    # db.updateSerialPortName('/dev/tty.PL2303G-USBtoUART11140')
+    # db.updateSerialPortName('COM3')
+    print(db.LoadSerialPortName())
 
     
 

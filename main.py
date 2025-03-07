@@ -17,16 +17,14 @@ import random
 #       sunford get weigth Thread          #
 ############################################
 class SunfordWeightRead(QObject):
-    def __init__(self):
+    def __init__(self,SerialPortName):
         super().__init__()
-        self.serialCon()
-        
-    def serialCon(self):
-        port = "/dev/tty.PL2303G-USBtoUART11140"
+
+        # port = "/dev/tty.PL2303G-USBtoUART11140"
         baud_rate = "9600"
         try:
-            self.ser = serial.Serial(port, baud_rate, timeout=1)
-            print(f"Connected to {port} at {baud_rate} baud.")
+            self.ser = serial.Serial(SerialPortName, baud_rate, timeout=1)
+            print(f"Connected to {SerialPortName} at {baud_rate} baud.")
         except Exception as e:
             print(f"Error: {e}")
             return
@@ -64,6 +62,7 @@ class MainWindow(QMainWindow):
         self.loadGradeMaterial()
         self.loadMaterialPrice()
         self.loadBasketWeight()
+        self.LoadSerialPortConfig()
               
         self.setClock()
         self.setcmb()
@@ -91,6 +90,7 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveWeightOfGradeConfig.clicked.connect(self.updateGradeMatrial)
         self.ui.btn_SavePriceMaterial.clicked.connect(self.updateDB_MaterialPrice)
         self.ui.btn_Save_ConfigWeigthBasket.clicked.connect(self.updateDB_BasketWeight)
+        self.ui.btn_SerialPortSet.clicked.connect(self.SetSerialPort)
         
         # Button main Page setup
         self.ui.btn_customerSelect.clicked.connect(self.SelectCustomerToMainpage)
@@ -396,8 +396,10 @@ class MainWindow(QMainWindow):
         # Initialize worker and thread
         self.SunfordThread = QThread()
         self.SunfordThread.setObjectName('SunfordWeight')   # Create thread 
-        self.SunfordWorker = SunfordWeightRead()                # Create worker
-        self.SunfordWorker.moveToThread(self.SunfordThread) # move worker to thread 
+        
+        SerialPortName = self.ui.txt_SerialPortName.text()
+        self.SunfordWorker = SunfordWeightRead(SerialPortName)                # Create worker
+        self.SunfordWorker.moveToThread(self.SunfordThread)         # move worker to thread 
         self.SunfordThread.started.connect(self.SunfordWorker.getWeight)     # Connect Thread
         self.SunfordWorker.WeightThreadProgress.connect(self.UpdateWeight)     # Connect signals and slots
         self.SunfordThread.start()    # Start Thread
@@ -513,7 +515,16 @@ class MainWindow(QMainWindow):
         
         dateNow = datetime.datetime.now().strftime("%d-%b-%Y")
         self.ui.lbl_dateNow.setText(dateNow)
-        
+    
+    # set Serialpoprt name
+    def SetSerialPort(self):
+        SerialPortName = self.ui.txt_SerialPortName.text()
+        self.db.updateSerialPortName(SerialPortName)
+    
+    def LoadSerialPortConfig(self):
+        comport = self.db.LoadSerialPortName()
+        self.ui.txt_SerialPortName.setText(comport)  
+          
     # Update Basket 
     def updateDB_BasketWeight(self):
         weight = self.ui.txt_ConfigWeigthBasket.text()

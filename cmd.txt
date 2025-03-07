@@ -1,2 +1,5 @@
 pyside6-uic main_GUI.ui -o main_GUI.py
 pyside6-uic Login_GUI.ui -o Login_GUI.py
+
+# install
+pip install -r requirements.txt
