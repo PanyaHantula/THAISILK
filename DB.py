@@ -34,7 +34,7 @@ class Database:
         return self.cursor.fetchall()
 
     # orderWeightRejects
-    def SearchWastWeightByOrder(self,id):
+    def LoadWastWeightByOrder(self,id):
         sql = "SELECT WasteWeight, ContainerWeight FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
         self.cursor.execute(sql)
         return self.cursor.fetchall()
@@ -52,10 +52,16 @@ class Database:
         return self.cursor.fetchall() 
     
     def AddNewOrderWeightRejects(self,val):
-        sql = "INSERT INTO WeightLossByOrder (orderID, WasteWeight, BagWeight) VALUES " + str(val)
+        sql = "INSERT INTO WeightLossByOrder (orderID, WasteWeight, ContainerWeight) VALUES " + str(val)
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
+
+    def SearchLastOrderWeight(self,id):
+        sql = "SELECT COUNT(*) FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
+        self.cursor.execute(sql)
+        returnDB = self.cursor.fetchall()
+        return returnDB[0][0]
     
     # reslute 
     def DBloadResulte(self,id):      

@@ -10,28 +10,46 @@ from Login_GUI import Ui_Dialog
 from DB import Database
 
 import datetime
-import time
+import serial
 import random 
 
 ############################################
 #       sunford get weigth Thread          #
 ############################################
-class SunfordWeightWorker(QObject):
+class SunfordWeightRead(QObject):
+    def __init__(self):
+        super().__init__()
+        self.serialCon()
+        
+    def serialCon(self):
+        port = "/dev/tty.PL2303G-USBtoUART11140"
+        baud_rate = "9600"
+        try:
+            self.ser = serial.Serial(port, baud_rate, timeout=1)
+            print(f"Connected to {port} at {baud_rate} baud.")
+        except Exception as e:
+            print(f"Error: {e}")
+            return
+    
     # PyQt Signals
-    WeightThreadProgress = Signal(float)
+    WeightThreadProgress = Signal(str)
     
     @Slot()
     def getWeight(self):
-        # while True:
-        #     self.weightDummy = random.uniform(10, 20)
-        #     self.WeightThreadProgress.emit(self.weightDummy)
-        #     print(self.weightDummy)
-        #     time.sleep(10)
+        while True:
+            try:
+                if self.ser.in_waiting > 0:
+                    rx = self.ser.readline().decode('utf-8').strip()
+                    
+                    if (rx == "?"):
+                        rx = self.ser.readline().decode('utf-8').strip()
+                        # print(f"{rx}") 
+                        self.WeightThreadProgress.emit(rx)
+            except Exception as e:
+                print(f"Error reading serial: {e}")
+                break
         pass
-        
-    def reset(self):
-        self.weightDummy = 0
-                  
+                      
 class MainWindow(QMainWindow):
     def __init__(self, UserID_Login):
         super().__init__()
@@ -51,7 +69,7 @@ class MainWindow(QMainWindow):
         self.setcmb()
         self.btnLink()
         self.GenetareOrderID()
-        # self.setThread()
+        self.setThread()
                 
     # Config btn link to function
     def btnLink(self):   
@@ -89,13 +107,20 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveWasteWeight.clicked.connect(self.RecordWasteWeight)
         self.ui.btn_SaveContainerWeight.clicked.connect(self.RecordContainerWeight)
         
+        # Disabled btn Wast and bag weight befor Create Order
         self.ui.btn_SaveWasteWeight.setDisabled(True)
         self.ui.btn_SaveContainerWeight.setDisabled(True)
+        self.ui.btn_RandomWeight.hide()
+        
+        self.ui.txt_wasteWeight.setDisabled(True)
+        self.ui.txt_ContainerWeight.setDisabled(True)
         
     # Resulte Page
     def RecordWasteWeight(self):
+        self.ui.txt_wasteWeight.setText(self.ui.lbl_weight.text())
+        self.ui.lbl_weight.setText('00.00')
         wastWeight = self.ui.txt_wasteWeight.text()
-        orderID = self.ui.lbl_OrderID_3.text()
+        orderID = self.ui.lbl_OrderID_main.text()
         
         self.ui.lbl_Resulte_TotalWeightReject_west.setText(wastWeight)      
         self.db.DBUpdateWastWeightByOrder(orderID,wastWeight)
@@ -103,8 +128,10 @@ class MainWindow(QMainWindow):
         # self.LoadRecordToResultes()             # Update reslute
 
     def RecordContainerWeight(self):
+        self.ui.txt_ContainerWeight.setText(self.ui.lbl_weight.text())
+        self.ui.lbl_weight.setText('00.00')
         ContainerWeight = self.ui.txt_ContainerWeight.text()
-        orderID = self.ui.lbl_OrderID_3.text()
+        orderID = self.ui.lbl_OrderID_main.text()
         
         self.ui.lbl_Resulte_ContainerWeight.setText(ContainerWeight)    
         self.ui.lbl_Resulte_ContainerWeight_2.setText(ContainerWeight)     
@@ -187,18 +214,6 @@ class MainWindow(QMainWindow):
         self.ui.lbl_building_2.setText(OrderDetails[0][6])
         self.ui.lbl_MaterialType_2.setText(OrderDetails[0][7])
         
-        # Load wast and bag weight
-        weightLoss = self.db.SearchWastWeightByOrder(str(orderID))
-        wastWeight = weightLoss[0][0]
-        Bagweight = weightLoss[0][1]
-        
-        self.ui.lbl_Resulte_TotalWeightReject_west.setText(str(wastWeight))
-        self.ui.txt_wasteWeight.setText(str(wastWeight))
-        
-        self.ui.lbl_Resulte_ContainerWeight.setText(str(Bagweight))
-        self.ui.lbl_Resulte_ContainerWeight_2.setText(str(Bagweight)) 
-        self.ui.txt_ContainerWeight.setText(str(Bagweight))
-        
         # load basket weight and materail typr
         self.ui.lbl_Resulte_weightBasket.setText(str(OrderDetails[0][8]))
         self.ui.lbl_Resulte_weightBasket_2.setText(str(OrderDetails[0][8]))
@@ -240,9 +255,6 @@ class MainWindow(QMainWindow):
         
         finalPayment = finalWeightToAccounting * Price
         self.ui.lbl_Resulte_TotalPrice.setText(str(("{0:.2f}".format(finalPayment))))
-        
-        self.ui.btn_SaveWasteWeight.setDisabled(False)
-        self.ui.btn_SaveContainerWeight.setDisabled(False)    
         
     # Record Page
     def RecordWeight(self):
@@ -317,6 +329,18 @@ class MainWindow(QMainWindow):
             self.ui.tb_MainRecordDetail.setItem(tablerow,8,QTableWidgetItem(str(row[9])))
             self.ui.tb_MainRecordDetail.setItem(tablerow,9,QTableWidgetItem(str(row[10])))
             tablerow += 1
+            
+        # Load wast and bag weight
+        weightLoss = self.db.LoadWastWeightByOrder(str(id))
+        wastWeight = weightLoss[0][0]
+        Bagweight = weightLoss[0][1]
+        
+        self.ui.lbl_Resulte_TotalWeightReject_west.setText(str(wastWeight))
+        self.ui.txt_wasteWeight.setText(str(wastWeight))
+        
+        self.ui.lbl_Resulte_ContainerWeight.setText(str(Bagweight))
+        self.ui.lbl_Resulte_ContainerWeight_2.setText(str(Bagweight)) 
+        self.ui.txt_ContainerWeight.setText(str(Bagweight))
     
     def DeleteRecordMain(self):
         Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),0).text()
@@ -372,14 +396,15 @@ class MainWindow(QMainWindow):
         # Initialize worker and thread
         self.SunfordThread = QThread()
         self.SunfordThread.setObjectName('SunfordWeight')   # Create thread 
-        self.SunfordWorker = SunfordWeightWorker()                # Create worker
+        self.SunfordWorker = SunfordWeightRead()                # Create worker
         self.SunfordWorker.moveToThread(self.SunfordThread) # move worker to thread 
         self.SunfordThread.started.connect(self.SunfordWorker.getWeight)     # Connect Thread
         self.SunfordWorker.WeightThreadProgress.connect(self.UpdateWeight)     # Connect signals and slots
         self.SunfordThread.start()    # Start Thread
         
     def UpdateWeight(self,weight):
-        self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
+        # self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
+        self.ui.lbl_weight.setText(weight)
     
     def randomweight(self):
         self.UpdateWeight(random.uniform(10, 20))
@@ -399,14 +424,16 @@ class MainWindow(QMainWindow):
             self.ui.lbl_MaterialType_main.setText(material)
             self.ui.lbl_customer_NameLeadGroup_main.setText(self.ui.lbl_customer_LeadGroupName.text())
             
+            # Enable btn Wast and bag weight
+            self.ui.btn_SaveWasteWeight.setDisabled(False)
+            self.ui.btn_SaveContainerWeight.setDisabled(False)    
+        
             # check old orderID on DB with data in mainWeight table if emtry orderID that it create
-            LastOrderWeightRejects = self.db.SearchOrderWeightRejects()
-            
-            if (LastOrderWeightRejects != orderID):
-                print('Create a AddNewOrderWeightRejects')
+            LastOrderWeightRejects = self.db.SearchLastOrderWeight(orderID)
+            if (LastOrderWeightRejects == 0):
+                # print('Create a AddNewOrderWeightRejects')
                 val = (orderID,'0','0')
                 self.db.AddNewOrderWeightRejects(val)
-                
         else:
             self.msgBoxError()
             
