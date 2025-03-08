@@ -314,12 +314,12 @@ class Ui_MainWindow(object):
         self.label_2 = QLabel(self.main)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(10, 5, 291, 36))
-        self.label_2.setStyleSheet(u"font: 75 32pt \"DB Adman X\";\n"
+        self.label_2.setStyleSheet(u"font: 75 40pt \"DB SaiKrok X\";\n"
 "color: rgb(252, 62, 39);")
         self.label_3 = QLabel(self.main)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(10, 40, 271, 16))
-        self.label_3.setStyleSheet(u"font: 75 20pt \"DB Adman X\";\n"
+        self.label_3.setStyleSheet(u"font: 75 25pt \"DB SaiKrok X\";\n"
 "color: rgb(240, 162, 101);")
         self.groupBox_7 = QGroupBox(self.main)
         self.groupBox_7.setObjectName(u"groupBox_7")
@@ -710,12 +710,12 @@ class Ui_MainWindow(object):
         self.label_43 = QLabel(self.Resultes)
         self.label_43.setObjectName(u"label_43")
         self.label_43.setGeometry(QRect(715, 0, 291, 36))
-        self.label_43.setStyleSheet(u"font: 75 32pt \"DB Adman X\";\n"
+        self.label_43.setStyleSheet(u"font: 75 40pt \"DB SaiKrok X\";\n"
 "color: rgb(252, 62, 39);")
         self.label_34 = QLabel(self.Resultes)
         self.label_34.setObjectName(u"label_34")
         self.label_34.setGeometry(QRect(715, 35, 271, 16))
-        self.label_34.setStyleSheet(u"font: 75 20pt \"DB Adman X\";\n"
+        self.label_34.setStyleSheet(u"font: 75 25pt \"DB SaiKrok X\";\n"
 "color: rgb(240, 162, 101);")
         self.tabWidget.addTab(self.Resultes, "")
         self.customer_StaffDB = QWidget()
@@ -798,12 +798,12 @@ class Ui_MainWindow(object):
         self.label_47 = QLabel(self.customer_StaffDB)
         self.label_47.setObjectName(u"label_47")
         self.label_47.setGeometry(QRect(715, 0, 291, 36))
-        self.label_47.setStyleSheet(u"font: 75 32pt \"DB Adman X\";\n"
+        self.label_47.setStyleSheet(u"font: 75 40pt \"DB SaiKrok X\";\n"
 "color: rgb(252, 62, 39);")
         self.label_46 = QLabel(self.customer_StaffDB)
         self.label_46.setObjectName(u"label_46")
         self.label_46.setGeometry(QRect(715, 35, 271, 16))
-        self.label_46.setStyleSheet(u"font: 75 20pt \"DB Adman X\";\n"
+        self.label_46.setStyleSheet(u"font: 75 25pt \"DB SaiKrok X\";\n"
 "color: rgb(240, 162, 101);")
         self.tabWidget.addTab(self.customer_StaffDB, "")
         self.setting = QWidget()
@@ -979,19 +979,19 @@ class Ui_MainWindow(object):
         self.label_51 = QLabel(self.setting)
         self.label_51.setObjectName(u"label_51")
         self.label_51.setGeometry(QRect(715, 0, 291, 36))
-        self.label_51.setStyleSheet(u"font: 75 32pt \"DB Adman X\";\n"
+        self.label_51.setStyleSheet(u"font: 75 40pt \"DB SaiKrok X\";\n"
 "color: rgb(252, 62, 39);")
         self.label_50 = QLabel(self.setting)
         self.label_50.setObjectName(u"label_50")
         self.label_50.setGeometry(QRect(715, 35, 271, 16))
-        self.label_50.setStyleSheet(u"font: 75 20pt \"DB Adman X\";\n"
+        self.label_50.setStyleSheet(u"font: 75 25pt \"DB SaiKrok X\";\n"
 "color: rgb(240, 162, 101);")
         self.tabWidget.addTab(self.setting, "")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

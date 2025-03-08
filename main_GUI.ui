@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="main">
      <attribute name="title">
@@ -1070,7 +1070,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
 color: rgb(252, 62, 39);</string>
       </property>
       <property name="text">
@@ -1087,7 +1087,7 @@ color: rgb(252, 62, 39);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
 color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
@@ -2586,7 +2586,7 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
 color: rgb(252, 62, 39);</string>
       </property>
       <property name="text">
@@ -2603,7 +2603,7 @@ color: rgb(252, 62, 39);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
 color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
@@ -2910,7 +2910,7 @@ color: rgb(240, 162, 101);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
 color: rgb(252, 62, 39);</string>
       </property>
       <property name="text">
@@ -2927,7 +2927,7 @@ color: rgb(252, 62, 39);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
 color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
@@ -3603,7 +3603,7 @@ color: rgb(7, 64, 128);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
 color: rgb(252, 62, 39);</string>
       </property>
       <property name="text">
@@ -3620,7 +3620,7 @@ color: rgb(252, 62, 39);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
 color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
