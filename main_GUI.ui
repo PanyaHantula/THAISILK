@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="main">
      <attribute name="title">
@@ -1064,13 +1064,13 @@ color: rgb(0, 0, 0);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>10</y>
+        <y>5</y>
         <width>291</width>
-        <height>31</height>
+        <height>36</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 24pt &quot;.AppleSystemUIFont&quot;;
+       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
 color: rgb(252, 62, 39);</string>
       </property>
       <property name="text">
@@ -1087,7 +1087,8 @@ color: rgb(252, 62, 39);</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(240, 162, 101);</string>
+       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
        <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
@@ -1993,39 +1994,6 @@ color: rgb(252, 1, 7);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_56">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>0</y>
-        <width>291</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 24pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 62, 39);</string>
-      </property>
-      <property name="text">
-       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_57">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>30</y>
-        <width>271</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(240, 162, 101);</string>
-      </property>
-      <property name="text">
-       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_60">
       <property name="geometry">
        <rect>
@@ -2608,6 +2576,40 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
+     <widget class="QLabel" name="label_43">
+      <property name="geometry">
+       <rect>
+        <x>715</x>
+        <y>0</y>
+        <width>291</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+color: rgb(252, 62, 39);</string>
+      </property>
+      <property name="text">
+       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_34">
+      <property name="geometry">
+       <rect>
+        <x>715</x>
+        <y>35</y>
+        <width>271</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+color: rgb(240, 162, 101);</string>
+      </property>
+      <property name="text">
+       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="customer_StaffDB">
      <attribute name="title">
@@ -2898,37 +2900,38 @@ color: rgb(0, 0, 0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_101">
+     <widget class="QLabel" name="label_47">
       <property name="geometry">
        <rect>
-        <x>710</x>
-        <y>30</y>
+        <x>715</x>
+        <y>0</y>
+        <width>291</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+color: rgb(252, 62, 39);</string>
+      </property>
+      <property name="text">
+       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_46">
+      <property name="geometry">
+       <rect>
+        <x>715</x>
+        <y>35</y>
         <width>271</width>
         <height>16</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(240, 162, 101);</string>
+       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+color: rgb(240, 162, 101);</string>
       </property>
       <property name="text">
        <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_102">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>0</y>
-        <width>291</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 24pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 62, 39);</string>
-      </property>
-      <property name="text">
-       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
       </property>
      </widget>
     </widget>
@@ -3320,39 +3323,6 @@ color: rgb(7, 64, 128);</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_99">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>30</y>
-        <width>271</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(240, 162, 101);</string>
-      </property>
-      <property name="text">
-       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_100">
-      <property name="geometry">
-       <rect>
-        <x>710</x>
-        <y>0</y>
-        <width>291</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 24pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 62, 39);</string>
-      </property>
-      <property name="text">
-       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
-      </property>
-     </widget>
      <widget class="QGroupBox" name="groupBox_19">
       <property name="geometry">
        <rect>
@@ -3622,6 +3592,40 @@ color: rgb(252, 62, 39);</string>
         <string>SET</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_51">
+      <property name="geometry">
+       <rect>
+        <x>715</x>
+        <y>0</y>
+        <width>291</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 32pt &quot;DB Adman X&quot;;
+color: rgb(252, 62, 39);</string>
+      </property>
+      <property name="text">
+       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_50">
+      <property name="geometry">
+       <rect>
+        <x>715</x>
+        <y>35</y>
+        <width>271</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 75 20pt &quot;DB Adman X&quot;;
+color: rgb(240, 162, 101);</string>
+      </property>
+      <property name="text">
+       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
      </widget>
     </widget>
    </widget>

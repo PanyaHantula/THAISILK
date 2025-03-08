@@ -454,7 +454,7 @@ class MainWindow(QMainWindow):
 
     def GenetareOrderID(self):
         # Get Last Order
-        LastOrder = self.db.GetLastOrder()
+        LastOrder = str(self.db.GetLastOrder())
         LastOrder = LastOrder[8:]
         
         now = datetime.datetime.now()
@@ -894,13 +894,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
         
 if __name__ == "__main__":
-    # app = QApplication(sys.argv)
-    # login_window = LoginWindow()
-    # login_window.show()
-    # app.exec()    
+    app = QApplication(sys.argv)
+    login_window = LoginWindow()
+    login_window.show()
+    app.exec()    
     
     # For Testing Program
-    app = QApplication(sys.argv)
-    MainWindow = MainWindow("0010")
-    MainWindow.show()
-    app.exec()  
+    # app = QApplication(sys.argv)
+    # MainWindow = MainWindow("0010")
+    # MainWindow.show()
+    # app.exec()  
