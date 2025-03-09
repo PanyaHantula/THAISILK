@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>600</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>DB Adman X</family>
+    <pointsize>13</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -19,9 +25,14 @@
      <rect>
       <x>0</x>
       <y>5</y>
-      <width>1024</width>
-      <height>596</height>
+      <width>1281</width>
+      <height>721</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -33,11 +44,17 @@
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>5</x>
-        <y>275</y>
-        <width>316</width>
-        <height>166</height>
+        <x>15</x>
+        <y>325</y>
+        <width>391</width>
+        <height>201</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
@@ -54,8 +71,8 @@
       <widget class="QLabel" name="label_7">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>50</y>
+         <x>30</x>
+         <y>65</y>
          <width>31</width>
          <height>21</height>
         </rect>
@@ -68,8 +85,8 @@
        <property name="geometry">
         <rect>
          <x>5</x>
-         <y>95</y>
-         <width>91</width>
+         <y>115</y>
+         <width>111</width>
          <height>21</height>
         </rect>
        </property>
@@ -80,9 +97,9 @@
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>115</y>
-         <width>66</width>
+         <x>10</x>
+         <y>140</y>
+         <width>81</width>
          <height>26</height>
         </rect>
        </property>
@@ -93,11 +110,19 @@
       <widget class="QLabel" name="lbl_customer_name">
        <property name="geometry">
         <rect>
-         <x>35</x>
-         <y>55</y>
-         <width>271</width>
+         <x>55</x>
+         <y>65</y>
+         <width>341</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -109,11 +134,19 @@
       <widget class="QLabel" name="lbl_customer_Group">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>95</y>
-         <width>201</width>
+         <x>120</x>
+         <y>115</y>
+         <width>256</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -125,11 +158,19 @@
       <widget class="QLabel" name="lbl_customer_LeadGroupName">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>120</y>
-         <width>226</width>
+         <x>95</x>
+         <y>145</y>
+         <width>276</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -141,8 +182,8 @@
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>30</y>
+         <x>20</x>
+         <y>40</y>
          <width>31</width>
          <height>21</height>
         </rect>
@@ -154,11 +195,19 @@
       <widget class="QLabel" name="lbl_customer_ID">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>35</y>
-         <width>76</width>
-         <height>16</height>
+         <x>60</x>
+         <y>40</y>
+         <width>96</width>
+         <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -170,11 +219,19 @@
       <widget class="QLabel" name="lbl_customer_Address">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>75</y>
-         <width>256</width>
+         <x>70</x>
+         <y>90</y>
+         <width>96</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -186,9 +243,9 @@
       <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>75</y>
-         <width>41</width>
+         <x>15</x>
+         <y>90</y>
+         <width>51</width>
          <height>16</height>
         </rect>
        </property>
@@ -199,9 +256,9 @@
       <widget class="QLabel" name="label_31">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>140</y>
-         <width>91</width>
+         <x>10</x>
+         <y>170</y>
+         <width>106</width>
          <height>21</height>
         </rect>
        </property>
@@ -212,11 +269,19 @@
       <widget class="QLabel" name="lbl_customer_phone">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>140</y>
-         <width>216</width>
+         <x>100</x>
+         <y>170</y>
+         <width>266</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -228,8 +293,8 @@
       <widget class="QPushButton" name="btn_customerSelect">
        <property name="geometry">
         <rect>
-         <x>250</x>
-         <y>20</y>
+         <x>315</x>
+         <y>25</y>
          <width>61</width>
          <height>32</height>
         </rect>
@@ -241,20 +306,20 @@
       <widget class="QLineEdit" name="txt_customerID">
        <property name="geometry">
         <rect>
-         <x>175</x>
-         <y>25</y>
+         <x>240</x>
+         <y>30</y>
          <width>66</width>
-         <height>21</height>
+         <height>26</height>
         </rect>
        </property>
       </widget>
       <widget class="QLabel" name="label_18">
        <property name="geometry">
         <rect>
-         <x>115</x>
-         <y>25</y>
-         <width>56</width>
-         <height>16</height>
+         <x>170</x>
+         <y>30</y>
+         <width>71</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -265,11 +330,17 @@
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
        <rect>
-        <x>5</x>
-        <y>65</y>
-        <width>196</width>
-        <height>126</height>
+        <x>15</x>
+        <y>90</y>
+        <width>221</width>
+        <height>141</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>เลขที่รายการรับซื้อ</string>
@@ -278,9 +349,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
+         <y>85</y>
          <width>31</width>
-         <height>16</height>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -290,11 +361,19 @@
       <widget class="QLabel" name="lbl_OrderID">
        <property name="geometry">
         <rect>
-         <x>45</x>
-         <y>60</y>
-         <width>141</width>
+         <x>55</x>
+         <y>65</y>
+         <width>171</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -306,11 +385,19 @@
       <widget class="QLabel" name="lbl_Order_Date">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>80</y>
-         <width>146</width>
+         <x>50</x>
+         <y>90</y>
+         <width>181</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -323,9 +410,9 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>55</y>
          <width>31</width>
-         <height>16</height>
+         <height>36</height>
         </rect>
        </property>
        <property name="text">
@@ -336,7 +423,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
+         <y>115</y>
          <width>31</width>
          <height>16</height>
         </rect>
@@ -348,11 +435,19 @@
       <widget class="QLabel" name="lbl_Order_Time">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>100</y>
-         <width>141</width>
+         <x>50</x>
+         <y>115</y>
+         <width>181</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -364,17 +459,17 @@
       <widget class="QPushButton" name="btn_orderSet">
        <property name="geometry">
         <rect>
-         <x>130</x>
-         <y>25</y>
-         <width>51</width>
-         <height>32</height>
+         <x>150</x>
+         <y>31</y>
+         <width>61</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>SET</string>
+        <string>บันทึก</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="txt_OrderID_Set">
@@ -382,8 +477,8 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>111</width>
-         <height>21</height>
+         <width>131</width>
+         <height>26</height>
         </rect>
        </property>
       </widget>
@@ -391,11 +486,17 @@
      <widget class="QGroupBox" name="groupBox_6">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>440</y>
-        <width>191</width>
-        <height>61</height>
+        <x>15</x>
+        <y>530</y>
+        <width>226</width>
+        <height>71</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ชนิดพันธุ์ใบหม่อน</string>
@@ -417,11 +518,18 @@
      <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>415</x>
         <y>0</y>
-        <width>681</width>
-        <height>566</height>
+        <width>856</width>
+        <height>676</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>รายละเอียดใบรับซื้อใบหม่อน</string>
@@ -431,34 +539,49 @@
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>151</width>
-         <height>41</height>
+         <width>221</width>
+         <height>66</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>70</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 87 50pt &quot;Arial Black&quot;;
-color: rgb(7, 64, 128);</string>
+        <string notr="true">color: rgb(0, 85, 127);</string>
        </property>
        <property name="text">
         <string>00:00</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>140</y>
-         <width>101</width>
-         <height>31</height>
+         <x>15</x>
+         <y>165</y>
+         <width>151</width>
+         <height>51</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <pointsize>18</pointsize>
+         <family>DB Adman X</family>
+         <pointsize>26</pointsize>
+         <weight>75</weight>
+         <italic>false</italic>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true">
+</string>
        </property>
        <property name="text">
         <string>น้ำหนัก (kg.)</string>
@@ -467,14 +590,20 @@ color: rgb(7, 64, 128);</string>
       <widget class="QGroupBox" name="groupBox_9">
        <property name="geometry">
         <rect>
-         <x>435</x>
+         <x>595</x>
          <y>20</y>
-         <width>241</width>
-         <height>271</height>
+         <width>256</width>
+         <height>311</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="title">
         <string>เกรดวัตถุดิบ</string>
@@ -483,10 +612,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>120</y>
+          <y>130</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(252, 1, 7);</string>
@@ -499,10 +636,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>40</y>
+          <y>50</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(128, 255, 7);</string>
@@ -515,10 +660,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>80</y>
+          <y>90</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 10);</string>
@@ -531,10 +684,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>70</x>
-          <y>80</y>
+          <y>90</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(253, 128, 8);</string>
@@ -547,10 +708,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>40</y>
+          <y>50</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(16, 128, 64);</string>
@@ -563,10 +732,18 @@ color: rgb(7, 64, 128);</string>
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>120</y>
+          <y>130</y>
           <width>51</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>18</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(252, 2, 128);</string>
@@ -578,16 +755,23 @@ color: rgb(7, 64, 128);</string>
        <widget class="QPushButton" name="btn_Save_Main">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>140</y>
+          <x>155</x>
+          <y>155</y>
           <width>91</width>
           <height>51</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>20</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="styleSheet">
-         <string notr="true">background-color: rgb(16, 128, 1);
-font: 18pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(230, 230, 230);</string>
+         <string notr="true">background-color: rgb(0, 170, 127);
+</string>
         </property>
         <property name="text">
          <string>บันทึก</string>
@@ -596,20 +780,23 @@ color: rgb(230, 230, 230);</string>
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>70</y>
+          <x>155</x>
+          <y>75</y>
           <width>91</width>
           <height>31</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>.AppleSystemUIFont</family>
+          <family>DB Adman X</family>
           <pointsize>14</pointsize>
-          <weight>50</weight>
+          <weight>75</weight>
           <italic>false</italic>
-          <bold>false</bold>
+          <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>เบอร์ตระกร้า</string>
@@ -621,40 +808,46 @@ color: rgb(230, 230, 230);</string>
        <widget class="QLabel" name="lbl_MaterialGrade_main">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>165</y>
-          <width>81</width>
-          <height>91</height>
+          <x>15</x>
+          <y>185</y>
+          <width>106</width>
+          <height>116</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Arial Black</family>
-          <pointsize>100</pointsize>
-          <weight>10</weight>
+          <family>DB Adman X</family>
+          <pointsize>120</pointsize>
+          <weight>75</weight>
           <italic>false</italic>
-          <bold>false</bold>
+          <bold>true</bold>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 87 100pt &quot;Arial Black&quot;;
-color: rgb(7, 64, 128);</string>
+         <string notr="true">color: rgb(0, 0, 127);
+border-color: rgb(0, 85, 255);</string>
         </property>
         <property name="text">
-         <string>?</string>
+         <string>A</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
+        </property>
+        <property name="margin">
+         <number>5</number>
         </property>
        </widget>
        <widget class="QPushButton" name="btn_DeleteData_main">
         <property name="geometry">
          <rect>
-          <x>145</x>
-          <y>235</y>
+          <x>155</x>
+          <y>270</y>
           <width>91</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>ลบข้อมูล</string>
@@ -663,7 +856,7 @@ color: rgb(7, 64, 128);</string>
        <widget class="QLineEdit" name="txt_basketName">
         <property name="geometry">
          <rect>
-          <x>140</x>
+          <x>155</x>
           <y>100</y>
           <width>91</width>
           <height>36</height>
@@ -673,8 +866,8 @@ color: rgb(7, 64, 128);</string>
        <widget class="QComboBox" name="cmb_container">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>45</y>
+          <x>155</x>
+          <y>40</y>
           <width>86</width>
           <height>26</height>
          </rect>
@@ -686,8 +879,8 @@ color: rgb(7, 64, 128);</string>
        <widget class="QLabel" name="label_32">
         <property name="geometry">
          <rect>
-          <x>145</x>
-          <y>25</y>
+          <x>160</x>
+          <y>20</y>
           <width>71</width>
           <height>21</height>
          </rect>
@@ -699,11 +892,14 @@ color: rgb(7, 64, 128);</string>
        <widget class="QPushButton" name="btn_RandomWeight">
         <property name="geometry">
          <rect>
-          <x>145</x>
-          <y>205</y>
+          <x>155</x>
+          <y>235</y>
           <width>91</width>
           <height>32</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>สุ่มน้ำหนัก</string>
@@ -714,40 +910,49 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>80</y>
-         <width>171</width>
-         <height>21</height>
+         <y>95</y>
+         <width>221</width>
+         <height>36</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>35</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 87 25pt &quot;Arial Black&quot;;
-color: rgb(7, 64, 128);</string>
+        <string notr="true">color: rgb(0, 85, 127);</string>
        </property>
        <property name="text">
         <string>00-00-0000</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="lbl_weight">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>150</y>
-         <width>381</width>
-         <height>131</height>
+         <x>65</x>
+         <y>215</y>
+         <width>476</width>
+         <height>146</height>
         </rect>
        </property>
        <property name="font">
         <font>
-         <family>Arial Black</family>
-         <pointsize>110</pointsize>
-         <weight>10</weight>
+         <family>DB Adman X</family>
+         <pointsize>160</pointsize>
+         <weight>75</weight>
          <italic>false</italic>
-         <bold>false</bold>
+         <bold>true</bold>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 87 110pt &quot;Arial Black&quot;;
-color: rgb(16, 128, 64);</string>
+        <string notr="true">color: rgb(0, 170, 127)</string>
        </property>
        <property name="text">
         <string>00.00</string>
@@ -760,348 +965,421 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>275</y>
-         <width>91</width>
-         <height>21</height>
+         <y>355</y>
+         <width>141</width>
+         <height>31</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>ข้อมูลการรับซื้อ</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_37">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>26</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>เลขที่</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Order_Date_main">
-       <property name="geometry">
-        <rect>
-         <x>345</x>
-         <y>50</y>
-         <width>86</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_OrderID_main">
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>25</y>
-         <width>111</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_35">
-       <property name="geometry">
-        <rect>
-         <x>315</x>
-         <y>50</y>
-         <width>24</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>วันที่</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_36">
-       <property name="geometry">
-        <rect>
-         <x>343</x>
-         <y>30</y>
-         <width>25</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>เวลา</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Order_Time_main">
-       <property name="geometry">
-        <rect>
-         <x>375</x>
-         <y>30</y>
-         <width>56</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Staff_name_main">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>90</y>
-         <width>191</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_customer_name_main">
-       <property name="geometry">
-        <rect>
-         <x>230</x>
-         <y>110</y>
-         <width>196</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_38">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>110</y>
-         <width>36</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ผู้ขาย</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_39">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>90</y>
-         <width>62</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ผู้รับซื้อ</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_building_main">
-       <property name="geometry">
-        <rect>
-         <x>235</x>
-         <y>45</y>
-         <width>21</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_40">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>45</y>
-         <width>41</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>อาคาร</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_MaterialType_main">
-       <property name="geometry">
-        <rect>
-         <x>250</x>
-         <y>65</y>
-         <width>156</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);
-font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>64</y>
-         <width>62</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ชนิดพันธุ์</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_24">
-       <property name="geometry">
-        <rect>
-         <x>195</x>
-         <y>131</y>
-         <width>62</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>หัวหน้ากลุ่ม</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_customer_NameLeadGroup_main">
-       <property name="geometry">
-        <rect>
-         <x>265</x>
-         <y>130</y>
-         <width>161</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(16, 128, 64);</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
       <widget class="QTableWidget" name="tb_MainRecordDetail">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>300</y>
-         <width>671</width>
-         <height>261</height>
+         <x>10</x>
+         <y>385</y>
+         <width>836</width>
+         <height>286</height>
         </rect>
        </property>
+      </widget>
+      <widget class="QGroupBox" name="groupBox_22">
+       <property name="geometry">
+        <rect>
+         <x>250</x>
+         <y>20</y>
+         <width>341</width>
+         <height>176</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="title">
+        <string>ข้อมูลรายการรับซื้อ</string>
+       </property>
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>15</x>
+          <y>30</y>
+          <width>31</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>เลขที่</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_customer_NameLeadGroup_main">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>145</y>
+          <width>236</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>95</x>
+          <y>60</y>
+          <width>62</width>
+          <height>36</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ชนิดพันธุ์</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_Order_Date_main">
+        <property name="geometry">
+         <rect>
+          <x>245</x>
+          <y>50</y>
+          <width>86</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_customer_name_main">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>120</y>
+          <width>276</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_Order_Time_main">
+        <property name="geometry">
+         <rect>
+          <x>245</x>
+          <y>25</y>
+          <width>86</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_building_main">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>65</y>
+          <width>21</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_OrderID_main">
+        <property name="geometry">
+         <rect>
+          <x>55</x>
+          <y>35</y>
+          <width>111</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_39">
+        <property name="geometry">
+         <rect>
+          <x>15</x>
+          <y>95</y>
+          <width>62</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ผู้รับซื้อ</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_24">
+        <property name="geometry">
+         <rect>
+          <x>15</x>
+          <y>145</y>
+          <width>76</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>หัวหน้ากลุ่ม</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_36">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>25</y>
+          <width>36</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>เวลา</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_38">
+        <property name="geometry">
+         <rect>
+          <x>15</x>
+          <y>120</y>
+          <width>36</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ผู้ขาย</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_35">
+        <property name="geometry">
+         <rect>
+          <x>208</x>
+          <y>46</y>
+          <width>31</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>วันที่</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_Staff_name_main">
+        <property name="geometry">
+         <rect>
+          <x>75</x>
+          <y>95</y>
+          <width>261</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_40">
+        <property name="geometry">
+         <rect>
+          <x>15</x>
+          <y>70</y>
+          <width>41</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>อาคาร</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_MaterialType_main">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>65</y>
+          <width>176</width>
+          <height>26</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>DB Adman X</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(16, 128, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>-</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QPushButton" name="btn_Create_Order">
       <property name="geometry">
        <rect>
-        <x>55</x>
-        <y>510</y>
-        <width>211</width>
+        <x>75</x>
+        <y>615</y>
+        <width>266</width>
         <height>51</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;
-background-color: rgb(179, 179, 179);
-color: rgb(0, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>สร้างการรับซื้อ</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>5</y>
-        <width>291</width>
-        <height>36</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>23</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
-color: rgb(252, 62, 39);</string>
+       <string notr="true">background-color: rgb(70, 212, 104);
+</string>
       </property>
       <property name="text">
-       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>271</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
-color: rgb(240, 162, 101);</string>
-      </property>
-      <property name="text">
-       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+       <string>สร้างรายการรับซื้อ</string>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>440</y>
+        <x>250</x>
+        <y>530</y>
         <width>111</width>
-        <height>61</height>
+        <height>71</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>อาคารรับซื้อ</string>
@@ -1123,11 +1401,17 @@ color: rgb(240, 162, 101);</string>
      <widget class="QGroupBox" name="groupBox_11">
       <property name="geometry">
        <rect>
-        <x>205</x>
-        <y>75</y>
-        <width>116</width>
+        <x>255</x>
+        <y>110</y>
+        <width>151</width>
         <height>106</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>น้ำหนักสิ่งเจือปน(รวม)</string>
@@ -1135,9 +1419,9 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_SaveWasteWeight">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>15</x>
          <y>60</y>
-         <width>76</width>
+         <width>126</width>
          <height>32</height>
         </rect>
        </property>
@@ -1150,26 +1434,35 @@ color: rgb(240, 162, 101);</string>
         <rect>
          <x>15</x>
          <y>25</y>
-         <width>86</width>
+         <width>126</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_21">
       <property name="geometry">
        <rect>
-        <x>205</x>
-        <y>180</y>
-        <width>116</width>
-        <height>96</height>
+        <x>255</x>
+        <y>220</y>
+        <width>151</width>
+        <height>111</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>น้ำหนักถุงบรรจุ(รวม)</string>
@@ -1177,9 +1470,9 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_SaveContainerWeight">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>15</x>
          <y>60</y>
-         <width>76</width>
+         <width>121</width>
          <height>32</height>
         </rect>
        </property>
@@ -1192,26 +1485,35 @@ color: rgb(240, 162, 101);</string>
         <rect>
          <x>15</x>
          <y>25</y>
-         <width>86</width>
+         <width>121</width>
          <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>5</x>
-        <y>190</y>
-        <width>196</width>
-        <height>86</height>
+        <x>15</x>
+        <y>235</y>
+        <width>221</width>
+        <height>91</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ข้อมูลผู้รับซื้อ</string>
@@ -1222,7 +1524,7 @@ color: rgb(240, 162, 101);</string>
          <x>10</x>
          <y>45</y>
          <width>31</width>
-         <height>21</height>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -1232,11 +1534,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="lbl_Staff_name">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>45</y>
-         <width>71</width>
+         <x>40</x>
+         <y>50</y>
+         <width>106</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1254,7 +1564,7 @@ color: rgb(240, 162, 101);</string>
          <x>10</x>
          <y>25</y>
          <width>31</width>
-         <height>16</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="text">
@@ -1264,11 +1574,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="lbl_Staff_ID">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>25</y>
-         <width>71</width>
+         <x>50</x>
+         <y>30</y>
+         <width>176</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>15</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1283,14 +1601,23 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="lbl_UserLevelShow">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>60</y>
-         <width>66</width>
-         <height>21</height>
+         <x>40</x>
+         <y>70</y>
+         <width>101</width>
+         <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <italic>false</italic>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 9pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>-</string>
@@ -1299,6 +1626,64 @@ color: rgb(240, 162, 101);</string>
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_50">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>441</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>19</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 162, 101);
+</string>
+      </property>
+      <property name="text">
+       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_51">
+      <property name="geometry">
+       <rect>
+        <x>5</x>
+        <y>15</y>
+        <width>441</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>32</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(252, 62, 39);
+</string>
+      </property>
+      <property name="text">
+       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Resultes">
@@ -1310,9 +1695,15 @@ color: rgb(240, 162, 101);</string>
        <rect>
         <x>10</x>
         <y>0</y>
-        <width>191</width>
-        <height>121</height>
+        <width>231</width>
+        <height>141</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>รายละเอียดใบรับซื้อ</string>
@@ -1321,7 +1712,7 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>20</y>
+         <y>25</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -1333,16 +1724,22 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_CreateResulte">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>70</y>
+         <x>30</x>
+         <y>85</y>
          <width>171</width>
          <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;
-background-color: rgb(102, 204, 255);
-color: rgb(0, 0, 0);</string>
+        <string notr="true">background-color: rgb(70, 212, 104);</string>
        </property>
        <property name="text">
         <string>สร้างรายงานสรุปผล</string>
@@ -1351,8 +1748,8 @@ color: rgb(0, 0, 0);</string>
       <widget class="QLineEdit" name="txt_OrderID_Search">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>40</y>
+         <x>30</x>
+         <y>50</y>
          <width>171</width>
          <height>26</height>
         </rect>
@@ -1363,10 +1760,16 @@ color: rgb(0, 0, 0);</string>
       <property name="geometry">
        <rect>
         <x>5</x>
-        <y>120</y>
-        <width>196</width>
-        <height>291</height>
+        <y>145</y>
+        <width>236</width>
+        <height>346</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ข้อมูลการรับซื้อ</string>
@@ -1375,9 +1778,9 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>15</x>
-         <y>49</y>
+         <y>50</y>
          <width>28</width>
-         <height>16</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="text">
@@ -1387,11 +1790,19 @@ color: rgb(0, 0, 0);</string>
       <widget class="QLabel" name="lbl_OrderID_3">
        <property name="geometry">
         <rect>
-         <x>45</x>
+         <x>55</x>
          <y>30</y>
          <width>141</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1403,11 +1814,19 @@ color: rgb(0, 0, 0);</string>
       <widget class="QLabel" name="lbl_Order_Date_3">
        <property name="geometry">
         <rect>
-         <x>45</x>
-         <y>50</y>
+         <x>55</x>
+         <y>55</y>
          <width>141</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1420,9 +1839,9 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
-         <width>28</width>
-         <height>16</height>
+         <y>25</y>
+         <width>36</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -1433,7 +1852,7 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>15</x>
-         <y>65</y>
+         <y>75</y>
          <width>28</width>
          <height>16</height>
         </rect>
@@ -1445,11 +1864,19 @@ color: rgb(0, 0, 0);</string>
       <widget class="QLabel" name="lbl_Order_Time_3">
        <property name="geometry">
         <rect>
-         <x>45</x>
-         <y>65</y>
+         <x>55</x>
+         <y>70</y>
          <width>141</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1462,14 +1889,21 @@ color: rgb(0, 0, 0);</string>
        <property name="geometry">
         <rect>
          <x>5</x>
-         <y>86</y>
-         <width>51</width>
-         <height>26</height>
+         <y>100</y>
+         <width>66</width>
+         <height>31</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(16, 128, 64);</string>
+        <string notr="true">color:rgb(0, 170, 127)</string>
        </property>
        <property name="text">
         <string>ผู้รับซื้อ</string>
@@ -1479,14 +1913,21 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>5</x>
-         <y>155</y>
+         <y>180</y>
          <width>51</width>
          <height>26</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>18</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(16, 128, 64);</string>
+        <string notr="true">color:rgb(0, 170, 127)</string>
        </property>
        <property name="text">
         <string>ผู้ขาย</string>
@@ -1495,11 +1936,19 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Staff_name_3">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>130</y>
+         <x>65</x>
+         <y>150</y>
          <width>146</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1511,11 +1960,19 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Staff_ID_2">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>111</y>
+         <x>65</x>
+         <y>125</y>
          <width>146</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1528,9 +1985,9 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>111</y>
-         <width>23</width>
-         <height>16</height>
+         <y>125</y>
+         <width>41</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -1543,10 +2000,10 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_44">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>131</y>
+         <x>20</x>
+         <y>145</y>
          <width>23</width>
-         <height>16</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
@@ -1559,8 +2016,8 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_49">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>180</y>
+         <x>10</x>
+         <y>210</y>
          <width>26</width>
          <height>16</height>
         </rect>
@@ -1576,8 +2033,8 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>5</x>
-         <y>200</y>
-         <width>66</width>
+         <y>230</y>
+         <width>76</width>
          <height>21</height>
         </rect>
        </property>
@@ -1592,10 +2049,18 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>15</x>
-         <y>220</y>
+         <y>250</y>
          <width>166</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1607,11 +2072,19 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_customer_ID_2">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>180</y>
+         <x>60</x>
+         <y>210</y>
          <width>141</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1623,11 +2096,19 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_building_2">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>240</y>
+         <x>70</x>
+         <y>270</y>
          <width>16</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1643,8 +2124,8 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>240</y>
-         <width>36</width>
+         <y>270</y>
+         <width>46</width>
          <height>21</height>
         </rect>
        </property>
@@ -1659,8 +2140,8 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>260</y>
-         <width>49</width>
+         <y>295</y>
+         <width>66</width>
          <height>21</height>
         </rect>
        </property>
@@ -1671,11 +2152,19 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_MaterialType_2">
        <property name="geometry">
         <rect>
-         <x>65</x>
-         <y>260</y>
-         <width>116</width>
+         <x>20</x>
+         <y>315</y>
+         <width>206</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>16</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">color: rgb(7, 64, 128);</string>
@@ -1688,11 +2177,18 @@ color: rgb(16, 128, 64);</string>
      <widget class="QGroupBox" name="groupBox_16">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>320</y>
-        <width>241</width>
-        <height>241</height>
+        <x>255</x>
+        <y>375</y>
+        <width>351</width>
+        <height>301</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>น้ำหนักใบหม่อนส่งฝ่ายผลิต</string>
@@ -1701,9 +2197,9 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
-         <width>70</width>
-         <height>21</height>
+         <y>50</y>
+         <width>101</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -1714,36 +2210,41 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>66</y>
-         <width>134</width>
-         <height>21</height>
+         <y>80</y>
+         <width>211</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>(หัก) น้ำหนักใบเสีย(รวม)</string>
+        <string>(หัก) น้ำหนักใบเสียรวม (kg)</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_64">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>92</y>
-         <width>135</width>
-         <height>21</height>
+         <y>115</y>
+         <width>216</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>(หัก) น้ำหนักตะกร้า(รวม)</string>
+        <string>(หัก) น้ำหนักตะกร้ารวม (kg)</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_65">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>195</y>
-         <width>110</width>
-         <height>21</height>
+         <x>15</x>
+         <y>240</y>
+         <width>176</width>
+         <height>36</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>น้ำหนักใบหม่อนสุทธิ</string>
@@ -1752,11 +2253,16 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_66">
        <property name="geometry">
         <rect>
-         <x>70</x>
-         <y>215</y>
-         <width>71</width>
-         <height>16</height>
+         <x>95</x>
+         <y>270</y>
+         <width>96</width>
+         <height>26</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>(ส่งฝ่ายผลิต)</string>
@@ -1765,27 +2271,30 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_67">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>250</x>
          <y>20</y>
-         <width>71</width>
-         <height>20</height>
+         <width>91</width>
+         <height>36</height>
         </rect>
        </property>
        <property name="text">
-        <string>น้ำหนัก(kg)</string>
+        <string>น้ำหนัก</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_68">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>110</y>
-         <width>81</width>
+         <x>30</x>
+         <y>140</y>
+         <width>106</width>
          <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>จำนวนตะกร้า</string>
@@ -1794,14 +2303,14 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_69">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>135</y>
-         <width>81</width>
-         <height>21</height>
+         <x>30</x>
+         <y>165</y>
+         <width>106</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>น้ำหนักตะกร้า</string>
@@ -1810,14 +2319,14 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_70">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>110</y>
-         <width>21</width>
+         <x>180</x>
+         <y>140</y>
+         <width>26</width>
          <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>ใบ</string>
@@ -1826,14 +2335,14 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="label_71">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>135</y>
-         <width>31</width>
+         <x>180</x>
+         <y>170</y>
+         <width>51</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>kg/ใบ</string>
@@ -1842,14 +2351,14 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalBasket">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>110</y>
+         <x>140</x>
+         <y>140</y>
          <width>26</width>
          <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1861,14 +2370,14 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Resulte_weightBasket">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>135</y>
+         <x>140</x>
+         <y>170</y>
          <width>26</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1880,15 +2389,22 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightMeterial">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>44</y>
+         <x>250</x>
+         <y>54</y>
          <width>71</width>
          <height>21</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>26</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(7, 64, 128);</string>
+        <string notr="true">color:rgb(0, 0, 127)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1900,15 +2416,22 @@ color: rgb(7, 64, 128);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightReject">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>70</y>
+         <x>250</x>
+         <y>90</y>
          <width>71</width>
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1920,15 +2443,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightBasket">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>96</y>
+         <x>250</x>
+         <y>125</y>
          <width>71</width>
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1940,15 +2470,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeight_toManuFactory">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>205</y>
-         <width>76</width>
-         <height>21</height>
+         <x>225</x>
+         <y>245</y>
+         <width>116</width>
+         <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>35</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 20pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(16, 128, 64);</string>
+        <string notr="true">color: rgb(0, 85, 0);</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1960,15 +2497,22 @@ color: rgb(16, 128, 64);</string>
       <widget class="QLabel" name="lbl_Resulte_ContainerWeight">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>155</y>
+         <x>250</x>
+         <y>205</y>
          <width>71</width>
          <height>21</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -1980,41 +2524,314 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_104">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>155</y>
-         <width>81</width>
-         <height>21</height>
+         <x>10</x>
+         <y>200</y>
+         <width>186</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>น้ำหนักถุง(รวม)</string>
+        <string>(หัก) น้ำหนักถุงรวม (kg)</string>
        </property>
       </widget>
      </widget>
      <widget class="QLabel" name="label_60">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>40</y>
-        <width>181</width>
-        <height>16</height>
+        <x>260</x>
+        <y>50</y>
+        <width>236</width>
+        <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>รายละเอียดใบหม่อนที่รับซื้อ</string>
+       <string>รายละเอียดการรับซื้อใบหม่อน</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_20">
+      <property name="geometry">
+       <rect>
+        <x>965</x>
+        <y>380</y>
+        <width>301</width>
+        <height>236</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>17</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>สรุปยอดรับซื้อ</string>
+      </property>
+      <widget class="QLabel" name="label_91">
+       <property name="geometry">
+        <rect>
+         <x>60</x>
+         <y>80</y>
+         <width>101</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>(ส่งฝ่ายการเงิน)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_92">
+       <property name="geometry">
+        <rect>
+         <x>14</x>
+         <y>55</y>
+         <width>151</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>น้ำหนักใบหม่อนสุทธิ</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_93">
+       <property name="geometry">
+        <rect>
+         <x>225</x>
+         <y>20</y>
+         <width>71</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>น้ำหนัก</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_Resulte_TotalWeight_Accounting_2">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>60</y>
+         <width>101</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>26</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:rgb(0, 0, 127)</string>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_96">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>110</y>
+         <width>176</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>ราคารับซื้อ (บาท/กก.)</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_95">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>145</y>
+         <width>66</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>สายพันธุ์</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_Resulte_Type">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>145</y>
+         <width>191</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(7, 64, 128);</string>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_Resulte_TotalWeightMeterial_3">
+       <property name="geometry">
+        <rect>
+         <x>195</x>
+         <y>115</y>
+         <width>71</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>22</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_94">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>185</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>รวมเป็นเงินสุทธิ</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="lbl_Resulte_TotalPrice">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>185</y>
+         <width>146</width>
+         <height>36</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>35</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 85, 0);</string>
+       </property>
+       <property name="text">
+        <string>0.0</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_97">
+       <property name="geometry">
+        <rect>
+         <x>85</x>
+         <y>205</y>
+         <width>41</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>(บาท)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="btn_CreateResulte_2">
+      <property name="geometry">
+       <rect>
+        <x>1005</x>
+        <y>625</y>
+        <width>201</width>
+        <height>46</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(170, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>อัพโหลดรายงาน</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tb_ReslutesDetail">
+      <property name="geometry">
+       <rect>
+        <x>255</x>
+        <y>80</y>
+        <width>1011</width>
+        <height>286</height>
+       </rect>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_17">
       <property name="geometry">
        <rect>
-        <x>460</x>
-        <y>320</y>
-        <width>231</width>
-        <height>241</height>
+        <x>610</x>
+        <y>375</y>
+        <width>346</width>
+        <height>301</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>น้ำหนักใบหม่อนส่งฝ่ายการเงิน</string>
@@ -2023,9 +2840,9 @@ color: rgb(252, 1, 7);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
-         <width>70</width>
-         <height>21</height>
+         <y>45</y>
+         <width>111</width>
+         <height>36</height>
         </rect>
        </property>
        <property name="text">
@@ -2036,9 +2853,9 @@ color: rgb(252, 1, 7);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>65</y>
-         <width>134</width>
-         <height>21</height>
+         <y>80</y>
+         <width>186</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2049,9 +2866,9 @@ color: rgb(252, 1, 7);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>90</y>
-         <width>135</width>
-         <height>21</height>
+         <y>105</y>
+         <width>186</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
@@ -2061,11 +2878,16 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_74">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>195</y>
-         <width>110</width>
-         <height>21</height>
+         <x>15</x>
+         <y>245</y>
+         <width>176</width>
+         <height>36</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>น้ำหนักใบหม่อนสุทธิ</string>
@@ -2074,11 +2896,16 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_75">
        <property name="geometry">
         <rect>
-         <x>55</x>
-         <y>210</y>
-         <width>91</width>
+         <x>75</x>
+         <y>275</y>
+         <width>116</width>
          <height>20</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
        </property>
        <property name="text">
         <string>(ส่งฝ่ายการเงิน)</string>
@@ -2087,27 +2914,30 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_76">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>235</x>
          <y>20</y>
-         <width>71</width>
-         <height>20</height>
+         <width>91</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>น้ำหนัก(kg)</string>
+        <string>น้ำหนัก</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLabel" name="label_77">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>110</y>
-         <width>81</width>
+         <y>135</y>
+         <width>106</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>จำนวนตะกร้า</string>
@@ -2117,13 +2947,13 @@ color: rgb(252, 1, 7);</string>
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>130</y>
-         <width>81</width>
-         <height>21</height>
+         <y>155</y>
+         <width>101</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>น้ำหนักตะกร้า</string>
@@ -2132,14 +2962,14 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_79">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>110</y>
-         <width>21</width>
+         <x>175</x>
+         <y>130</y>
+         <width>31</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>ใบ</string>
@@ -2148,14 +2978,14 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_80">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>130</y>
-         <width>31</width>
+         <x>175</x>
+         <y>155</y>
+         <width>61</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>kg/ใบ</string>
@@ -2164,14 +2994,14 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalBasket_2">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>110</y>
-         <width>21</width>
+         <x>130</x>
+         <y>135</y>
+         <width>31</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2183,14 +3013,14 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_weightBasket_2">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>130</y>
-         <width>21</width>
+         <x>130</x>
+         <y>155</y>
+         <width>31</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2202,15 +3032,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightMeterial_2">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>39</y>
+         <x>240</x>
+         <y>50</y>
          <width>71</width>
          <height>26</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>26</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(7, 64, 128);</string>
+        <string notr="true">color:rgb(0, 0, 127)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2222,15 +3059,22 @@ color: rgb(7, 64, 128);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightReject_2">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>65</y>
+         <x>240</x>
+         <y>85</y>
          <width>71</width>
          <height>21</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2242,15 +3086,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightBasket_2">
        <property name="geometry">
         <rect>
-         <x>155</x>
-         <y>90</y>
+         <x>240</x>
+         <y>120</y>
          <width>71</width>
          <height>16</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2262,15 +3113,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalWeight_Accounting">
        <property name="geometry">
         <rect>
-         <x>150</x>
-         <y>200</y>
-         <width>76</width>
-         <height>21</height>
+         <x>215</x>
+         <y>255</y>
+         <width>121</width>
+         <height>41</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>35</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 20pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(16, 128, 64);</string>
+        <string notr="true">color: rgb(0, 85, 0);</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2283,27 +3141,34 @@ color: rgb(16, 128, 64);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>170</y>
-         <width>151</width>
-         <height>21</height>
+         <y>215</y>
+         <width>236</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="text">
-        <string>(หัก) น้ำหนักสิ่งเจือปน(รวม)</string>
+        <string>(หัก) น้ำหนักสิ่งเจือปนรวม (kg)</string>
        </property>
       </widget>
       <widget class="QLabel" name="lbl_Resulte_TotalWeightReject_west">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>170</y>
+         <x>245</x>
+         <y>220</y>
          <width>61</width>
          <height>21</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2315,15 +3180,22 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="lbl_Resulte_ContainerWeight_2">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>145</y>
+         <x>245</x>
+         <y>190</y>
          <width>61</width>
          <height>21</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>20</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 16pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(252, 1, 7);</string>
+        <string notr="true">color:rgb(170, 0, 0)</string>
        </property>
        <property name="text">
         <string>0.0</string>
@@ -2335,279 +3207,76 @@ color: rgb(252, 1, 7);</string>
       <widget class="QLabel" name="label_105">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>150</y>
-         <width>81</width>
-         <height>21</height>
+         <x>10</x>
+         <y>180</y>
+         <width>186</width>
+         <height>36</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>น้ำหนักถุง(รวม)</string>
+        <string>(หัก) น้ำหนักถุงรวม (kg)</string>
        </property>
       </widget>
      </widget>
-     <widget class="QGroupBox" name="groupBox_20">
+     <widget class="QLabel" name="label_56">
       <property name="geometry">
        <rect>
-        <x>700</x>
-        <y>320</y>
-        <width>301</width>
-        <height>186</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>สรุปยอดรับซื้อ</string>
-      </property>
-      <widget class="QLabel" name="label_91">
-       <property name="geometry">
-        <rect>
-         <x>55</x>
-         <y>70</y>
-         <width>91</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>(ส่งฝ่ายการเงิน)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_92">
-       <property name="geometry">
-        <rect>
-         <x>35</x>
-         <y>50</y>
-         <width>110</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>น้ำหนักใบหม่อนสุทธิ</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_93">
-       <property name="geometry">
-        <rect>
-         <x>175</x>
-         <y>15</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>น้ำหนัก(kg)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Resulte_TotalWeight_Accounting_2">
-       <property name="geometry">
-        <rect>
-         <x>155</x>
-         <y>50</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);
-font: 20pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_96">
-       <property name="geometry">
-        <rect>
-         <x>35</x>
-         <y>95</y>
-         <width>135</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>ราคารับซื้อ (บาท/กก.)</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_95">
-       <property name="geometry">
-        <rect>
-         <x>55</x>
-         <y>115</y>
-         <width>51</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>สายพันธุ์</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Resulte_Type">
-       <property name="geometry">
-        <rect>
-         <x>105</x>
-         <y>115</y>
-         <width>111</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);</string>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Resulte_TotalWeightMeterial_3">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>95</y>
-         <width>91</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(7, 64, 128);
-font: 20pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_94">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>140</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>รวมเป็นเงินสุทธิ</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="lbl_Resulte_TotalPrice">
-       <property name="geometry">
-        <rect>
-         <x>135</x>
-         <y>140</y>
-         <width>151</width>
-         <height>26</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 28pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(16, 128, 64);</string>
-       </property>
-       <property name="text">
-        <string>0.0</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_97">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>160</y>
-         <width>41</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>(บาท)</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="Line" name="line">
-       <property name="geometry">
-        <rect>
-         <x>145</x>
-         <y>165</y>
-         <width>136</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QPushButton" name="btn_CreateResulte_2">
-      <property name="geometry">
-       <rect>
-        <x>830</x>
-        <y>515</y>
-        <width>171</width>
+        <x>855</x>
+        <y>5</y>
+        <width>416</width>
         <height>41</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;
-background-color: rgb(102, 255, 204);
-color: rgb(0, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>อัพโหลดรายงานสรุปผล</string>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="tb_ReslutesDetail">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>60</y>
-        <width>801</width>
-        <height>261</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_43">
-      <property name="geometry">
-       <rect>
-        <x>715</x>
-        <y>0</y>
-        <width>291</width>
-        <height>36</height>
-       </rect>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>34</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
-color: rgb(252, 62, 39);</string>
+       <string notr="true">color: rgb(252, 62, 39);
+</string>
       </property>
       <property name="text">
        <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
      </widget>
-     <widget class="QLabel" name="label_34">
+     <widget class="QLabel" name="label_57">
       <property name="geometry">
        <rect>
-        <x>715</x>
-        <y>35</y>
-        <width>271</width>
+        <x>860</x>
+        <y>50</y>
+        <width>381</width>
         <height>16</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
-color: rgb(240, 162, 101);</string>
+       <string notr="true">color: rgb(240, 162, 101);
+</string>
       </property>
       <property name="text">
        <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -2618,17 +3287,24 @@ color: rgb(240, 162, 101);</string>
      <widget class="QLabel" name="label_23">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>20</y>
-        <width>101</width>
+        <x>340</x>
+        <y>55</y>
+        <width>131</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 18pt &quot;.AppleSystemUIFont&quot;;</string>
+       <string notr="true"/>
       </property>
       <property name="text">
-       <string>รายชื่อผู้ขาย</string>
+       <string>ข้อมูลรายชื่อผู้ขาย</string>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_4">
@@ -2637,11 +3313,20 @@ color: rgb(240, 162, 101);</string>
         <x>10</x>
         <y>10</y>
         <width>316</width>
-        <height>271</height>
+        <height>401</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>15</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+       <string notr="true"/>
       </property>
       <property name="title">
        <string>ข้อมูลผู้ขาย</string>
@@ -2650,19 +3335,19 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>116</y>
+         <y>154</y>
          <width>211</width>
-         <height>21</height>
+         <height>31</height>
         </rect>
        </property>
       </widget>
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>115</y>
-         <width>41</width>
-         <height>19</height>
+         <x>10</x>
+         <y>159</y>
+         <width>45</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2675,10 +3360,10 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>88</y>
-         <width>76</width>
-         <height>19</height>
+         <x>10</x>
+         <y>122</y>
+         <width>79</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2691,10 +3376,10 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_21">
        <property name="geometry">
         <rect>
-         <x>14</x>
-         <y>201</y>
-         <width>50</width>
-         <height>19</height>
+         <x>10</x>
+         <y>269</y>
+         <width>54</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2708,9 +3393,9 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>88</y>
+         <y>117</y>
          <width>211</width>
-         <height>21</height>
+         <height>32</height>
         </rect>
        </property>
       </widget>
@@ -2718,9 +3403,9 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>200</y>
+         <y>264</y>
          <width>211</width>
-         <height>21</height>
+         <height>31</height>
         </rect>
        </property>
       </widget>
@@ -2728,19 +3413,19 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>144</y>
+         <y>190</y>
          <width>211</width>
-         <height>21</height>
+         <height>32</height>
         </rect>
        </property>
       </widget>
       <widget class="QLabel" name="label_22">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>174</y>
-         <width>67</width>
-         <height>19</height>
+         <x>10</x>
+         <y>232</y>
+         <width>74</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2753,10 +3438,10 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>145</y>
-         <width>43</width>
-         <height>19</height>
+         <x>10</x>
+         <y>195</y>
+         <width>47</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2769,10 +3454,10 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_42">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>60</y>
-         <width>57</width>
-         <height>19</height>
+         <x>10</x>
+         <y>85</y>
+         <width>63</width>
+         <height>26</height>
         </rect>
        </property>
        <property name="text">
@@ -2786,7 +3471,7 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>30</y>
+         <y>40</y>
          <width>41</width>
          <height>19</height>
         </rect>
@@ -2795,61 +3480,13 @@ color: rgb(240, 162, 101);</string>
         <string>ค้นหา</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="btn_add_customer">
-       <property name="geometry">
-        <rect>
-         <x>8</x>
-         <y>230</y>
-         <width>65</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>เพิ่ม</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_delete_customer">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>230</y>
-         <width>60</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>ลบ</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_edit_customer">
-       <property name="geometry">
-        <rect>
-         <x>75</x>
-         <y>230</y>
-         <width>74</width>
-         <height>32</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
-       </property>
-       <property name="text">
-        <string>แก้ไข</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="txt_CustomerID_Search">
        <property name="geometry">
         <rect>
          <x>74</x>
-         <y>31</y>
+         <y>35</y>
          <width>161</width>
-         <height>21</height>
+         <height>26</height>
         </rect>
        </property>
       </widget>
@@ -2857,9 +3494,9 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>60</y>
+         <y>80</y>
          <width>211</width>
-         <height>21</height>
+         <height>32</height>
         </rect>
        </property>
       </widget>
@@ -2867,13 +3504,13 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>215</x>
-         <y>230</y>
+         <y>310</y>
          <width>86</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>ล้างข้อมูล</string>
@@ -2883,55 +3520,116 @@ color: rgb(240, 162, 101);</string>
        <property name="geometry">
         <rect>
          <x>95</x>
-         <y>170</y>
+         <y>227</y>
          <width>211</width>
-         <height>26</height>
+         <height>32</height>
         </rect>
        </property>
+      </widget>
+      <widget class="QSplitter" name="splitter_3">
+       <property name="geometry">
+        <rect>
+         <x>65</x>
+         <y>350</y>
+         <width>236</width>
+         <height>34</height>
+        </rect>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <widget class="QPushButton" name="btn_add_customer">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>เพิ่ม</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_edit_customer">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>แก้ไข</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btn_delete_customer">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>ลบ</string>
+        </property>
+       </widget>
       </widget>
      </widget>
      <widget class="QTableWidget" name="tb_customerDetail">
       <property name="geometry">
        <rect>
         <x>331</x>
-        <y>53</y>
-        <width>671</width>
-        <height>501</height>
+        <y>88</y>
+        <width>936</width>
+        <height>581</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label_47">
+     <widget class="QLabel" name="label_90">
       <property name="geometry">
        <rect>
-        <x>715</x>
-        <y>0</y>
-        <width>291</width>
-        <height>36</height>
+        <x>855</x>
+        <y>5</y>
+        <width>416</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>34</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
-color: rgb(252, 62, 39);</string>
+       <string notr="true">color: rgb(252, 62, 39);
+</string>
       </property>
       <property name="text">
        <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
      </widget>
-     <widget class="QLabel" name="label_46">
+     <widget class="QLabel" name="label_99">
       <property name="geometry">
        <rect>
-        <x>715</x>
-        <y>35</y>
-        <width>271</width>
+        <x>860</x>
+        <y>50</y>
+        <width>381</width>
         <height>16</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
-color: rgb(240, 162, 101);</string>
+       <string notr="true">color: rgb(240, 162, 101);
+</string>
       </property>
       <property name="text">
        <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </widget>
@@ -2944,9 +3642,15 @@ color: rgb(240, 162, 101);</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>161</width>
+        <width>206</width>
         <height>311</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>คุณภาพวัตถุดิบ</string>
@@ -2954,9 +3658,9 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_SaveWeightOfGradeConfig">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>105</x>
          <y>270</y>
-         <width>91</width>
+         <width>61</width>
          <height>32</height>
         </rect>
        </property>
@@ -2967,14 +3671,20 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_83">
        <property name="geometry">
         <rect>
-         <x>78</x>
+         <x>95</x>
          <y>30</y>
-         <width>61</width>
-         <height>21</height>
+         <width>86</width>
+         <height>26</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">font: 10pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>น้ำหนักที่หัก</string>
@@ -2986,14 +3696,14 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_82">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>0</x>
          <y>30</y>
-         <width>51</width>
+         <width>96</width>
          <height>21</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 10pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>เกรดวัตถุดิบ</string>
@@ -3005,11 +3715,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_A_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>60</y>
-         <width>41</width>
+         <width>61</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(16, 128, 64);</string>
@@ -3021,11 +3739,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_D_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>164</y>
-         <width>41</width>
+         <width>61</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(253, 128, 8);</string>
@@ -3037,11 +3763,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_E_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>199</y>
-         <width>41</width>
+         <width>61</width>
          <height>27</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(252, 2, 128);</string>
@@ -3053,11 +3787,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_F_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>233</y>
-         <width>41</width>
+         <width>61</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(252, 1, 7);</string>
@@ -3069,11 +3811,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_C_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>129</y>
-         <width>41</width>
+         <width>61</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 10);</string>
@@ -3085,11 +3835,19 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Grade_B_3">
        <property name="geometry">
         <rect>
-         <x>18</x>
+         <x>20</x>
          <y>95</y>
-         <width>41</width>
+         <width>61</width>
          <height>27</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DB Adman X</family>
+         <pointsize>14</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(128, 255, 7);</string>
@@ -3101,72 +3859,96 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLineEdit" name="txt_config_Grade_A">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>60</y>
          <width>61</width>
          <height>28</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txt_config_Grade_B">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>95</y>
          <width>61</width>
          <height>27</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txt_config_Grade_C">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>129</y>
          <width>61</width>
          <height>28</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txt_config_Grade_D">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>164</y>
          <width>61</width>
          <height>28</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txt_config_Grade_E">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>199</y>
          <width>61</width>
          <height>27</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
       <widget class="QLineEdit" name="txt_config_Grade_F">
        <property name="geometry">
         <rect>
-         <x>80</x>
+         <x>105</x>
          <y>233</y>
          <width>61</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_13">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>225</x>
         <y>10</y>
         <width>181</width>
         <height>111</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>น้ำหนักตะกร้า</string>
@@ -3174,9 +3956,9 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_Save_ConfigWeigthBasket">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>70</y>
-         <width>81</width>
+         <x>10</x>
+         <y>65</y>
+         <width>101</width>
          <height>32</height>
         </rect>
        </property>
@@ -3206,16 +3988,25 @@ color: rgb(240, 162, 101);</string>
          <height>31</height>
         </rect>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_15">
       <property name="geometry">
        <rect>
-        <x>180</x>
-        <y>130</y>
-        <width>181</width>
-        <height>191</height>
+        <x>225</x>
+        <y>120</y>
+        <width>216</width>
+        <height>176</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ราคารับซื้อ</string>
@@ -3223,9 +4014,9 @@ color: rgb(240, 162, 101);</string>
       <widget class="QPushButton" name="btn_SavePriceMaterial">
        <property name="geometry">
         <rect>
-         <x>40</x>
-         <y>140</y>
-         <width>81</width>
+         <x>75</x>
+         <y>135</y>
+         <width>86</width>
          <height>32</height>
         </rect>
        </property>
@@ -3236,11 +4027,18 @@ color: rgb(240, 162, 101);</string>
       <widget class="QLabel" name="label_85">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>170</x>
          <y>70</y>
-         <width>51</width>
+         <width>41</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
        <property name="text">
         <string>บาท/กก.</string>
@@ -3256,8 +4054,7 @@ color: rgb(240, 162, 101);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;
-color: rgb(7, 64, 128);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>สายพันธุ์</string>
@@ -3279,11 +4076,18 @@ color: rgb(7, 64, 128);</string>
       <widget class="QLabel" name="label_88">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>170</x>
          <y>110</y>
-         <width>51</width>
+         <width>41</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
        </property>
        <property name="text">
         <string>บาท/กก.</string>
@@ -3294,7 +4098,7 @@ color: rgb(7, 64, 128);</string>
         <rect>
          <x>10</x>
          <y>110</y>
-         <width>51</width>
+         <width>61</width>
          <height>16</height>
         </rect>
        </property>
@@ -3305,32 +4109,44 @@ color: rgb(7, 64, 128);</string>
       <widget class="QLineEdit" name="txt_Price_material_BURIRAM">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>75</x>
          <y>60</y>
-         <width>51</width>
+         <width>86</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
       <widget class="QLineEdit" name="txt_Price_material_SAKON">
        <property name="geometry">
         <rect>
-         <x>60</x>
+         <x>75</x>
          <y>100</y>
-         <width>51</width>
+         <width>86</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_19">
       <property name="geometry">
        <rect>
-        <x>370</x>
-        <y>10</y>
+        <x>445</x>
+        <y>15</y>
         <width>251</width>
-        <height>266</height>
+        <height>326</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ข้อมูลเจ้าหน้าที่รับซื้อ</string>
@@ -3339,9 +4155,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>85</x>
-         <y>100</y>
-         <width>131</width>
-         <height>21</height>
+         <y>119</y>
+         <width>156</width>
+         <height>33</height>
         </rect>
        </property>
       </widget>
@@ -3349,9 +4165,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>69</y>
-         <width>62</width>
-         <height>16</height>
+         <y>85</y>
+         <width>65</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
@@ -3362,9 +4178,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>100</y>
-         <width>60</width>
-         <height>16</height>
+         <y>125</y>
+         <width>66</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
@@ -3375,9 +4191,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>85</x>
-         <y>70</y>
-         <width>131</width>
-         <height>21</height>
+         <y>82</y>
+         <width>156</width>
+         <height>32</height>
         </rect>
        </property>
       </widget>
@@ -3385,22 +4201,22 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>132</y>
-         <width>33</width>
-         <height>16</height>
+         <y>165</y>
+         <width>89</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
-        <string>Level</string>
+        <string>สิทธิการใช้งาน</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_98">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>40</y>
-         <width>42</width>
-         <height>16</height>
+         <x>35</x>
+         <y>50</y>
+         <width>43</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
@@ -3414,9 +4230,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>85</x>
-         <y>40</y>
-         <width>131</width>
-         <height>21</height>
+         <y>45</y>
+         <width>156</width>
+         <height>32</height>
         </rect>
        </property>
       </widget>
@@ -3424,9 +4240,9 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>85</x>
-         <y>160</y>
-         <width>131</width>
-         <height>21</height>
+         <y>200</y>
+         <width>156</width>
+         <height>32</height>
         </rect>
        </property>
       </widget>
@@ -3434,26 +4250,26 @@ color: rgb(7, 64, 128);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>160</y>
-         <width>36</width>
-         <height>16</height>
+         <y>205</y>
+         <width>70</width>
+         <height>25</height>
         </rect>
        </property>
        <property name="text">
-        <string>Name</string>
+        <string>ชื่อพนักงาน</string>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_clear_staff_config">
        <property name="geometry">
         <rect>
          <x>160</x>
-         <y>185</y>
-         <width>86</width>
+         <y>240</y>
+         <width>81</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>ล้างข้อมูล</string>
@@ -3462,24 +4278,24 @@ color: rgb(7, 64, 128);</string>
       <widget class="QComboBox" name="cmb_level_staff_config">
        <property name="geometry">
         <rect>
-         <x>80</x>
-         <y>130</y>
-         <width>106</width>
-         <height>26</height>
+         <x>107</x>
+         <y>160</y>
+         <width>131</width>
+         <height>31</height>
         </rect>
        </property>
       </widget>
       <widget class="QPushButton" name="btn_add_staff">
        <property name="geometry">
         <rect>
-         <x>25</x>
-         <y>220</y>
+         <x>15</x>
+         <y>285</y>
          <width>65</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>เพิ่ม</string>
@@ -3488,14 +4304,14 @@ color: rgb(7, 64, 128);</string>
       <widget class="QPushButton" name="btn_edit_staff">
        <property name="geometry">
         <rect>
-         <x>100</x>
-         <y>220</y>
+         <x>90</x>
+         <y>285</y>
          <width>74</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>แก้ไข</string>
@@ -3504,14 +4320,14 @@ color: rgb(7, 64, 128);</string>
       <widget class="QPushButton" name="btn_delete_staff">
        <property name="geometry">
         <rect>
-         <x>185</x>
-         <y>220</y>
+         <x>175</x>
+         <y>285</y>
          <width>60</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 14pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>ลบ</string>
@@ -3521,11 +4337,17 @@ color: rgb(7, 64, 128);</string>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>625</x>
-        <y>50</y>
-        <width>386</width>
-        <height>226</height>
+        <x>700</x>
+        <y>65</y>
+        <width>566</width>
+        <height>271</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ข้อมูลเจ้าหน้าผู้รับซื้อ</string>
@@ -3535,8 +4357,8 @@ color: rgb(7, 64, 128);</string>
         <rect>
          <x>5</x>
          <y>25</y>
-         <width>376</width>
-         <height>196</height>
+         <width>556</width>
+         <height>236</height>
         </rect>
        </property>
       </widget>
@@ -3546,9 +4368,15 @@ color: rgb(7, 64, 128);</string>
        <rect>
         <x>10</x>
         <y>320</y>
-        <width>161</width>
-        <height>111</height>
+        <width>206</width>
+        <height>91</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="title">
        <string>ตั้งค่าเครื่องชั่ง</string>
@@ -3558,8 +4386,8 @@ color: rgb(7, 64, 128);</string>
         <rect>
          <x>10</x>
          <y>45</y>
-         <width>141</width>
-         <height>26</height>
+         <width>116</width>
+         <height>31</height>
         </rect>
        </property>
       </widget>
@@ -3579,52 +4407,76 @@ color: rgb(7, 64, 128);</string>
       <widget class="QPushButton" name="btn_SerialPortSet">
        <property name="geometry">
         <rect>
-         <x>85</x>
-         <y>75</y>
+         <x>135</x>
+         <y>45</y>
          <width>66</width>
          <height>32</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 12pt &quot;.AppleSystemUIFont&quot;;</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>SET</string>
        </property>
       </widget>
      </widget>
-     <widget class="QLabel" name="label_51">
+     <widget class="QLabel" name="label_100">
       <property name="geometry">
        <rect>
-        <x>715</x>
-        <y>0</y>
-        <width>291</width>
-        <height>36</height>
+        <x>855</x>
+        <y>5</y>
+        <width>416</width>
+        <height>41</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>34</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
-color: rgb(252, 62, 39);</string>
+       <string notr="true">color: rgb(252, 62, 39);
+</string>
       </property>
       <property name="text">
        <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
      </widget>
-     <widget class="QLabel" name="label_50">
+     <widget class="QLabel" name="label_101">
       <property name="geometry">
        <rect>
-        <x>715</x>
-        <y>35</y>
-        <width>271</width>
+        <x>860</x>
+        <y>50</y>
+        <width>381</width>
         <height>16</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
-color: rgb(240, 162, 101);</string>
+       <string notr="true">color: rgb(240, 162, 101);
+</string>
       </property>
       <property name="text">
        <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
      </widget>
     </widget>

@@ -3,6 +3,7 @@
 #       used mysql.comnector library        #
 # ###########################################
 import mysql.connector
+import time
 
 class Database:
     def __init__(self,):
@@ -195,7 +196,7 @@ class Database:
     
     # config weight reject 
     def updateDB_BasketWeight(self,weight):
-        sql="UPDATE baskets SET weightBasket='" + weight + "' WHERE type = 'baskert'"
+        sql="UPDATE baskets SET weightBasket='" + weight + "' WHERE id=1"
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()  
@@ -205,13 +206,19 @@ class Database:
         return self.cursor.fetchall()
     
     # config weight reject 
-    def updateDB_MaterialPrice(self,price,type):
-        sql="UPDATE material SET price=%s, buriram=%s WHERE type=1"
-        val = (price,type)
-        self.cursor.execute(sql,val)
+    def updateDB_MaterialPrice(self,buriram,sakonnakhon):
+       # sql="UPDATE material SET price=%s, buriram=%s WHERE type=1"
+        sql="UPDATE material SET price='" + buriram + "' WHERE id=1"
+        self.cursor.execute(sql)
         self.db.commit()
-        return self.cursor.fetchall()  
-    
+        self.cursor.fetchall() 
+        
+               # sql="UPDATE material SET price=%s, buriram=%s WHERE type=1"
+        sql="UPDATE material SET price='" + sakonnakhon + "' WHERE id=2"
+        self.cursor.execute(sql)
+        self.db.commit()
+        self.cursor.fetchall() 
+     
     def LoadMaterialPrice(self):
         self.cursor.execute("SELECT * FROM material")
         return self.cursor.fetchall()
@@ -298,7 +305,8 @@ if __name__ == "__main__":
     db = Database()
     # db.updateSerialPortName('/dev/tty.PL2303G-USBtoUART11140')
     # db.updateSerialPortName('COM3')
-    print(db.LoadSerialPortName())
+    print(db.updateDB_BasketWeight("1.2"))
+    # print(db.LoadWastWeightByOrder("202503090001"))
 
     
 

@@ -5,8 +5,8 @@ import sys
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView
 from PySide6.QtCore import Qt, QThread, QObject, Signal, Slot, QTimer
-from main_GUI import Ui_MainWindow
-from Login_GUI import Ui_Dialog
+from main_GUI_windows import Ui_MainWindow
+from Login_GUI_windows import Ui_Dialog
 from DB import Database
 
 import datetime
@@ -329,19 +329,7 @@ class MainWindow(QMainWindow):
             self.ui.tb_MainRecordDetail.setItem(tablerow,8,QTableWidgetItem(str(row[9])))
             self.ui.tb_MainRecordDetail.setItem(tablerow,9,QTableWidgetItem(str(row[10])))
             tablerow += 1
-            
-        # Load wast and bag weight
-        weightLoss = self.db.LoadWastWeightByOrder(str(id))
-        wastWeight = weightLoss[0][0]
-        Bagweight = weightLoss[0][1]
-        
-        self.ui.lbl_Resulte_TotalWeightReject_west.setText(str(wastWeight))
-        self.ui.txt_wasteWeight.setText(str(wastWeight))
-        
-        self.ui.lbl_Resulte_ContainerWeight.setText(str(Bagweight))
-        self.ui.lbl_Resulte_ContainerWeight_2.setText(str(Bagweight)) 
-        self.ui.txt_ContainerWeight.setText(str(Bagweight))
-    
+                     
     def DeleteRecordMain(self):
         Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),0).text()
         SelectRowToDetete = self.ui.tb_MainRecordDetail.currentRow()
@@ -436,6 +424,18 @@ class MainWindow(QMainWindow):
                 # print('Create a AddNewOrderWeightRejects')
                 val = (orderID,'0','0')
                 self.db.AddNewOrderWeightRejects(val)
+            else:
+                # Load wast and bag weight
+                weightLoss = self.db.LoadWastWeightByOrder(str(orderID))
+                wastWeight = weightLoss[0][0]
+                Bagweight = weightLoss[0][1]
+
+                self.ui.lbl_Resulte_TotalWeightReject_west.setText(str(wastWeight))
+                self.ui.txt_wasteWeight.setText(str(wastWeight))
+                
+                self.ui.lbl_Resulte_ContainerWeight.setText(str(Bagweight))
+                self.ui.lbl_Resulte_ContainerWeight_2.setText(str(Bagweight)) 
+                self.ui.txt_ContainerWeight.setText(str(Bagweight))
         else:
             self.msgBoxError()
             
@@ -537,7 +537,7 @@ class MainWindow(QMainWindow):
         
         if button == QMessageBox.Yes:
             if (weight != ""):
-                self.db.updateDB_BasketWeight(weight)
+                self.db.updateDB_BasketWeight(str(weight))
                 self.loadBasketWeight()
             else:
                 return
@@ -559,8 +559,7 @@ class MainWindow(QMainWindow):
         
         if button == QMessageBox.Yes:
             if ((price_sakon != "") or (price_buriram != "") ):
-                self.db.updateDB_MaterialPrice(price_buriram,'buriram')
-                self.db.updateDB_MaterialPrice(price_sakon,'sakonnakhon')
+                self.db.updateDB_MaterialPrice(price_buriram,price_sakon)
                 self.loadMaterialPrice()
             else:
                 return

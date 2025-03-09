@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>220</height>
+    <width>463</width>
+    <height>303</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>DB Adman X</family>
+    <pointsize>18</pointsize>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -16,24 +22,24 @@
   <widget class="QLineEdit" name="txt_userID">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>120</y>
-     <width>125</width>
-     <height>21</height>
+     <x>171</x>
+     <y>155</y>
+     <width>161</width>
+     <height>31</height>
     </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>120</y>
-     <width>51</width>
+     <x>105</x>
+     <y>160</y>
+     <width>61</width>
      <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;DB SaiKrok X&quot;;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>User ID</string>
@@ -42,11 +48,16 @@
   <widget class="QLineEdit" name="txt_Password">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>145</y>
-     <width>125</width>
-     <height>21</height>
+     <x>171</x>
+     <y>195</y>
+     <width>161</width>
+     <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
@@ -55,14 +66,14 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>145</y>
-     <width>65</width>
+     <x>85</x>
+     <y>200</y>
+     <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;DB SaiKrok X&quot;;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Password</string>
@@ -71,8 +82,8 @@
   <widget class="QPushButton" name="btnLogin">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>170</y>
+     <x>185</x>
+     <y>240</y>
      <width>121</width>
      <height>32</height>
     </rect>
@@ -81,7 +92,7 @@
     <string notr="true">font: 75 20pt &quot;DB SaiKrok X&quot;;</string>
    </property>
    <property name="text">
-    <string>Login</string>
+    <string>เข้าสู่ระบบ</string>
    </property>
    <property name="shortcut">
     <string>Return</string>
@@ -90,14 +101,23 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>45</x>
-     <y>85</y>
-     <width>271</width>
+     <x>75</x>
+     <y>115</y>
+     <width>336</width>
      <height>26</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>DB Adman X</family>
+     <pointsize>18</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 24pt &quot;DB SaiKrok X&quot;;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>กรุณาใส่รหัสประจำตัวเจ้าหน้าที่เพื่อเข้าสู่ระบบ</string>
@@ -106,35 +126,59 @@
   <widget class="QLabel" name="label_51">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>10</y>
-     <width>291</width>
-     <height>36</height>
+     <x>10</x>
+     <y>35</y>
+     <width>441</width>
+     <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>DB Adman X</family>
+     <pointsize>34</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 40pt &quot;DB SaiKrok X&quot;;
-color: rgb(252, 62, 39);</string>
+    <string notr="true">color: rgb(252, 62, 39);
+</string>
    </property>
    <property name="text">
     <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   <widget class="QLabel" name="label_50">
    <property name="geometry">
     <rect>
-     <x>35</x>
-     <y>45</y>
-     <width>271</width>
+     <x>10</x>
+     <y>80</y>
+     <width>441</width>
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>DB Adman X</family>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+     <strikeout>false</strikeout>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 25pt &quot;DB SaiKrok X&quot;;
-color: rgb(240, 162, 101);</string>
+    <string notr="true">color: rgb(240, 162, 101);
+</string>
    </property>
    <property name="text">
     <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>
