@@ -83,21 +83,27 @@ class Database:
     def DBloadResulte(self,id):      
         #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
         sql = "SELECT orders.time " +\
+                ", orders.orderID " +\
                 ", orders.basketNumber " +\
                 ", orders.weight " +\
                 ", orders.grade " +\
                 ", grades.weightReject " +\
                 ", orders.container " +\
                 ", baskets.weightBasket " +\
+                ", orders.materialType " +\
                 ", material.price " +\
                 ", customers.name " +\
                 ", customers.village " +\
+                ", customers.address " +\
                 ", customers.leaderName " +\
+                ", users.name " +\
+                ", orders.building " +\
                 "FROM orders " +\
                 "LEFT JOIN grades ON orders.grade = grades.type " +\
                 "LEFT JOIN baskets ON orders.container = baskets.type " +\
                 "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
                 "LEFT JOIN material ON orders.materialType = material.type " +\
+                "LEFT JOIN users ON orders.staffID = users.uid " +\
                 "WHERE orderID='" + str(id) + "'"
         
         self.cursor.execute(sql)

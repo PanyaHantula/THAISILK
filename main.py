@@ -1,14 +1,14 @@
 ############################################
 #           Pyside 6 + Qt Designer         #
 ############################################
-import sys
-from PySide6 import QtWidgets
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView
-from PySide6.QtCore import Qt, QThread, QObject, Signal, Slot, QTimer
+import sys, csv
+from PySide6 import QtGui
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView, QFileDialog
+from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
 from main_GUI_windows import Ui_MainWindow
 from Login_GUI_windows import Ui_Dialog
 from DB import Database
-
+import pandas as pd
 import datetime
 import serial
 import random 
@@ -70,30 +70,30 @@ class MainWindow(QMainWindow):
         self.btnLink()
         self.GenetareOrderID()
         # self.setThread()
-                
+
     # Config btn link to function
     def btnLink(self):   
-        # Button of customer config 
+        ############# customer config #############
         self.ui.btn_add_customer.clicked.connect(self.add_customer)
         self.ui.btn_delete_customer.clicked.connect(self.delete_Customer)
         self.ui.tb_customerDetail.clicked.connect(self.loadTextboxCustomer)
         self.ui.btn_edit_customer.clicked.connect(self.edit_Customer)
         self.ui.btn_clear_customer.clicked.connect(self.clear_from_addnewCustomer)
         
-        # Button of staff config 
+        ############# staff config #############
         self.ui.btn_add_staff.clicked.connect(self.add_staff)
         self.ui.btn_delete_staff.clicked.connect(self.delete_staff)
         self.ui.tb_staffDetail.clicked.connect(self.loadTextboxStaff)
         self.ui.btn_edit_staff.clicked.connect(self.edit_staff)
         self.ui.btn_clear_staff_config.clicked.connect(self.clear_from_addNewStaff)
     
-        # Button config part
+        ############# config part #############
         self.ui.btn_SaveWeightOfGradeConfig.clicked.connect(self.updateGradeMatrial)
         self.ui.btn_SavePriceMaterial.clicked.connect(self.updateDB_MaterialPrice)
         self.ui.btn_Save_ConfigWeigthBasket.clicked.connect(self.updateDB_BasketWeight)
         self.ui.btn_SerialPortSet.clicked.connect(self.SetSerialPort)
         
-        # Button main Page setup
+        ############# main Page setup #############
         self.ui.btn_customerSelect.clicked.connect(self.SelectCustomerToMainpage)
         self.ui.btn_orderSet.clicked.connect(self.OrderID_Set)
         self.ui.btn_Create_Order.clicked.connect(self.CreateOrder)
@@ -113,15 +113,49 @@ class MainWindow(QMainWindow):
         self.ui.txt_wasteWeight.setDisabled(True)
         self.ui.txt_ContainerWeight.setDisabled(True)
         
-        # Reslutes Page
+        #############  Resulte Page #############
         self.ui.btn_CreateResulte.clicked.connect(self.LoadRecordToResultes)
         self.ui.btn_SaveExternalWeight.clicked.connect(self.CalOrderExternalWeight)
         self.ui.checkBox_ExteranalWeight.stateChanged.connect(self.SetExternalWeight)
+        self.ui.btn_UploadReport.clicked.connect(self.exportToExcel)
 
         self.ui.btn_UploadReport.setDisabled(True)
         self.ui.btn_SaveExternalWeight.setDisabled(True)
         self.ui.txt_ExternalWeightInput.setDisabled(True)
-                
+
+    # Export data to excel
+    def exportToExcel(self):  
+        columnHeaders = []
+
+        # create column header list
+        for j in range(self.ui.tb_ReslutesDetail.model().columnCount()):
+            columnHeaders.append(self.ui.tb_ReslutesDetail.horizontalHeaderItem(j).text())
+
+        df = pd.DataFrame(columns=columnHeaders)
+
+        # create dataframe object recordset
+        for row in range(self.ui.tb_ReslutesDetail.rowCount()):
+            for col in range(self.ui.tb_ReslutesDetail.columnCount()):
+                df.at[row, columnHeaders[col]] = self.ui.tb_ReslutesDetail.item(row, col).text()
+
+        
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("บันทึกข้อมูล")
+        dlg.setText("ต้องการบันทึกข้อมูลหรือไม่ ??\n\n เลขที่รายการรับซื้อ\n" + self.ui.txt_OrderID_Search.text())
+        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        button = dlg.exec()
+        
+        if button == QMessageBox.Yes:
+            try:    
+                path = 'export/' + self.ui.txt_OrderID_Search.text() + ".xlsx"
+                df.to_excel(path, index=False)
+            except:
+                dlg = QMessageBox(self)
+                dlg.setWindowTitle("ผิดพลาด")
+                dlg.setText("การบันทึกข้อมูลไม่สำเร็จ")
+                dlg.setStandardButtons(QMessageBox.Ok)
+                dlg.exec() 
+            
     # Resulte Page
     def RecordWasteWeight(self):
         self.ui.txt_wasteWeight.setText(self.ui.lbl_weight.text())
@@ -153,7 +187,6 @@ class MainWindow(QMainWindow):
             self.ui.btn_SaveExternalWeight.setDisabled(True)
             self.ui.txt_ExternalWeightInput.setDisabled(True)
 
-
     def CalOrderExternalWeight(self):
         self.ui.lbl_Resulte_ExternalWeight.setText(self.ui.txt_ExternalWeightInput.text())
         self.ui.lbl_Resulte_TotalWeight_Accounting.setText(self.ui.txt_ExternalWeightInput.text())
@@ -170,9 +203,18 @@ class MainWindow(QMainWindow):
     def LoadRecordToResultes(self):
         # id = '20250305005'
         id = self.ui.txt_OrderID_Search.text()
-        recordDetal = self.db.DBloadResulte(id)
-        
-        column_names = ['เวลา','ตะกร้า','น้ำหนัก','เกรด','หักน้ำหนัก','ภาชนะ','น้ำหนักภาชนะ','น้ำหนักสุทธิ','ราคา','ชื่อผู้ขาย','หมู่บ้าน','หัวหน้ากลุ่ม']
+        try:
+            recordDetal = self.db.DBloadResulte(id)
+        except:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("ผิดพลาด")
+            dlg.setText("ไม่พบข้อมูล\nโปรดใส่เลขที่รายการรับซื้อให้ถูกต้อง")
+            dlg.setStandardButtons(QMessageBox.Ok)
+            dlg.exec()   
+
+            pass
+
+        column_names = ['เวลา','เลขที่รับซื้อ','ตะกร้า','น้ำหนัก','เกรด','หักน้ำหนัก','ภาชนะ','น้ำหนักภาชนะ','น้ำหนักสุทธิ','ชนิดพันธุ์','ราคา','ชื่อผู้ขาย','หมู่บ้าน','จังหวัด','หัวหน้ากลุ่ม','ผู้รับซื้อ','อาคาร']
 
         # Set Table Dimensions
         self.ui.tb_ReslutesDetail.setRowCount(len(recordDetal))
@@ -193,11 +235,16 @@ class MainWindow(QMainWindow):
             self.ui.tb_ReslutesDetail.setItem(tablerow,4,QTableWidgetItem(str(row[4])))
             self.ui.tb_ReslutesDetail.setItem(tablerow,5,QTableWidgetItem(str(row[5])))
             self.ui.tb_ReslutesDetail.setItem(tablerow,6,QTableWidgetItem(str(row[6])))
-            
-            self.ui.tb_ReslutesDetail.setItem(tablerow,8,QTableWidgetItem(str(row[7])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,7,QTableWidgetItem(str(row[7])))
+
             self.ui.tb_ReslutesDetail.setItem(tablerow,9,QTableWidgetItem(str(row[8])))
             self.ui.tb_ReslutesDetail.setItem(tablerow,10,QTableWidgetItem(str(row[9])))
             self.ui.tb_ReslutesDetail.setItem(tablerow,11,QTableWidgetItem(str(row[10])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,12,QTableWidgetItem(str(row[11])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,13,QTableWidgetItem(str(row[12])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,14,QTableWidgetItem(str(row[13])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,15,QTableWidgetItem(str(row[14])))
+            self.ui.tb_ReslutesDetail.setItem(tablerow,16,QTableWidgetItem(str(row[15])))
             tablerow += 1
             
         # header = self.ui.tb_ReslutesDetail.horizontalHeader()         
@@ -210,11 +257,11 @@ class MainWindow(QMainWindow):
         #         self.ui.tb_ReslutesDetail.setItem(row_idx, col_idx, QTableWidgetItem(str(cell_data)))
 
         # calculate final weight per basket
-        colIndex = 7
+        colIndex = 8
         for rowIndex in range (tablerow):
-            weight = float(self.ui.tb_ReslutesDetail.item(rowIndex, 2).text())
-            weightReject = float(self.ui.tb_ReslutesDetail.item(rowIndex, 4).text())
-            weightBasket = float(self.ui.tb_ReslutesDetail.item(rowIndex, 6).text())
+            weight = float(self.ui.tb_ReslutesDetail.item(rowIndex, 3).text())
+            weightReject = float(self.ui.tb_ReslutesDetail.item(rowIndex, 5).text())
+            weightBasket = float(self.ui.tb_ReslutesDetail.item(rowIndex, 7).text())
             finalWeightPerUnit = weight - weightReject - weightBasket
             self.ui.tb_ReslutesDetail.setItem(rowIndex, colIndex, QTableWidgetItem(str(("{0:.2f}".format(finalWeightPerUnit)))))
         
@@ -222,11 +269,12 @@ class MainWindow(QMainWindow):
         SumRawWeight = 0.0
         SumWeightReject = 0.0
         for rowIndex in range (tablerow):
-            SumRawWeight += float(self.ui.tb_ReslutesDetail.item(rowIndex, 2).text())
-            SumWeightReject += float(self.ui.tb_ReslutesDetail.item(rowIndex, 4).text())
+            SumRawWeight += float(self.ui.tb_ReslutesDetail.item(rowIndex, 3).text())
+            SumWeightReject += float(self.ui.tb_ReslutesDetail.item(rowIndex, 5).text())
             
         self.ui.lbl_Resulte_TotalWeightMeterial.setText(str(("{0:.2f}".format(SumRawWeight))))    
         self.ui.lbl_Resulte_TotalWeightReject.setText(str(("{0:.2f}".format(SumWeightReject))))
+        
         
         OrderDetails = self.db.DBloadOrderDetails(id) 
         orderID = OrderDetails[0][0]
@@ -932,13 +980,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
         
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    login_window = LoginWindow()
-    login_window.show()
-    app.exec()    
+    # app = QApplication(sys.argv)
+    # login_window = LoginWindow()
+    # login_window.show()
+    # app.exec()    
     
     # For Testing Program
-    # app = QApplication(sys.argv)
-    # MainWindow = MainWindow("0010")
-    # MainWindow.show()
-    # app.exec()  
+    app = QApplication(sys.argv)
+    MainWindow = MainWindow("0010")
+    MainWindow.show()
+    app.exec()  

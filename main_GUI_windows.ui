@@ -1814,9 +1814,9 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>55</x>
-         <y>55</y>
+         <y>50</y>
          <width>141</width>
-         <height>16</height>
+         <height>21</height>
         </rect>
        </property>
        <property name="font">
@@ -2807,9 +2807,9 @@ border-color: rgb(0, 85, 255);</string>
      <widget class="QPushButton" name="btn_UploadReport">
       <property name="geometry">
        <rect>
-        <x>1005</x>
+        <x>1105</x>
         <y>625</y>
-        <width>201</width>
+        <width>161</width>
         <height>46</height>
        </rect>
       </property>
@@ -4113,7 +4113,7 @@ border-color: rgb(0, 85, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>320</y>
+        <y>325</y>
         <width>206</width>
         <height>91</height>
        </rect>
