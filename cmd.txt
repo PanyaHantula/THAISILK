@@ -3,3 +3,10 @@ pyside6-uic Login_GUI.ui -o Login_GUI.py
 
 # install
 pip install -r requirements.txt
+
+# execute to .exe file
+pip install pyinstaller
+
+# Then run command
+pyinstaller .\main.py --onefile --windowed
+pyinstaller --onefile --hidden-import=mysql.connector --windowed .\main.py

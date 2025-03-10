@@ -3,23 +3,25 @@
 #       used mysql.comnector library        #
 # ###########################################
 import mysql.connector
-import time
 
 class Database:
     def __init__(self,):
+        # print("MySQL Connector version: ",mysql.connector.__version__)
         self.connect_db()
     
     # Connect DB           
     def connect_db(self):
         try:
+            # print("#: Connecting to SQL Database")
             self.db = mysql.connector.connect(
-                host="localhost",
+                host="127.0.0.1",
                 user="root",
                 password="p@ssw0rd",
-                database="ThaiSilkProducts"
+                database="thaisilkproducts",
+                port=3306
                 )    
             self.cursor = self.db.cursor()
-            # print("#: Connect SQL Database complete")
+            # print("#: complete")
         except:
             print("#: Error connecting Database")   
         
@@ -84,16 +86,18 @@ class Database:
                 ", orders.basketNumber " +\
                 ", orders.weight " +\
                 ", orders.grade " +\
-                ", grade.weightReject " +\
+                ", grades.weightReject " +\
                 ", orders.container " +\
                 ", baskets.weightBasket " +\
+                ", material.price " +\
                 ", customers.name " +\
                 ", customers.village " +\
                 ", customers.leaderName " +\
                 "FROM orders " +\
-                "LEFT JOIN grade ON orders.grade = grade.grade " +\
+                "LEFT JOIN grades ON orders.grade = grades.type " +\
                 "LEFT JOIN baskets ON orders.container = baskets.type " +\
                 "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
+                "LEFT JOIN material ON orders.materialType = material.type " +\
                 "WHERE orderID='" + str(id) + "'"
         
         self.cursor.execute(sql)
@@ -132,23 +136,28 @@ class Database:
     # weight record
     def DBweightRecord(self,val):
         # (`orderID`, `weight`, `basketNumber`, `grade`, `materialType`, `staffID`, `customerID`, `building`, `container`) VALUES ('20250304002', '21', '02', 'B', 'buriram', '0010', '102', 'A', 'basket');
-        sql = "INSERT INTO orders (orderID, weight, basketNumber, grade, materialType, staffID, customerID, building, container) VALUES " + str(val) 
+        sql = "INSERT INTO orders (orderID, weight, basketNumber, grade, weightReject, materialType, price, staffID, customerID, building, container,containerWeight) VALUES " + str(val) 
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
     
-    def DBloadRecord(self,id):
-        sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(id)
-        self.cursor.execute(sql)
-        returnDB = self.cursor.fetchall()
-        total = returnDB[0][0]
-        
-        sql = "SELECT * FROM orders WHERE orderID='" + str(id) + "' ORDER BY time DESC"
+    def DBloadRecord(self,OrderID):
+        sql = "SELECT * FROM orders WHERE orderID='" + str(OrderID) + "' ORDER BY time DESC"
         self.cursor.execute(sql)
         recordDetal = self.cursor.fetchall()
-        column = 10
+
+        return recordDetal
+        # sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(OrderID)
+        # self.cursor.execute(sql)
+        # returnDB = self.cursor.fetchall()
+        # total = returnDB[0][0]
         
-        return (column,total,recordDetal)
+        # sql = "SELECT * FROM orders WHERE orderID='" + str(OrderID) + "' ORDER BY time DESC"
+        # self.cursor.execute(sql)
+        # recordDetal = self.cursor.fetchall()
+        # column = 10
+        
+        # return (column,total,recordDetal)
     
     def DBdeleteRecord(self, time):
         sql = "DELETE FROM orders WHERE time='" + str(time) + "'"
@@ -175,7 +184,7 @@ class Database:
         
         return password
 
-    def loadSigleCustomer(self,id):
+    def loadSingleCustomer(self,id):
         sql = "SELECT * FROM customers WHERE customerID=" + str(id)
         self.cursor.execute(sql)
         return self.cursor.fetchall()
@@ -218,21 +227,21 @@ class Database:
         self.cursor.execute(sql)
         self.db.commit()
         self.cursor.fetchall() 
-     
+   
     def LoadMaterialPrice(self):
         self.cursor.execute("SELECT * FROM material")
         return self.cursor.fetchall()
     
     # config weight reject 
     def updateWeightReject(self,grade,weightReject):
-        sql="UPDATE grade SET weightReject=%s WHERE grade=%s"
+        sql="UPDATE grades SET weightReject=%s WHERE type=%s"
         val = (weightReject,grade)
         self.cursor.execute(sql,val)
         self.db.commit()
         return self.cursor.fetchall()  
-    
+        
     def loadALLGradematerial(self):
-        self.cursor.execute("SELECT * FROM grade")
+        self.cursor.execute("SELECT * FROM grades")
         return self.cursor.fetchall()
         
     # Staff     
@@ -256,7 +265,7 @@ class Database:
         return self.cursor.fetchall()
     
     def DeleteStaff(self,id):
-        sql = "DELETE FROM users WHERE uid=" + str(id)
+        sql = "DELETE FROM users WHERE id=" + str(id)
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall()
@@ -305,8 +314,25 @@ if __name__ == "__main__":
     db = Database()
     # db.updateSerialPortName('/dev/tty.PL2303G-USBtoUART11140')
     # db.updateSerialPortName('COM3')
-    print(db.updateDB_BasketWeight("1.2"))
+    # print(db.updateDB_BasketWeight("1.2"))
     # print(db.LoadWastWeightByOrder("202503090001"))
 
-    
+    print(db.LoadSakonnakhonPrice())
 
+    # orderID = "202503090001"
+    # weight = 20.1
+    # basketNumber = "02"
+    # grade = "B"
+    # weghtReject = 0.5
+    # MaterialType = "sakonnakhon"
+    # Price = 14
+    # Staff_ID = "0010"
+    # customer_ID = "3103"
+    # building_main = "A"
+    # container = "basket"
+    # containerWeight = 0
+
+    # # val = (orderID, weight, basketNumber, grade, weghtReject, MaterialType, Price, Staff_ID, customer_ID, building_main, container,containerWeight)
+    # # db.DBweightRecord(val)
+
+    # print(db.DBloadRecord(orderID))           
