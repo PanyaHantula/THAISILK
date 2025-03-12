@@ -4226,6 +4226,156 @@ border-color: rgb(0, 85, 255);</string>
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="database">
+     <attribute name="title">
+      <string>ข้อมูลการรับซื้อ</string>
+     </attribute>
+     <widget class="QLabel" name="label_103">
+      <property name="geometry">
+       <rect>
+        <x>855</x>
+        <y>5</y>
+        <width>416</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>34</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(252, 62, 39);
+</string>
+      </property>
+      <property name="text">
+       <string>บริษัท ไทยซิลค์โปรดัคส์ จำกัด</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_105">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>50</y>
+        <width>381</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>false</italic>
+        <bold>true</bold>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(240, 162, 101);
+</string>
+      </property>
+      <property name="text">
+       <string>THAI SILK PRODUCTS COMPANY LIMITED</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tb_ALL_DataList">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>75</y>
+        <width>151</width>
+        <height>556</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_34">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>เลขที่รายการรับซื้อ</string>
+      </property>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_23">
+      <property name="geometry">
+       <rect>
+        <x>165</x>
+        <y>55</y>
+        <width>1106</width>
+        <height>621</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="title">
+       <string>รายละเอียดการรับซื้อใบหม่อน</string>
+      </property>
+      <widget class="QTableWidget" name="tb_ALL_DataRecoreList">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>20</y>
+         <width>1091</width>
+         <height>596</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="btn_SaveExcelFile">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>635</y>
+        <width>151</width>
+        <height>36</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DB Adman X</family>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(70, 212, 104);</string>
+      </property>
+      <property name="text">
+       <string>Save Excel File</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>

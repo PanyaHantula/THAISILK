@@ -26,7 +26,7 @@ class Database:
             print("#: Error connecting Database")   
         
     def select_all(self):
-        cmd = "SELECT * FROM customer"
+        cmd = "SELECT * FROM WeightLossByOrder"
         self.cursor.execute(cmd)
         for row in self.cursor.fetchall():
             print (row)
@@ -36,19 +36,42 @@ class Database:
         self.db.commit()
         return self.cursor.fetchall()
     
-    # Config Serial port
-    def updateSerialPortName(self,name):
-        sql="UPDATE serial SET name='" + name + "' WHERE id = 1"
+    def DBLoadOrderIDList(self):
+        sql = "SELECT * FROM WeightLossByOrder"
+        self.cursor.execute(sql)
+        row = self.cursor.fetchall()
+        return row
+    
+        # order External Weight 
+    def LoadExternalWeightByOrder(self,id):
+        sql = "SELECT weight FROM externalweights WHERE orderID='" + str(id) + "'"
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+    
+    def AddExternalWeightByOrder(self,val):
+        sql = "INSERT INTO externalweights (orderID, weight) VALUES " + str(val)
+        self.cursor.execute(sql)
+        self.db.commit()
+    
+    def UpdateExternalWeightByOrder(self,id,weight):
+        sql="UPDATE externalweights SET weight='" + weight + "' WHERE orderID = " + str(id)
         self.cursor.execute(sql)
         self.db.commit()
         return self.cursor.fetchall() 
     
+    # Config Serial port
+    def updateSerialPortName(self,name):
+        sql="UPDATE configs SET value='" + name + "' WHERE id = 1"
+        self.cursor.execute(sql)
+        self.db.commit()
+    
     def LoadSerialPortName(self):
-        sql = "SELECT * FROM serial"
+        sql = "SELECT value FROM configs WHERE id = 1"
         self.cursor.execute(sql)
         returnDB = self.cursor.fetchall()
-        name = returnDB[0][1]
-        return name
+        return returnDB[0][0]
+    
+    
     # orderWeightRejects
     def LoadWastWeightByOrder(self,id):
         sql = "SELECT WasteWeight, ContainerWeight FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
@@ -318,12 +341,11 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    # db.updateSerialPortName('/dev/tty.PL2303G-USBtoUART11140')
-    # db.updateSerialPortName('COM3')
-    # print(db.updateDB_BasketWeight("1.2"))
-    # print(db.LoadWastWeightByOrder("202503090001"))
-
-    print(db.LoadSakonnakhonPrice())
+    print(db.DBLoadOrderIDList())
+    # orderID = "202503100008"
+    # val = (orderID,'52.6')
+    # db.UpdateExternalWeightByOrder(orderID,"56.2")
+    # print(db.LoadExternalWeightByOrder(orderID))
 
     # orderID = "202503090001"
     # weight = 20.1
