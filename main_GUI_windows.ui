@@ -3389,7 +3389,7 @@ border-color: rgb(0, 85, 255);</string>
         <x>10</x>
         <y>10</y>
         <width>206</width>
-        <height>311</height>
+        <height>316</height>
        </rect>
       </property>
       <property name="font">
@@ -3794,7 +3794,7 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>30</y>
+         <y>35</y>
          <width>61</width>
          <height>21</height>
         </rect>
@@ -3884,8 +3884,8 @@ border-color: rgb(0, 85, 255);</string>
        <rect>
         <x>445</x>
         <y>15</y>
-        <width>251</width>
-        <height>326</height>
+        <width>281</width>
+        <height>281</height>
        </rect>
       </property>
       <property name="font">
@@ -3900,9 +3900,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLineEdit" name="txt_password_staff_config">
        <property name="geometry">
         <rect>
-         <x>85</x>
-         <y>119</y>
-         <width>156</width>
+         <x>90</x>
+         <y>104</y>
+         <width>181</width>
          <height>33</height>
         </rect>
        </property>
@@ -3911,7 +3911,7 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>85</y>
+         <y>70</y>
          <width>65</width>
          <height>25</height>
         </rect>
@@ -3924,7 +3924,7 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>125</y>
+         <y>110</y>
          <width>66</width>
          <height>25</height>
         </rect>
@@ -3936,9 +3936,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLineEdit" name="txt_username_staff_config">
        <property name="geometry">
         <rect>
-         <x>85</x>
-         <y>82</y>
-         <width>156</width>
+         <x>90</x>
+         <y>67</y>
+         <width>181</width>
          <height>32</height>
         </rect>
        </property>
@@ -3946,21 +3946,21 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLabel" name="label_27">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>165</y>
-         <width>89</width>
+         <x>20</x>
+         <y>150</y>
+         <width>81</width>
          <height>25</height>
         </rect>
        </property>
        <property name="text">
-        <string>สิทธิการใช้งาน</string>
+        <string>สิทธิผู้ใช้งาน</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_98">
        <property name="geometry">
         <rect>
          <x>35</x>
-         <y>50</y>
+         <y>35</y>
          <width>43</width>
          <height>25</height>
         </rect>
@@ -3975,9 +3975,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLineEdit" name="txt_staff_id_config">
        <property name="geometry">
         <rect>
-         <x>85</x>
-         <y>45</y>
-         <width>156</width>
+         <x>90</x>
+         <y>30</y>
+         <width>181</width>
          <height>32</height>
         </rect>
        </property>
@@ -3985,9 +3985,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLineEdit" name="txt_name_staff_config">
        <property name="geometry">
         <rect>
-         <x>85</x>
-         <y>200</y>
-         <width>156</width>
+         <x>90</x>
+         <y>185</y>
+         <width>181</width>
          <height>32</height>
         </rect>
        </property>
@@ -3996,7 +3996,7 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>205</y>
+         <y>190</y>
          <width>70</width>
          <height>25</height>
         </rect>
@@ -4008,8 +4008,8 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QPushButton" name="btn_clear_staff_config">
        <property name="geometry">
         <rect>
-         <x>160</x>
-         <y>240</y>
+         <x>190</x>
+         <y>235</y>
          <width>81</width>
          <height>32</height>
         </rect>
@@ -4024,9 +4024,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QComboBox" name="cmb_level_staff_config">
        <property name="geometry">
         <rect>
-         <x>107</x>
-         <y>160</y>
-         <width>131</width>
+         <x>110</x>
+         <y>145</y>
+         <width>156</width>
          <height>31</height>
         </rect>
        </property>
@@ -4034,9 +4034,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QPushButton" name="btn_add_staff">
        <property name="geometry">
         <rect>
-         <x>15</x>
-         <y>285</y>
-         <width>65</width>
+         <x>20</x>
+         <y>235</y>
+         <width>51</width>
          <height>32</height>
         </rect>
        </property>
@@ -4050,9 +4050,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QPushButton" name="btn_edit_staff">
        <property name="geometry">
         <rect>
-         <x>90</x>
-         <y>285</y>
-         <width>74</width>
+         <x>75</x>
+         <y>235</y>
+         <width>56</width>
          <height>32</height>
         </rect>
        </property>
@@ -4066,9 +4066,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QPushButton" name="btn_delete_staff">
        <property name="geometry">
         <rect>
-         <x>175</x>
-         <y>285</y>
-         <width>60</width>
+         <x>135</x>
+         <y>235</y>
+         <width>51</width>
          <height>32</height>
         </rect>
        </property>
@@ -4083,9 +4083,9 @@ border-color: rgb(0, 85, 255);</string>
      <widget class="QGroupBox" name="groupBox_3">
       <property name="geometry">
        <rect>
-        <x>700</x>
+        <x>730</x>
         <y>65</y>
-        <width>566</width>
+        <width>536</width>
         <height>271</height>
        </rect>
       </property>
@@ -4101,9 +4101,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QTableWidget" name="tb_staffDetail">
        <property name="geometry">
         <rect>
-         <x>5</x>
+         <x>10</x>
          <y>25</y>
-         <width>556</width>
+         <width>521</width>
          <height>236</height>
         </rect>
        </property>
@@ -4113,7 +4113,7 @@ border-color: rgb(0, 85, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>325</y>
+        <y>335</y>
         <width>206</width>
         <height>91</height>
        </rect>
@@ -4294,7 +4294,7 @@ border-color: rgb(0, 85, 255);</string>
         <x>10</x>
         <y>75</y>
         <width>151</width>
-        <height>556</height>
+        <height>596</height>
        </rect>
       </property>
      </widget>
@@ -4302,14 +4302,14 @@ border-color: rgb(0, 85, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>40</y>
-        <width>141</width>
+        <y>0</y>
+        <width>186</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <pointsize>16</pointsize>
+        <pointsize>14</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -4318,7 +4318,7 @@ border-color: rgb(0, 85, 255);</string>
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>เลขที่รายการรับซื้อ</string>
+       <string>บันทึกรายการบันทึกรับซื้อ</string>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox_23">
@@ -4355,7 +4355,7 @@ border-color: rgb(0, 85, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>635</y>
+        <y>30</y>
         <width>151</width>
         <height>36</height>
        </rect>

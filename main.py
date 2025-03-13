@@ -69,7 +69,7 @@ class MainWindow(QMainWindow):
         self.setcmb()
         self.btnLink()
         self.GenetareOrderID()
-        # self.setThread()
+        self.setThread()
 
     # Config btn link to function
     def btnLink(self):   
@@ -129,7 +129,6 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveExcelFile.clicked.connect(self.exportToExcel)
         #self.ui.btn_edit_staff.clicked.connect(self.edit_staff)
 
-    
     # load Order List
     def LoadOrderIDList(self):
         orderList = self.db.DBLoadOrderIDList()
@@ -618,8 +617,8 @@ class MainWindow(QMainWindow):
         self.SunfordThread.start()    # Start Thread
         
     def UpdateWeight(self,weight):
-        self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
-        # self.ui.lbl_weight.setText(weight)
+        # self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
+        self.ui.lbl_weight.setText(weight)
     
     def randomweight(self):
         self.UpdateWeight(random.uniform(10, 20))
