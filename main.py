@@ -7,10 +7,12 @@ from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
 from main_GUI_windows import Ui_MainWindow
 from Login_GUI_windows import Ui_Dialog
 from DB import Database
+from gsheet import *
 import pandas as pd
 import datetime
 import serial
 import random 
+import numpy as np
 
 ############################################
 #       sunford get weigth Thread          #
@@ -54,8 +56,9 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("ระบบรับซื้อใบหม่อน") 
-        self.db = Database()
-              
+        
+        # data base config
+        self.db = Database()            
         self.LoadUserStaffName(UserID_Login)
         self.loadCustomerTable()
         self.loadStaffTable()
@@ -64,12 +67,18 @@ class MainWindow(QMainWindow):
         self.loadBasketWeight()
         self.LoadSerialPortConfig()
         self.LoadOrderIDList()
-              
+
+        # GUI Config      
         self.setClock()
         self.setcmb()
         self.btnLink()
         self.Gen_OrderID_AutoNumber()
         # self.setThread()
+
+        # Googls Sheet config
+        self.gSheet = googlesheet()
+        self.creds = self.gSheet.connect_sheet()
+        #self.gSheet.UpdateSheet(self.creds)
 
     # Config btn link to function
     def btnLink(self):   
@@ -105,6 +114,10 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveContainerWeight.clicked.connect(self.RecordContainerWeight)
         self.GradeSelectSetup()
 
+        # Disable btn befor create order
+        self.ui.btn_Save_Main.setDisabled(True)
+        self.ui.btn_DeleteData_main.setDisabled(True)
+
         # Disabled btn Wast and bag weight befor Create Order
         self.ui.btn_SaveWasteWeight.setDisabled(True)
         self.ui.btn_SaveContainerWeight.setDisabled(True)
@@ -117,9 +130,8 @@ class MainWindow(QMainWindow):
         self.ui.btn_CreateResulte.clicked.connect(self.LoadRecordToResultes)
         self.ui.btn_SaveExternalWeight.clicked.connect(self.RecordExternalWeight)
         self.ui.checkBox_ExteranalWeight.stateChanged.connect(self.SetExternalWeight)
-        #self.ui.btn_UploadReport.clicked.connect(self.exportToExcel)
-        self.ui.btn_UploadReport.hide()
-
+        self.ui.btn_UploadReport.clicked.connect(self.UploadData)
+        
         self.ui.btn_UploadReport.setDisabled(True)
         self.ui.btn_SaveExternalWeight.setDisabled(True)
         self.ui.txt_ExternalWeightInput.setDisabled(True)
@@ -283,7 +295,7 @@ class MainWindow(QMainWindow):
             for col in range(self.ui.tb_OrderDetail.columnCount()):
                 OrderDetail.at[row, columnHeaders[col]] = self.ui.tb_OrderDetail.item(row, col).text()
 
-        result_df = pd.concat([OrderDetail, WeightRecordDetail], axis=1)
+        self.result_df = pd.concat([OrderDetail, WeightRecordDetail], axis=1)
         # save Excel File
         try:     
                # Get File name   
@@ -291,7 +303,7 @@ class MainWindow(QMainWindow):
             caption='Select a data file',
             filter='Excel File (*.xlsx *.xls)')
             #print(path)
-            result_df.to_excel(path[0], index=False)
+            self.result_df.to_excel(path[0], index=False)
 
             dlg = QMessageBox(self)
             dlg.setWindowTitle("บันทึกข้อมูล")
@@ -306,11 +318,34 @@ class MainWindow(QMainWindow):
             dlg.setStandardButtons(QMessageBox.Ok)
             dlg.exec()    
 
-     # Upload data 
-    
     # Upload data
     def UploadData(self):  
-        pass
+    # create record deteail column header list
+        columnHeaders = ['เวลา','เลขที่รับซื้อ','ตะกร้า','น้ำหนัก','เกรด','หักน้ำหนัก','ภาชนะ','น้ำหนักภาชนะ','น้ำหนักสุทธิ','ชนิดพันธุ์','ราคา','ชื่อผู้ขาย','หมู่บ้าน','จังหวัด','หัวหน้ากลุ่ม','ผู้รับซื้อ','อาคาร']
+        WeightRecordDetail = pd.DataFrame(columns=columnHeaders)
+        for row in range(self.ui.tb_ALL_DataRecoreList.rowCount()):
+            for col in range(self.ui.tb_ALL_DataRecoreList.columnCount()):
+                WeightRecordDetail.at[row, columnHeaders[col]] = self.ui.tb_ALL_DataRecoreList.item(row, col).text()
+
+        # create order detail column header list
+        columnHeaders = ['รายการ','ข้อมูล']
+        OrderDetail = pd.DataFrame(columns=columnHeaders)
+        for row in range(self.ui.tb_OrderDetail.rowCount()):
+            for col in range(self.ui.tb_OrderDetail.columnCount()):
+                OrderDetail.at[row, columnHeaders[col]] = self.ui.tb_OrderDetail.item(row, col).text()
+
+        result_df = pd.concat([OrderDetail, WeightRecordDetail], axis=1)
+        result_df = result_df.replace(np.nan, None)
+        
+        # Creating an empty list that is convert from dataframe to list
+        res=[]
+        for column in result_df.columns:
+            li = result_df[column].tolist()
+            res.append(li)
+
+        # Transpose Elements of Two Dimensional List 
+        val = [list(row) for row in zip(*res)]
+        self.gSheet.UpdateSheet(self.creds,val)
 
     # Resulte Page
     def RecordWasteWeight(self):
@@ -442,6 +477,7 @@ class MainWindow(QMainWindow):
         self.ui.lbl_Resulte_TotalWeightMeterial.setText(str(("{0:.2f}".format(SumRawWeight))))    
         self.ui.lbl_Resulte_TotalWeightReject.setText(str(("{0:.2f}".format(SumWeightReject))))
                
+        ######### มีบางครั้งข้อมูลโหลดไม่ได้ แสดงผลหน้า Resulte ผิดพลาด       
         try:
             OrderDetails = self.db.DBloadOrderDetails(id) 
             orderID = OrderDetails[0][0]
@@ -694,8 +730,12 @@ class MainWindow(QMainWindow):
                 self.db.AddNewOrderWeightRejects(val)
 
                 val = (orderID,'0')
-                self.db.AddExternalWeightByOrder(val)
-            
+                self.db.AddExternalWeightByOrder(val)     
+
+            # Enable save weight of main page
+            self.ui.btn_Save_Main.setDisabled(False)
+            self.ui.btn_DeleteData_main.setDisabled(False)    
+
         else:
             self.msgBoxError()
             
@@ -1148,7 +1188,6 @@ class MainWindow(QMainWindow):
         self.ui.cmb_leaderName_customer_DB.addItem("คุณบุญรอด  สร้างการนอก")
         self.ui.cmb_leaderName_customer_DB.addItem("คุณอำนวย  มีสถาน")
         self.ui.cmb_leaderName_customer_DB.addItem("บริษัท ไร่นายจุล คุ้นวงศ์ จำกัด")
-
 class LoginWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -1180,7 +1219,8 @@ class LoginWindow(QWidget):
         self.main_window = MainWindow(uID)
         self.main_window.show()
         self.close()  # ปิดหน้าต่าง Login
-        
+
+
 if __name__ == "__main__":
     # app = QApplication(sys.argv)
     # login_window = LoginWindow()

@@ -10,3 +10,6 @@ pip install pyinstaller
 # Then run command
 pyinstaller .\main.py --onefile --windowed
 pyinstaller --onefile --hidden-import=mysql.connector --windowed .\main.py
+
+# Google sheet API Upload
+Following in this website https://developers.google.com/sheets/api/quickstart/python
