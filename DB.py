@@ -12,7 +12,7 @@ class Database:
     # Connect DB           
     def connect_db(self):
         try:
-            # print("#: Connecting to SQL Database")
+            print("#: Connecting to SQL Database")
             self.db = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
@@ -21,12 +21,12 @@ class Database:
                 port=3306
                 )    
             self.cursor = self.db.cursor()
-            # print("#: complete")
+            print("#: complete")
         except:
             print("#: Error connecting Database")   
         
     def select_all(self):
-        cmd = "SELECT * FROM WeightLossByOrder"
+        cmd = "SELECT * FROM orders"
         self.cursor.execute(cmd)
         for row in self.cursor.fetchall():
             print (row)
@@ -36,6 +36,7 @@ class Database:
         self.db.commit()
         return self.cursor.fetchall()
     
+    # order list
     def DBLoadOrderIDList(self):
         sql = "SELECT * FROM WeightLossByOrder"
         self.cursor.execute(sql)
@@ -43,6 +44,8 @@ class Database:
         return row
     
         # order External Weight 
+    
+    # External weight
     def LoadExternalWeightByOrder(self,id):
         sql = "SELECT weight FROM externalweights WHERE orderID='" + str(id) + "'"
         self.cursor.execute(sql)
@@ -70,8 +73,7 @@ class Database:
         self.cursor.execute(sql)
         returnDB = self.cursor.fetchall()
         return returnDB[0][0]
-    
-    
+       
     # orderWeightRejects
     def LoadWastWeightByOrder(self,id):
         sql = "SELECT WasteWeight, ContainerWeight FROM WeightLossByOrder WHERE orderID='" + str(id) + "'"
@@ -110,11 +112,11 @@ class Database:
                 ", orders.basketNumber " +\
                 ", orders.weight " +\
                 ", orders.grade " +\
-                ", grades.weightReject " +\
+                ", orders.weightReject " +\
                 ", orders.container " +\
-                ", baskets.weightBasket " +\
+                ", orders.containerWeight " +\
                 ", orders.materialType " +\
-                ", material.price " +\
+                ", orders.price " +\
                 ", customers.name " +\
                 ", customers.village " +\
                 ", customers.address " +\
@@ -123,9 +125,7 @@ class Database:
                 ", orders.building " +\
                 "FROM orders " +\
                 "LEFT JOIN grades ON orders.grade = grades.type " +\
-                "LEFT JOIN baskets ON orders.container = baskets.type " +\
                 "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
-                "LEFT JOIN material ON orders.materialType = material.type " +\
                 "LEFT JOIN users ON orders.staffID = users.uid " +\
                 "WHERE orderID='" + str(id) + "'"
         
@@ -143,18 +143,37 @@ class Database:
                 ", customers.leaderName " +\
                 ", orders.building " +\
                 ", orders.materialType " +\
-                ", baskets.weightBasket " +\
-                ", material.price " +\
+                ", orders.containerWeight " +\
+                ", orders.price " +\
                 "FROM orders " +\
                 "LEFT JOIN users ON orders.staffID = users.uid " +\
                 "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
-                "LEFT JOIN baskets ON orders.container = baskets.type " +\
-                "LEFT JOIN material ON orders.materialType = material.type " +\
                 "WHERE orderID='" + str(id) + "' ORDER BY time ASC LIMIT 1"
         
         self.cursor.execute(sql)
-        recordDetal = self.cursor.fetchall()
-        return recordDetal
+        return self.cursor.fetchall()
+    
+    def DBloadOrderDetailsToList(self,id):
+        #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
+        sql = "SELECT orders.orderID " +\
+                ", orders.time " +\
+                ", users.uid " +\
+                ", users.name " +\
+                ", customers.customerID " +\
+                ", customers.leaderName " +\
+                ", customers.village " +\
+                ", customers.address " +\
+                ", customers.leaderName " +\
+                ", customers.phone " +\
+                ", orders.materialType " +\
+                ", orders.building " +\
+                "FROM orders " +\
+                "LEFT JOIN users ON orders.staffID = users.uid " +\
+                "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
+                "WHERE orderID='" + str(id) + "' ORDER BY time ASC LIMIT 1"
+        
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
     
     def DB_CountBasket(self,id):
         sql = "SELECT COUNT(*) FROM orders WHERE container='basket' AND orderID = '" + str(id) + "'"
@@ -168,7 +187,7 @@ class Database:
         sql = "INSERT INTO orders (orderID, weight, basketNumber, grade, weightReject, materialType, price, staffID, customerID, building, container,containerWeight) VALUES " + str(val) 
         self.cursor.execute(sql)
         self.db.commit()
-        return self.cursor.fetchall()
+        # return self.cursor.fetchall()
     
     def DBloadRecord(self,OrderID):
         sql = "SELECT * FROM orders WHERE orderID='" + str(OrderID) + "' ORDER BY time DESC"
@@ -341,7 +360,7 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    print(db.DBLoadOrderIDList())
+    db.select_all()
     # orderID = "202503100008"
     # val = (orderID,'52.6')
     # db.UpdateExternalWeightByOrder(orderID,"56.2")

@@ -68,8 +68,8 @@ class MainWindow(QMainWindow):
         self.setClock()
         self.setcmb()
         self.btnLink()
-        self.GenetareOrderID()
-        self.setThread()
+        self.Gen_OrderID_AutoNumber()
+        # self.setThread()
 
     # Config btn link to function
     def btnLink(self):   
@@ -127,9 +127,8 @@ class MainWindow(QMainWindow):
         ############ ALL Database List ############
         self.ui.tb_ALL_DataList.clicked.connect(self.LoadDataRecordByOrderList)
         self.ui.btn_SaveExcelFile.clicked.connect(self.exportToExcel)
-        #self.ui.btn_edit_staff.clicked.connect(self.edit_staff)
 
-    # load Order List
+    # Load data record by order list
     def LoadOrderIDList(self):
         orderList = self.db.DBLoadOrderIDList()
         column_names = ['เลขที่รายการรับซื้อ']
@@ -148,8 +147,8 @@ class MainWindow(QMainWindow):
             self.ui.tb_ALL_DataList.setItem(tablerow,0,QTableWidgetItem(str(row[1])))
             tablerow += 1
     
-    # Load data record by order list
     def LoadDataRecordByOrderList(self):
+        # Load data record with orderID to table list
         orderID = self.ui.tb_ALL_DataList.item(self.ui.tb_ALL_DataList.currentIndex().row(),0).text()
         recordDetal = self.db.DBloadResulte(orderID)
         
@@ -194,30 +193,105 @@ class MainWindow(QMainWindow):
             weightBasket = float(self.ui.tb_ALL_DataRecoreList.item(rowIndex, 7).text())
             finalWeightPerUnit = weight - weightReject - weightBasket
             self.ui.tb_ALL_DataRecoreList.setItem(rowIndex, colIndex, QTableWidgetItem(str(("{0:.2f}".format(finalWeightPerUnit)))))
-  
+
+        self.LoadOrderDetailByOrderList(orderID)
+
+    def LoadOrderDetailByOrderList(self,id):
+       
+        # Load data record to Resulte page and calculate again
+        orderID = self.ui.tb_ALL_DataList.item(self.ui.tb_ALL_DataList.currentIndex().row(),0).text()
+        self.ui.txt_OrderID_Search.setText(orderID)
+        self.ui.btn_CreateResulte.click()
+
+        # load order and customer detail
+        ReturnDB  = self.db.DBloadOrderDetailsToList(orderID)
+        ReturnDB = list(ReturnDB[0])
+
+        # load weight detail
+        totalWeight = self.ui.lbl_Resulte_TotalWeightMeterial.text()
+        TotalWeightReject = self.ui.lbl_Resulte_TotalWeightReject.text()
+        TotalWeightBasket = self.ui.lbl_Resulte_TotalWeightBasket.text()
+        TotalCountBasket = self.ui.lbl_Resulte_TotalBasket.text()
+        weightBasket = self.ui.lbl_Resulte_weightBasket.text()
+        
+        bagWeight = self.ui.lbl_Resulte_ContainerWeight.text()
+        WestWight = self.ui.lbl_Resulte_TotalWeightReject_west.text()
+        externalWight = self.ui.lbl_Resulte_ExternalWeight.text()
+        finalWeight = self.ui.lbl_Resulte_TotalWeight_toManuFactory.text()
+        price = self.ui.lbl_Resulte_Price.text()
+        cost = self.ui.lbl_Resulte_TotalPrice.text()
+
+        val = [totalWeight,TotalWeightBasket,TotalCountBasket,weightBasket,
+               TotalWeightReject,bagWeight,WestWight,externalWight,finalWeight,price,cost]
+
+        # conbine data
+        OrderDetails = ReturnDB + val
+
+        Row_names = ['เลขที่',
+                     'วัน/เวลา',
+                     'รหัสผู้รับซื้อ',
+                     'ผู้รับซื้อ',
+                     'รหัสผู้ขาย',
+                     'ผู้ขาย',
+                     'หมู่บ้าน',
+                     'จังหวัด',
+                     'หัวหน้ากลุ่ม',
+                     'โทรศัพท์',
+                     'ชนิดพันธุ์',
+                     'อาคาร',
+                     'น้ำหนักรวม(kg)',
+                     'น้ำหนักใบเสียรวม(kg)',
+                     'น้ำหนักตะกร้ารวม(kg)',
+                     'จำนวนตะกร้า(ใบ)',
+                     'น้ำหนักตะกร้า(kg)',
+                     'น้ำหนักสิ่งเจือปน(kg)',
+                     'น้ำหนักถุงบรรจุ(kg)',
+                     'น้ำหนักหน้าไร่(kg)',
+                     'น้ำหนักสุทธิ(kg)',
+                     'ราคารับซื้ิอ',
+                     'รวมเป็นเงินสุทธิ'
+                     ]
+        column = 2
+
+        # Set Table Dimensions
+        self.ui.tb_OrderDetail.setRowCount(len(Row_names))
+        self.ui.tb_OrderDetail.setColumnCount(column)
+        self.ui.tb_OrderDetail.setHorizontalHeaderItem(0, QTableWidgetItem("รายการ"))
+        self.ui.tb_OrderDetail.setHorizontalHeaderItem(1, QTableWidgetItem("ข้อมูล"))
+        
+        header = self.ui.tb_OrderDetail.horizontalHeader()         
+        for col in range(column):
+            header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
+
+        for row in range(len(Row_names)):
+            self.ui.tb_OrderDetail.setItem(row,0,QTableWidgetItem(str(Row_names[row])))
+            self.ui.tb_OrderDetail.setItem(row,1,QTableWidgetItem(str(OrderDetails[row])))
+
     # Export data to excel
     def exportToExcel(self):  
-        # Get File name   
-        path = QFileDialog.getSaveFileName(self,
-             caption='Select a data file',
-             filter='Excel File (*.xlsx *.xls)')
-
-        # create column header list
+        # create record deteail column header list
         columnHeaders = ['เวลา','เลขที่รับซื้อ','ตะกร้า','น้ำหนัก','เกรด','หักน้ำหนัก','ภาชนะ','น้ำหนักภาชนะ','น้ำหนักสุทธิ','ชนิดพันธุ์','ราคา','ชื่อผู้ขาย','หมู่บ้าน','จังหวัด','หัวหน้ากลุ่ม','ผู้รับซื้อ','อาคาร']
-        for j in range(self.ui.tb_ReslutesDetail.model().columnCount()):
-            columnHeaders.append(self.ui.tb_ReslutesDetail.horizontalHeaderItem(j).text())
-
-        df = pd.DataFrame(columns=columnHeaders)
-
-        # create dataframe object recordset
+        WeightRecordDetail = pd.DataFrame(columns=columnHeaders)
         for row in range(self.ui.tb_ALL_DataRecoreList.rowCount()):
             for col in range(self.ui.tb_ALL_DataRecoreList.columnCount()):
-                df.at[row, columnHeaders[col]] = self.ui.tb_ALL_DataRecoreList.item(row, col).text()
+                WeightRecordDetail.at[row, columnHeaders[col]] = self.ui.tb_ALL_DataRecoreList.item(row, col).text()
 
+        # create order detail column header list
+        columnHeaders = ['รายการ','ข้อมูล']
+        OrderDetail = pd.DataFrame(columns=columnHeaders)
+        for row in range(self.ui.tb_OrderDetail.rowCount()):
+            for col in range(self.ui.tb_OrderDetail.columnCount()):
+                OrderDetail.at[row, columnHeaders[col]] = self.ui.tb_OrderDetail.item(row, col).text()
+
+        result_df = pd.concat([OrderDetail, WeightRecordDetail], axis=1)
         # save Excel File
-        try:    
+        try:     
+               # Get File name   
+            path = QFileDialog.getSaveFileName(self,
+            caption='Select a data file',
+            filter='Excel File (*.xlsx *.xls)')
             #print(path)
-            df.to_excel(path[0], index=False)
+            result_df.to_excel(path[0], index=False)
 
             dlg = QMessageBox(self)
             dlg.setWindowTitle("บันทึกข้อมูล")
@@ -233,38 +307,10 @@ class MainWindow(QMainWindow):
             dlg.exec()    
 
      # Upload data 
+    
+    # Upload data
     def UploadData(self):  
-
-
-        columnHeaders = []
-
-        # create column header list
-        for j in range(self.ui.tb_ReslutesDetail.model().columnCount()):
-            columnHeaders.append(self.ui.tb_ReslutesDetail.horizontalHeaderItem(j).text())
-
-        df = pd.DataFrame(columns=columnHeaders)
-
-        # create dataframe object recordset
-        for row in range(self.ui.tb_ReslutesDetail.rowCount()):
-            for col in range(self.ui.tb_ReslutesDetail.columnCount()):
-                df.at[row, columnHeaders[col]] = self.ui.tb_ReslutesDetail.item(row, col).text()
-
-        dlg = QMessageBox(self)
-        dlg.setWindowTitle("บันทึกข้อมูล")
-        dlg.setText("ต้องการบันทึกข้อมูลหรือไม่ ??\n\n เลขที่รายการรับซื้อ\n" + self.ui.txt_OrderID_Search.text())
-        dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        button = dlg.exec()
-        
-        if button == QMessageBox.Yes:
-            try:    
-                path = 'export/' + self.ui.txt_OrderID_Search.text() + ".xlsx"
-                df.to_excel(path, index=False)
-            except:
-                dlg = QMessageBox(self)
-                dlg.setWindowTitle("ผิดพลาด")
-                dlg.setText("การบันทึกข้อมูลไม่สำเร็จ")
-                dlg.setStandardButtons(QMessageBox.Ok)
-                dlg.exec()    
+        pass
 
     # Resulte Page
     def RecordWasteWeight(self):
@@ -444,9 +490,13 @@ class MainWindow(QMainWindow):
         self.ui.txt_ContainerWeight.setText(str(Bagweight))
 
         # cal Order function
+        # reset external weight 
+        self.ui.lbl_Resulte_ExternalWeight.setText("0.0")
+
+        # cal accounting
         self.calOrder()
 
-        # load external weight
+        # load external weight and recalculate accounting again
         ExternalWeight = self.db.LoadExternalWeightByOrder(orderID)
 
         if float(ExternalWeight[0][0]) > 0:
@@ -617,11 +667,11 @@ class MainWindow(QMainWindow):
         self.SunfordThread.start()    # Start Thread
         
     def UpdateWeight(self,weight):
-        # self.ui.lbl_weight.setText(str("{:.2f}".format(weight)))
         self.ui.lbl_weight.setText(weight)
     
     def randomweight(self):
-        self.UpdateWeight(random.uniform(10, 20))
+        randomWeight = (random.uniform(10, 20))
+        self.UpdateWeight(str("{:.2f}".format(randomWeight)))
   
     # Create Order
     def CreateOrder(self):
@@ -637,6 +687,14 @@ class MainWindow(QMainWindow):
             self.ui.lbl_building_main.setText(self.ui.cmd_building.currentText())
             self.ui.lbl_MaterialType_main.setText(material)
             self.ui.lbl_customer_NameLeadGroup_main.setText(self.ui.lbl_customer_LeadGroupName.text())
+
+            if float(self.ui.txt_wasteWeight.text()) == 0:
+                # print('Create a AddNewOrderWeightRejects')
+                val = (orderID,'0','0')
+                self.db.AddNewOrderWeightRejects(val)
+
+                val = (orderID,'0')
+                self.db.AddExternalWeightByOrder(val)
             
         else:
             self.msgBoxError()
@@ -663,14 +721,7 @@ class MainWindow(QMainWindow):
     
         # check old orderID on DB with data in mainWeight table if emtry orderID that it create
         LastOrderWeightRejects = self.db.SearchLastOrderWeight(orderID)
-        if (LastOrderWeightRejects == 0):
-            # print('Create a AddNewOrderWeightRejects')
-            val = (orderID,'0','0')
-            self.db.AddNewOrderWeightRejects(val)
-
-            val = (orderID,'0')
-            self.db.AddExternalWeightByOrder(val)
-        else:
+        if (LastOrderWeightRejects != 0):
             # Load wast and bag weight
             weightLoss = self.db.LoadWastWeightByOrder(str(orderID))
             wastWeight = weightLoss[0][0]
@@ -687,7 +738,7 @@ class MainWindow(QMainWindow):
             self.ui.txt_ExternalWeightInput.setText(str(externalWeight[0][0]))
             self.ui.lbl_Resulte_ExternalWeight.setText(str(externalWeight[0][0]))
 
-    def GenetareOrderID(self):
+    def Gen_OrderID_AutoNumber(self):
         # Get Last Order
         LastOrder = str(self.db.GetLastOrder())
         LastOrder = LastOrder[8:]
@@ -1131,13 +1182,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
         
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    login_window = LoginWindow()
-    login_window.show()
-    app.exec()    
+    # app = QApplication(sys.argv)
+    # login_window = LoginWindow()
+    # login_window.show()
+    # app.exec()    
     
     # For Testing Program
-    # app = QApplication(sys.argv)
-    # MainWindow = MainWindow("0010")
-    # MainWindow.show()
-    # app.exec()  
+    app = QApplication(sys.argv)
+    MainWindow = MainWindow("0010")
+    MainWindow.show()
+    app.exec()  
