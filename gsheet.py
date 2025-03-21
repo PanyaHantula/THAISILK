@@ -46,7 +46,7 @@ class googlesheet:
     try:
         service = build('sheets', 'v4', credentials=creds)
         # Call the Sheets API
-        # valueData = [[1],[2],[3],[4],[5],[6]]
+        # valueData = [[1],[2],[3],[4],[5],[6]]   # sample data
         sheet = service.spreadsheets()
         result = sheet.values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                     range=SAMPLE_RANGE_NAME,valueInputOption="USER_ENTERED",body={"values":valueData}).execute()

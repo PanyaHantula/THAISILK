@@ -1,9 +1,10 @@
 ############################################
 #           Pyside 6 + Qt Designer         #
 ############################################
-import sys, os, csv
-from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QMessageBox, QWidget, QHeaderView, QFileDialog
+import sys
 from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
+from PySide6.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, \
+    QMessageBox, QWidget, QHeaderView, QFileDialog
 from main_GUI_windows import Ui_MainWindow
 from Login_GUI_windows import Ui_Dialog
 from DB import Database
@@ -76,8 +77,8 @@ class MainWindow(QMainWindow):
         # self.setThread()
 
         # Googls Sheet config
-        self.gSheet = googlesheet()
-        self.creds = self.gSheet.connect_sheet()
+        # self.gSheet = googlesheet()
+        # self.creds = self.gSheet.connect_sheet()
         #self.gSheet.UpdateSheet(self.creds)
 
     # Config btn link to function
@@ -115,6 +116,7 @@ class MainWindow(QMainWindow):
         self.GradeSelectSetup()
 
         # Disable btn befor create order
+        self.ui.btn_RandomWeight.hide()
         self.ui.btn_Save_Main.setDisabled(True)
         self.ui.btn_DeleteData_main.setDisabled(True)
 
@@ -233,7 +235,7 @@ class MainWindow(QMainWindow):
         price = self.ui.lbl_Resulte_Price.text()
         cost = self.ui.lbl_Resulte_TotalPrice.text()
 
-        val = [totalWeight,TotalWeightBasket,TotalCountBasket,weightBasket,
+        val = [totalWeight,TotalWeightReject,TotalCountBasket,weightBasket,
                TotalWeightReject,bagWeight,WestWight,externalWight,finalWeight,price,cost]
 
         # conbine data
@@ -595,7 +597,9 @@ class MainWindow(QMainWindow):
         container = self.ui.cmb_container.currentText()
         if container == "basket":
             containerWeight = self.ui.txt_ConfigWeigthBasket.text()
-        
+        else:
+            containerWeight = 0
+            
         if (orderID != "-"):
             if (basketNumber != ""):
                 val = (orderID, weight, basketNumber, grade, weightReject, MaterialType, Price, Staff_ID, customer_ID, building_main, container,containerWeight)
@@ -641,12 +645,12 @@ class MainWindow(QMainWindow):
                 self.ui.tb_MainRecordDetail.setItem(row_idx, col_idx, QTableWidgetItem(str(cell_data)))
                      
     def DeleteRecordMain(self):
-        Time = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),0).text()
+        id = self.ui.tb_MainRecordDetail.item(self.ui.tb_MainRecordDetail.currentIndex().row(),0).text()
         SelectRowToDetete = self.ui.tb_MainRecordDetail.currentRow()
         
         dlg = QMessageBox(self)
         dlg.setWindowTitle("ลบข้อมูล")
-        dlg.setText("ต้องการลบข้อมูลหรือไม่ ??\n เวลาที่ต้องการลบ : \n" + Time)
+        dlg.setText("ต้องการลบข้อมูลหรือไม่ ??\n เวลาที่ต้องการลบ : \n" + id)
         dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         button = dlg.exec()
         
@@ -654,7 +658,7 @@ class MainWindow(QMainWindow):
             if SelectRowToDetete < 0:
                 return
             self.ui.tb_MainRecordDetail.removeRow(SelectRowToDetete)
-            self.db.DBdeleteRecord(Time)
+            self.db.DBdeleteRecord(id)
             self.LoadRecordToMain()
     
     # Change container type
@@ -1130,7 +1134,7 @@ class MainWindow(QMainWindow):
             self.ui.tb_customerDetail.setItem(tablerow,5,QTableWidgetItem(row[5]))
             self.ui.tb_customerDetail.setItem(tablerow,6,QTableWidgetItem(row[6]))
             tablerow += 1
-
+                            
     def add_customer(self):      
         if (self.ui.txt_name_customer_DB.text() != ""):
                 id = self.ui.txt_customerID_DB.text() 
@@ -1155,7 +1159,11 @@ class MainWindow(QMainWindow):
         self.ui.txt_group_customer_DB.clear()
         self.ui.cmb_leaderName_customer_DB.setCurrentText("-")
         self.ui.txt_phone_customer_DB.clear()
-             
+
+    def update_customerTable(self):
+        pass
+
+    # Option          
     def msgBoxError(self):
         dlg = QMessageBox(self)
         dlg.setWindowTitle("ผิดพลาด")
@@ -1222,13 +1230,13 @@ class LoginWindow(QWidget):
 
 
 if __name__ == "__main__":
-    # app = QApplication(sys.argv)
-    # login_window = LoginWindow()
-    # login_window.show()
-    # app.exec()    
+    app = QApplication(sys.argv)
+    login_window = LoginWindow()
+    login_window.show()
+    app.exec()    
     
     # For Testing Program
-    app = QApplication(sys.argv)
-    MainWindow = MainWindow("0010")
-    MainWindow.show()
-    app.exec()  
+    # app = QApplication(sys.argv)
+    # MainWindow = MainWindow("0010")
+    # MainWindow.show()
+    # app.exec()  

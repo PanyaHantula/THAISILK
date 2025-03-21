@@ -208,7 +208,7 @@ class Database:
         # return (column,total,recordDetal)
     
     def DBdeleteRecord(self, time):
-        sql = "DELETE FROM orders WHERE time='" + str(time) + "'"
+        sql = "DELETE FROM orders WHERE id=" + str(time)
 
         self.cursor.execute(sql)
         self.db.commit()
