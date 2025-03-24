@@ -51,14 +51,14 @@ class googlesheet:
         result = sheet.values().append(spreadsheetId=SAMPLE_SPREADSHEET_ID,
                                     range=SAMPLE_RANGE_NAME,valueInputOption="USER_ENTERED",body={"values":valueData}).execute()
         # print(result)
-        dlg = QMessageBox(self)
+        dlg = QMessageBox()
         dlg.setWindowTitle("อัปโหลดข้อมูล")
         dlg.setText("อัปโหลดข้อมูลสำเร็จ\n")
         dlg.setStandardButtons(QMessageBox.Ok)
         dlg.exec()  
 
     except HttpError as err:
-        dlg = QMessageBox(self)
+        dlg = QMessageBox()
         dlg.setWindowTitle("ผิดพลาด")
         dlg.setText("อัฟโหลดข้อมูลผิดพลาด \nโปรดตรวจสอบการเชื่อมต่ออินเตอร์เน็ต\nและลองทดสอบใหม่อีกครั้ง")
         dlg.setStandardButtons(QMessageBox.Ok)

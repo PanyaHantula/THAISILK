@@ -1,11 +1,12 @@
-CREATE DATABASE `ThaiSilkProducts` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE `ThaiSilkProducts` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;.
+
 CREATE TABLE `baskets` (
   `id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(10) NOT NULL,
   `weightBasket` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-CREATE TABLE `customers` (
+ATE TABLE `customers` (
   `id` int NOT NULL AUTO_INCREMENT,
   `customerID` varchar(10) NOT NULL,
   `name` varchar(45) NOT NULL,

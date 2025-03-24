@@ -88,8 +88,17 @@
      <height>32</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>DB Adman X</family>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
-    <string notr="true">font: 75 20pt &quot;DB SaiKrok X&quot;;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>เข้าสู่ระบบ</string>

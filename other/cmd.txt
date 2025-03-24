@@ -1,3 +1,4 @@
+# convert QT designer to python file
 pyside6-uic main_GUI_windows.ui -o main_GUI_windows.py
 pyside6-uic Login_GUI_windows.ui -o Login_GUI_windows.py
 

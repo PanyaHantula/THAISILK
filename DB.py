@@ -12,7 +12,7 @@ class Database:
     # Connect DB           
     def connect_db(self):
         try:
-            print("#: Connecting to SQL Database")
+            # print("#: Connecting to SQL Database")
             self.db = mysql.connector.connect(
                 host="127.0.0.1",
                 user="root",
@@ -21,7 +21,7 @@ class Database:
                 port=3306
                 )    
             self.cursor = self.db.cursor()
-            print("#: complete")
+            # print("#: complete")
         except:
             print("#: Error connecting Database")   
         

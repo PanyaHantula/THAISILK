@@ -4278,8 +4278,8 @@ border-color: rgb(0, 85, 255);</string>
      <widget class="QPushButton" name="btn_SaveExcelFile">
       <property name="geometry">
        <rect>
-        <x>360</x>
-        <y>635</y>
+        <x>320</x>
+        <y>630</y>
         <width>141</width>
         <height>36</height>
        </rect>
@@ -4304,7 +4304,7 @@ border-color: rgb(0, 85, 255);</string>
        <rect>
         <x>155</x>
         <y>35</y>
-        <width>346</width>
+        <width>311</width>
         <height>596</height>
        </rect>
       </property>
@@ -4312,9 +4312,9 @@ border-color: rgb(0, 85, 255);</string>
      <widget class="QTableWidget" name="tb_ALL_DataRecoreList">
       <property name="geometry">
        <rect>
-        <x>510</x>
+        <x>470</x>
         <y>80</y>
-        <width>761</width>
+        <width>801</width>
         <height>591</height>
        </rect>
       </property>

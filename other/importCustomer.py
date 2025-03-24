@@ -10,7 +10,7 @@ cnx = mysql.connector.connect(host="127.0.0.1",
 cursor = cnx.cursor()
 
 # CSV file path
-csv_file_path = 'customer.csv'
+csv_file_path = 'other\\customer.csv'
 
 with open(csv_file_path, mode='r', encoding="utf-8") as csvfile:
     reader = csv.reader(csvfile)
