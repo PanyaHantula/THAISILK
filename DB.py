@@ -36,14 +36,23 @@ class Database:
         self.db.commit()
         return self.cursor.fetchall()
     
+    # DBUploadRecrord
+    def UploadReport(self,orderID):
+        sql = "INSERT INTO uploadreport (orderID) VALUES ({});".format(orderID)
+        self.cursor.execute(sql)
+        self.db.commit()
+
+    def LoadUploadReportDetail(self,orderID):
+        sql = "SELECT time FROM uploadreport WHERE orderID='" + str(orderID) + "'" + 'ORDER BY id DESC LIMIT 1'
+        self.cursor.execute(sql)
+        return self.cursor.fetchall()
+
     # order list
     def DBLoadOrderIDList(self):
         sql = "SELECT * FROM WeightLossByOrder"
         self.cursor.execute(sql)
         row = self.cursor.fetchall()
         return row
-    
-        # order External Weight 
     
     # External weight
     def LoadExternalWeightByOrder(self,id):
@@ -360,26 +369,8 @@ class Database:
                         
 if __name__ == "__main__":
     db = Database()
-    db.select_all()
-    # orderID = "202503100008"
-    # val = (orderID,'52.6')
-    # db.UpdateExternalWeightByOrder(orderID,"56.2")
-    # print(db.LoadExternalWeightByOrder(orderID))
+    # db.select_all()
 
-    # orderID = "202503090001"
-    # weight = 20.1
-    # basketNumber = "02"
-    # grade = "B"
-    # weghtReject = 0.5
-    # MaterialType = "sakonnakhon"
-    # Price = 14
-    # Staff_ID = "0010"
-    # customer_ID = "3103"
-    # building_main = "A"
-    # container = "basket"
-    # containerWeight = 0
-
-    # # val = (orderID, weight, basketNumber, grade, weghtReject, MaterialType, Price, Staff_ID, customer_ID, building_main, container,containerWeight)
-    # # db.DBweightRecord(val)
-
-    # print(db.DBloadRecord(orderID))           
+    orderID = "202503100008"
+    print(db.LoadUploadReportDetail(orderID))
+            

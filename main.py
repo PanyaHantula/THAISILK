@@ -46,13 +46,16 @@ class SunfordWeightRead(QObject):
                         self.WeightThreadProgress.emit(rx)
             except Exception as e:
                 print(f"Error reading serial: {e}")
+                self.WeightThreadProgress.emit("ERROR")
                 break
         pass
                       
 class MainWindow(QMainWindow):
     def __init__(self, UserID_Login):
         super().__init__()
-        
+
+        global userLogin
+        userLogin = UserID_Login
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowTitle("ระบบรับซื้อใบหม่อน") 
@@ -110,7 +113,7 @@ class MainWindow(QMainWindow):
         self.GradeSelectSetup()
 
         # Disable btn befor create order
-        self.ui.btn_RandomWeight.hide()
+        # self.ui.btn_RandomWeight.hide()
         self.ui.btn_Save_Main.setDisabled(True)
         self.ui.btn_DeleteData_main.setDisabled(True)
 
@@ -321,6 +324,8 @@ class MainWindow(QMainWindow):
             dlg.setStandardButtons(QMessageBox.Ok)
             dlg.exec()    
 
+            self.log(f"UserID {str(userLogin)} - Export data to excel") # logfile
+
         except:
             dlg = QMessageBox(self)
             dlg.setWindowTitle("ผิดพลาด")
@@ -355,18 +360,49 @@ class MainWindow(QMainWindow):
 
         # Transpose Elements of Two Dimensional List 
         val = [list(row) for row in zip(*res)]
-        
-        # Googls Sheet config
-        self.gSheet = googlesheet()
-        self.creds = self.gSheet.connect_sheet()
-        # self.gSheet.UpdateSheet(self.creds)
 
-        # upload to google sheet
-        self.gSheet.UpdateSheet(self.creds,val)
+        id = self.ui.txt_OrderID_Search.text()
+        uploadCompleated = self.db.LoadUploadReportDetail(id)
+        if uploadCompleated != []:
+            dlg = QMessageBox(self)
+            dlg.setWindowTitle("แจ้งเตือน")
+            dlg.setText("เลขที่รายการรับซื้อนี้เคยอัปโหลดข้อมูล Google Sheet แล้ว!!!\nต้องการอัปโหลดข้อมูลซ้ำหรือไม่ ??")
+            dlg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            dlg.setIcon(QMessageBox.Question)
+            button = dlg.exec()
 
+            if button == QMessageBox.Yes:
+                # Googls Sheet config
+                self.gSheet = googlesheet()
+                self.creds = self.gSheet.connect_sheet()
+
+                # upload to google sheet
+                self.gSheet.UpdateSheet(self.creds,val)
+                self.db.UploadReport(id)
+
+                dlg = QMessageBox(self)
+                dlg.setWindowTitle("แจ้งเตือน")
+                dlg.setText("การอัปโหลดข้อมูลสำเร็จ")
+                dlg.setStandardButtons(QMessageBox.Ok)
+                dlg.exec() 
+
+                self.log(f"UserID {str(userLogin)} - UploadData to google sheet --> {id}") # logfile
+            else:
+                return
+
+        else:
+            # Googls Sheet config
+            self.gSheet = googlesheet()
+            self.creds = self.gSheet.connect_sheet()
+
+            # upload to google sheet
+            self.gSheet.UpdateSheet(self.creds,val)
+            self.db.UploadReport(id)
+            self.log(f"UserID {str(userLogin)} - UploadData to google sheet --> {id}") # logfile
 
     ################### RecordWasteWeight function ###################
     def RecordWasteWeight(self):
+
         self.ui.txt_wasteWeight.setText(self.ui.lbl_weight.text())
         self.ui.lbl_weight.setText('00.00')
         wastWeight = self.ui.txt_wasteWeight.text()
@@ -376,9 +412,12 @@ class MainWindow(QMainWindow):
         self.db.DBUpdateWastWeightByOrder(orderID,wastWeight)
         self.LoadWastWeight()
         self.calOrder()
+        
+        self.log(f"UserID {str(userLogin)} - Create Record Wast Weight --> {orderID}") # logfile
 
     ################### RecordContainerWeight function ###################
     def RecordContainerWeight(self):
+
         self.ui.txt_ContainerWeight.setText(self.ui.lbl_weight.text())
         self.ui.lbl_weight.setText('00.00')
         ContainerWeight = self.ui.txt_ContainerWeight.text()
@@ -388,6 +427,8 @@ class MainWindow(QMainWindow):
         self.db.DBUpdateContainerWeightByOrder(orderID,ContainerWeight)
         self.LoadWastWeight()
         self.calOrder()
+
+        self.log(f"UserID {str(userLogin)} - Create Record Containe Weight --> {orderID}") # logfile
 
     ################### External Weight function###################
     def SetExternalWeight(self):
@@ -409,6 +450,7 @@ class MainWindow(QMainWindow):
 
         if float(ExternalWeight) > 0:
             self.CalOrderExternalWeight()
+            self.log(f"UserID {str(userLogin)} - Create Record External Weight --> {orderID}") # logfile
         else:
             self.LoadRecordToResultes()
     
@@ -427,6 +469,7 @@ class MainWindow(QMainWindow):
     def LoadRecordToResultes(self):
         # id = '20250305005'
         # check orderID is saved in DB ??
+
         id = self.ui.txt_OrderID_Search.text()
         recordDetal = self.db.DBloadResulte(id)
         if recordDetal == []:
@@ -490,7 +533,6 @@ class MainWindow(QMainWindow):
             self.ui.lbl_Resulte_TotalWeightReject.setText(str(("{0:.2f}".format(SumWeightReject))))
                 
             ######### มีบางครั้งข้อมูลโหลดไม่ได้ แสดงผลหน้า Resulte ผิดพลาด       
-     
             OrderDetails = self.db.DBloadOrderDetails(id) 
             orderID = OrderDetails[0][0]
             
@@ -544,6 +586,13 @@ class MainWindow(QMainWindow):
                 self.ui.lbl_Resulte_ExternalWeight.setText(str(ExternalWeight[0][0]))
                 self.ui.lbl_Resulte_TotalWeight_Accounting.setText(str(ExternalWeight[0][0]))
                 self.CalOrderExternalWeight()
+
+            # Check Upload report to google complate
+            uploadCompleated = self.db.LoadUploadReportDetail(id)
+            if uploadCompleated == []:
+                self.ui.lbl_uploadreport.setText("-")
+            else:
+                self.ui.lbl_uploadreport.setText(str(uploadCompleated[0][0]))
 
     ################### Record Weight ###################   
     # calculate order in resulte page 
@@ -744,7 +793,6 @@ class MainWindow(QMainWindow):
             self.ui.lbl_MaterialType_main.setText(material)
             self.ui.lbl_customer_NameLeadGroup_main.setText(self.ui.lbl_customer_LeadGroupName.text())
 
-            print(f'UserID {self.ui.lbl_Staff_ID.text()} - create order : {orderID}')
             # check old orderID in DB with data in mainWeight table if emtry orderID that it create
             LastOrderWeightRejects = self.db.SearchLastOrderWeight(orderID)
             if (LastOrderWeightRejects == 0):
@@ -758,6 +806,8 @@ class MainWindow(QMainWindow):
             # Enable save weight of main page
             self.ui.btn_Save_Main.setDisabled(False)
             self.ui.btn_DeleteData_main.setDisabled(False)    
+
+            self.log(f"UserID {str(userLogin)} - Create Order --> {orderID}") # logfile
 
         else:
             self.msgBoxError()
@@ -842,7 +892,9 @@ class MainWindow(QMainWindow):
 
     ################### Set UserID LevelRule function ##########################    
     def SetUserID_LevelRule (self, userID):
-        print(f"UserID {userID} - login")
+        # logfile
+        self.log(f"UserID {str(userLogin)} - login")
+
         StaffName = self.db.LoadNameFromUserID(userID)
         self.ui.lbl_Staff_ID.setText(userID)
         self.ui.lbl_Staff_name.setText(StaffName)
@@ -886,6 +938,7 @@ class MainWindow(QMainWindow):
     def SetSerialPort(self):
         SerialPortName = self.ui.txt_SerialPortName.text()
         self.db.updateSerialPortName(SerialPortName)
+        self.log(f"UserID {str(userLogin)} - Update Serial Port Name") # logfile
     
     def LoadSerialPortConfig(self):
         comport = self.db.LoadSerialPortName()
@@ -905,6 +958,8 @@ class MainWindow(QMainWindow):
             if (weight != ""):
                 self.db.updateDB_BasketWeight(str(weight))
                 self.loadBasketWeight()
+
+                self.log(f"UserID {str(userLogin)} - Update Basket Weight") # logfile
             else:
                 return
                  
@@ -927,6 +982,7 @@ class MainWindow(QMainWindow):
             if ((price_sakon != "") or (price_buriram != "") ):
                 self.db.updateDB_MaterialPrice(price_buriram,price_sakon)
                 self.loadMaterialPrice()
+                self.log(f"UserID {str(userLogin)} - Update Matrial Price") # logfile
             else:
                 return
                 
@@ -959,6 +1015,8 @@ class MainWindow(QMainWindow):
                 self.db.updateWeightReject('E',E)
                 self.db.updateWeightReject('F',F)
                 self.loadMaterialGrade()
+
+                self.log(f"UserID {str(userLogin)} - Update Matrial Grade") # logfile
             else:
                 return
  
@@ -1007,6 +1065,8 @@ class MainWindow(QMainWindow):
                 self.db.EditStaff(self.id_EditUser,uid, username, password, level, name)
                 self.loadStaffTable()
                 self.clear_from_addNewStaff()
+
+                self.log(f"UserID {str(userLogin)} - Edit User") # logfile
             else:
                 return
             
@@ -1028,6 +1088,8 @@ class MainWindow(QMainWindow):
             self.db.DeleteStaff(id)
             self.loadStaffTable()
             self.clear_from_addNewStaff()
+
+            self.log(f"UserID {str(userLogin)} - Delete User") # logfile
             
     def loadStaffTable(self):
         # Get customer data from DB
@@ -1069,6 +1131,8 @@ class MainWindow(QMainWindow):
                 self.db.AddNewStaff(val)
                 self.loadStaffTable()
                 self.clear_from_addNewStaff()
+
+                self.log(f"UserID {str(userLogin)} - ADD User") # logfile
         else:
             self.msgBoxError()
     
@@ -1116,6 +1180,8 @@ class MainWindow(QMainWindow):
                 self.db.EditCustomer(self.ID_EditCustomer , customerID, name, address, village_group, leader, phone)
                 self.loadCustomerTable()
                 self.clear_from_addnewCustomer()
+
+                self.log(f"UserID {str(userLogin)} - Edit Customer") # logfile
             else:
                 return
           
@@ -1136,6 +1202,8 @@ class MainWindow(QMainWindow):
             self.ui.tb_customerDetail.removeRow(SelectRowToDetete)
             self.db.DeleteCustomer(id)
             self.loadCustomerTable()
+
+            self.log(f"UserID {str(userLogin)} - Delete Customer") # logfile
             
     def loadCustomerTable(self):
         # Get customer data from DB
@@ -1180,6 +1248,8 @@ class MainWindow(QMainWindow):
                 self.db.AddNewCustomer(val)
                 self.loadCustomerTable()
                 self.clear_from_addnewCustomer()
+
+                self.log(f"UserID {str(userLogin)} - add customer") # logfile
         else:
             self.msgBoxError()
 
@@ -1227,6 +1297,16 @@ class MainWindow(QMainWindow):
         self.ui.cmb_leaderName_customer_DB.addItem("คุณอำนวย  มีสถาน")
         self.ui.cmb_leaderName_customer_DB.addItem("บริษัท ไร่นายจุล คุ้นวงศ์ จำกัด")
 
+    def log(self,msg):
+
+        dateNow = datetime.datetime.now().strftime("%d-%b-%Y %H:%M:%S")
+        val = dateNow + " : " + msg + "\n"
+        # print(val)
+
+        f = open("log.txt", "a")
+        f.write(val)
+        f.close()
+
 ############################################
 #  Login Windows
 # - please revise a login method
@@ -1264,13 +1344,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
 
 if __name__ == "__main__":
-    # app = QApplication(sys.argv)
-    # login_window = LoginWindow()
-    # login_window.show()
-    # app.exec()    
+    app = QApplication(sys.argv)
+    login_window = LoginWindow()
+    login_window.show()
+    app.exec()    
     
     # For Testing Program
-    app = QApplication(sys.argv)
-    MainWindow = MainWindow("0010")
-    MainWindow.show()
-    app.exec()  
+    # app = QApplication(sys.argv)
+    # MainWindow = MainWindow("0010")
+    # MainWindow.show()
+    # app.exec()  

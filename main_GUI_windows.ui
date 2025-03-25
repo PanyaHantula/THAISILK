@@ -775,6 +775,9 @@
         <property name="text">
          <string>บันทึก</string>
         </property>
+        <property name="shortcut">
+         <string>Enter</string>
+        </property>
        </widget>
        <widget class="QLabel" name="label_33">
         <property name="geometry">
@@ -3024,6 +3027,48 @@ border-color: rgb(0, 85, 255);</string>
         <string>(kg)</string>
        </property>
       </widget>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>630</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>อัปโหลดรายงาน</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lbl_uploadreport">
+      <property name="geometry">
+       <rect>
+        <x>930</x>
+        <y>640</y>
+        <width>171</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>-</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="customer_StaffDB">

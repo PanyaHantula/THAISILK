@@ -72,8 +72,6 @@ def main():
     creds = gSheet.connect_sheet()
     gSheet.UpdateSheet(creds)
 
-    
-
 if __name__ == '__main__':
     main()
     #getApiData()
