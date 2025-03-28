@@ -1,5 +1,5 @@
 ############################################
-#           Pyside 6 + Qt Designer         #
+#       ThaiSilkProduct Version 2.3        #
 ############################################
 import sys
 from PySide6.QtCore import QThread, QObject, Signal, Slot, QTimer
@@ -47,8 +47,7 @@ class SunfordWeightRead(QObject):
             except Exception as e:
                 print(f"Error reading serial: {e}")
                 self.WeightThreadProgress.emit("ERROR")
-                break
-        pass
+                return
                       
 class MainWindow(QMainWindow):
     def __init__(self, UserID_Login):
@@ -326,7 +325,8 @@ class MainWindow(QMainWindow):
 
             self.log(f"UserID {str(userLogin)} - Export data to excel") # logfile
 
-        except:
+        except Exception as e:
+            print(f"Error: {e}")
             dlg = QMessageBox(self)
             dlg.setWindowTitle("ผิดพลาด")
             dlg.setText("การบันทึกข้อมูลไม่สำเร็จ")
@@ -909,6 +909,8 @@ class MainWindow(QMainWindow):
         elif (self.UserLevel == "manager"):
             self.ui.groupBox_19.setDisabled(True)       # user edit
             self.ui.groupBox_3.hide()                   # hidden uer table
+            
+
             # self.ui.groupBox_23.setDisabled(True) 
 
         elif (self.UserLevel == "employee"):
@@ -918,6 +920,8 @@ class MainWindow(QMainWindow):
             self.ui.groupBox_15.setDisabled(True)       # type Price edit
             self.ui.groupBox_19.setDisabled(True)       # user edit
             self.ui.groupBox_3.hide()                   # hidden uer table
+            self.ui.tb_ALL_DataList.hide()
+            self.ui.btn_SaveExcelFile.hide()
             # self.ui.groupBox_23.setDisabled(True) 
 
     ################### Clock config ##########################
