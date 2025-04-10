@@ -139,6 +139,9 @@ class MainWindow(QMainWindow):
         self.ui.tb_ALL_DataList.clicked.connect(self.LoadDataRecordByOrderList)
         self.ui.btn_SaveExcelFile.clicked.connect(self.exportToExcel)
 
+        ############ Filter Customer ############
+        self.ui.txt_Search.textChanged.connect(self.filter_table)
+
     #################### Load data record by order list ###################
     # Load data record by order list when start program
     def LoadOrderIDList(self):
@@ -772,7 +775,7 @@ class MainWindow(QMainWindow):
         try:
             w = float(weight)
         except:
-            w = 0.0
+            w = 00.0
         self.ui.lbl_weight.setText( '%.1f' %(w) )
     
     ################### randomweight ########################## 
@@ -1215,11 +1218,11 @@ class MainWindow(QMainWindow):
             
     def loadCustomerTable(self):
         # Get customer data from DB
-        column,row,customerData = self.db.LoadAllCustomer()
+        self.column,self.row,self.customerData = self.db.LoadAllCustomer()
         
         # create Table
-        self.ui.tb_customerDetail.setRowCount(row)
-        self.ui.tb_customerDetail.setColumnCount(column)
+        self.ui.tb_customerDetail.setRowCount(self.row)
+        self.ui.tb_customerDetail.setColumnCount(self.column)
         self.ui.tb_customerDetail.setHorizontalHeaderItem(0, QTableWidgetItem("ON"))
         self.ui.tb_customerDetail.setHorizontalHeaderItem(1, QTableWidgetItem("รหัสผู้ขาย"))
         self.ui.tb_customerDetail.setHorizontalHeaderItem(2, QTableWidgetItem("ชื่อ"))
@@ -1229,9 +1232,13 @@ class MainWindow(QMainWindow):
         self.ui.tb_customerDetail.setHorizontalHeaderItem(6, QTableWidgetItem("เบอร์โทรศัพท์"))
         
         header = self.ui.tb_customerDetail.horizontalHeader()         
-        for col in range(column):
+        for col in range(self.column):
             header.setSectionResizeMode(col, QHeaderView.ResizeMode.ResizeToContents)
-            
+         
+        self.load_table(self.customerData )
+       
+    def load_table(self,customerData):
+   
         tablerow = 0
         for row in customerData:
             self.ui.tb_customerDetail.setItem(tablerow,0,QTableWidgetItem(str(row[0])))
@@ -1242,7 +1249,18 @@ class MainWindow(QMainWindow):
             self.ui.tb_customerDetail.setItem(tablerow,5,QTableWidgetItem(row[5]))
             self.ui.tb_customerDetail.setItem(tablerow,6,QTableWidgetItem(row[6]))
             tablerow += 1
-                            
+
+    def filter_table(self):
+        filter_text = self.ui.txt_Search.text().lower()
+        for row in range(self.ui.tb_customerDetail.rowCount()):
+            row_visible = False
+            for col in range(self.ui.tb_customerDetail.columnCount()):
+                item = self.ui.tb_customerDetail.item(row,col)
+                if filter_text in item.text().lower():
+                    row_visible = True
+                    break
+            self.ui.tb_customerDetail.setRowHidden(row, not row_visible)
+
     def add_customer(self):      
         if (self.ui.txt_name_customer_DB.text() != ""):
                 id = self.ui.txt_customerID_DB.text() 
@@ -1359,7 +1377,7 @@ if __name__ == "__main__":
     login_window.show()
     app.exec()    
     
-    # For Testing Program
+    # # For Testing Program
     # app = QApplication(sys.argv)
     # MainWindow = MainWindow("0010")
     # MainWindow.show()
