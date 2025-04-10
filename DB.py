@@ -115,7 +115,8 @@ class Database:
     
     # reslute 
     def DBloadResulte(self,id):      
-        #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
+        # sql = "SELECT * FROM orders WHERE orderID=" + str(id)
+
         sql = "SELECT orders.time " +\
                 ", orders.orderID " +\
                 ", orders.basketNumber " +\
@@ -133,14 +134,34 @@ class Database:
                 ", users.name " +\
                 ", orders.building " +\
                 "FROM orders " +\
-                "LEFT JOIN grades ON orders.grade = grades.type " +\
                 "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
                 "LEFT JOIN users ON orders.staffID = users.uid " +\
-                "WHERE orderID='" + str(id) + "'"
+                "WHERE orderID ='" + str(id) + "'"
+
+        # sql = "SELECT orders.time " +\
+        #         ", orders.orderID " +\
+        #         ", orders.basketNumber " +\
+        #         ", orders.weight " +\
+        #         ", orders.grade " +\
+        #         ", orders.weightReject " +\
+        #         ", orders.container " +\
+        #         ", orders.containerWeight " +\
+        #         ", orders.materialType " +\
+        #         ", orders.price " +\
+        #         ", customers.name " +\
+        #         ", customers.village " +\
+        #         ", customers.address " +\
+        #         ", customers.leaderName " +\
+        #         ", users.name " +\
+        #         ", orders.building " +\
+        #         "FROM orders " +\
+        #         "LEFT JOIN grades ON orders.grade = grades.type " +\
+        #         "LEFT JOIN customers ON orders.customerID = customers.customerID " +\
+        #         "LEFT JOIN users ON orders.staffID = users.uid " +\
+        #         "WHERE orderID ='" + str(id) + "'"
         
         self.cursor.execute(sql)
-        recordDetal = self.cursor.fetchall()
-        return recordDetal
+        return self.cursor.fetchall()
     
     def DBloadOrderDetails(self,id):
         #sql = "SELECT * FROM orders WHERE orderID=" + str(id)
@@ -169,7 +190,7 @@ class Database:
                 ", users.uid " +\
                 ", users.name " +\
                 ", customers.customerID " +\
-                ", customers.leaderName " +\
+                ", customers.name " +\
                 ", customers.village " +\
                 ", customers.address " +\
                 ", customers.leaderName " +\
@@ -204,17 +225,6 @@ class Database:
         recordDetal = self.cursor.fetchall()
 
         return recordDetal
-        # sql = "SELECT COUNT(*) FROM orders WHERE orderID=" + str(OrderID)
-        # self.cursor.execute(sql)
-        # returnDB = self.cursor.fetchall()
-        # total = returnDB[0][0]
-        
-        # sql = "SELECT * FROM orders WHERE orderID='" + str(OrderID) + "' ORDER BY time DESC"
-        # self.cursor.execute(sql)
-        # recordDetal = self.cursor.fetchall()
-        # column = 10
-        
-        # return (column,total,recordDetal)
     
     def DBdeleteRecord(self, time):
         sql = "DELETE FROM orders WHERE id=" + str(time)
@@ -371,6 +381,8 @@ if __name__ == "__main__":
     db = Database()
     # db.select_all()
 
-    orderID = "202503100008"
-    print(db.LoadUploadReportDetail(orderID))
+    orderID = "202503290001"
+    print(db.DBloadResulte("202503290001"))
+    # print(db.DBloadOrderDetails(orderID))
+    # print(db.DBloadOrderDetailsToList(orderID))
             

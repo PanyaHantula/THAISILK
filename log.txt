@@ -2,3 +2,108 @@
 28-Mar-2025 18:03:02 : UserID 0010 - login
 28-Mar-2025 18:31:41 : UserID 0010 - login
 28-Mar-2025 18:31:52 : UserID 0010 - UploadData to google sheet --> 202503250020
+29-Mar-2025 10:42:09 : UserID 0010 - login
+29-Mar-2025 10:52:14 : UserID 0010 - login
+29-Mar-2025 10:53:40 : UserID 0010 - login
+29-Mar-2025 10:54:43 : UserID 0010 - login
+29-Mar-2025 10:55:25 : UserID 0010 - Update Serial Port Name
+29-Mar-2025 15:26:18 : UserID 0010 - login
+29-Mar-2025 15:28:42 : UserID 0010 - login
+29-Mar-2025 15:30:02 : UserID 0010 - login
+29-Mar-2025 15:30:22 : UserID 0010 - login
+29-Mar-2025 15:30:50 : UserID 0010 - login
+29-Mar-2025 15:31:37 : UserID 0010 - login
+29-Mar-2025 15:32:43 : UserID 0010 - Update Matrial Price
+29-Mar-2025 15:33:44 : UserID 0010 - Create Order --> 202503290001
+29-Mar-2025 16:02:36 : UserID 0010 - login
+29-Mar-2025 16:18:33 : UserID 0010 - login
+29-Mar-2025 16:19:19 : UserID 0010 - Create Order --> 202503290001
+29-Mar-2025 16:32:57 : UserID 0010 - login
+29-Mar-2025 16:44:12 : UserID 0010 - login
+29-Mar-2025 16:58:06 : UserID 0010 - login
+29-Mar-2025 17:01:32 : UserID 0010 - login
+29-Mar-2025 17:18:05 : UserID 0010 - login
+29-Mar-2025 17:20:22 : UserID 0010 - login
+29-Mar-2025 17:22:00 : UserID 0010 - login
+29-Mar-2025 17:22:57 : UserID 0010 - login
+29-Mar-2025 17:23:32 : UserID 0010 - login
+29-Mar-2025 17:23:59 : UserID 0010 - login
+29-Mar-2025 17:27:36 : UserID 0010 - login
+29-Mar-2025 17:27:53 : UserID 0010 - Create Order --> 202503290001
+29-Mar-2025 17:28:06 : UserID 0010 - Create Record Wast Weight --> 202503290001
+29-Mar-2025 17:29:34 : UserID 0010 - Create Record Containe Weight --> 202503290001
+29-Mar-2025 17:31:06 : UserID 0010 - login
+29-Mar-2025 17:32:37 : UserID 0010 - login
+29-Mar-2025 17:37:46 : UserID 0010 - login
+29-Mar-2025 17:39:56 : UserID 0010 - login
+29-Mar-2025 17:42:03 : UserID 0010 - Create Record External Weight --> 202503290001
+29-Mar-2025 17:44:34 : UserID 0010 - Create Record External Weight --> 202503290001
+29-Mar-2025 17:47:04 : UserID 0010 - login
+29-Mar-2025 17:48:00 : UserID 0010 - Export data to excel
+29-Mar-2025 17:48:08 : UserID 0010 - UploadData to google sheet --> 202503290001
+29-Mar-2025 17:55:30 : UserID 0010 - login
+10-Apr-2025 13:23:31 : UserID 0010 - login
+10-Apr-2025 13:26:20 : UserID 0010 - login
+10-Apr-2025 13:34:23 : UserID 0010 - login
+10-Apr-2025 13:34:55 : UserID 0010 - login
+10-Apr-2025 13:35:32 : UserID 0010 - login
+10-Apr-2025 13:42:59 : UserID 0010 - Update Matrial Price
+10-Apr-2025 13:43:12 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 13:52:10 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:03:22 : UserID 0010 - add customer
+10-Apr-2025 14:04:00 : UserID 0010 - login
+10-Apr-2025 14:04:53 : UserID 0010 - login
+10-Apr-2025 14:06:22 : UserID 0010 - Edit Customer
+10-Apr-2025 14:06:42 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:19:46 : UserID 0010 - add customer
+10-Apr-2025 14:25:18 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:29:34 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:32:27 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:39:42 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:54:53 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:55:41 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 14:58:31 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:03:54 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:06:00 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:10:57 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:13:10 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:17:10 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:19:17 : UserID 0010 - Create Order --> 202504100002
+10-Apr-2025 15:33:10 : UserID 0010 - Create Record Wast Weight --> 202504100002
+10-Apr-2025 15:48:03 : UserID 0010 - login
+10-Apr-2025 15:51:48 : UserID 0010 - Export data to excel
+10-Apr-2025 15:52:30 : UserID 0010 - UploadData to google sheet --> 202504100002
+10-Apr-2025 16:03:03 : UserID 0010 - login
+10-Apr-2025 16:08:19 : UserID 0010 - login
+10-Apr-2025 16:08:51 : UserID 0010 - Delete Customer
+10-Apr-2025 16:10:21 : UserID 0010 - login
+10-Apr-2025 16:11:56 : UserID 0010 - login
+10-Apr-2025 16:15:53 : UserID 0010 - Export data to excel
+10-Apr-2025 16:16:06 : UserID 0010 - UploadData to google sheet --> 202504100002
+10-Apr-2025 16:29:41 : UserID 0010 - login
+10-Apr-2025 16:30:40 : UserID 0010 - add customer
+10-Apr-2025 16:31:05 : UserID 0010 - Create Order --> 202504100003
+10-Apr-2025 16:45:34 : UserID 0010 - login
+10-Apr-2025 16:46:44 : UserID 0010 - login
+10-Apr-2025 16:55:05 : UserID 0010 - login
+10-Apr-2025 16:55:22 : UserID 0010 - login
+10-Apr-2025 17:02:11 : UserID 0010 - Create Record External Weight --> 202504100003
+10-Apr-2025 17:04:14 : UserID 0010 - login
+10-Apr-2025 17:06:02 : UserID 0010 - login
+10-Apr-2025 17:08:55 : UserID 6405 - login
+10-Apr-2025 17:36:58 : UserID 0010 - login
+10-Apr-2025 17:37:15 : UserID 0010 - Create Order --> 202504100003
+10-Apr-2025 17:42:46 : UserID 0010 - Export data to excel
+10-Apr-2025 17:45:46 : UserID 0010 - login
+10-Apr-2025 17:46:18 : UserID 0010 - Create Order --> 202504100003
+10-Apr-2025 17:47:19 : UserID 0010 - Create Record Containe Weight --> 202504100003
+10-Apr-2025 17:47:33 : UserID 0010 - Create Record Containe Weight --> 202504100003
+10-Apr-2025 17:47:51 : UserID 0010 - login
+10-Apr-2025 17:48:09 : UserID 0010 - Create Order --> 202504100003
+10-Apr-2025 17:48:16 : UserID 0010 - Create Record Containe Weight --> 202504100003
+10-Apr-2025 17:50:35 : UserID 0010 - login
+10-Apr-2025 17:50:56 : UserID 0010 - Create Order --> 202504100003
+10-Apr-2025 17:51:03 : UserID 0010 - Create Record Containe Weight --> 202504100003
+10-Apr-2025 17:51:10 : UserID 0010 - Create Record Wast Weight --> 202504100003
+10-Apr-2025 22:32:06 : UserID 0010 - login
+10-Apr-2025 22:35:10 : UserID 0010 - login

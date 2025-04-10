@@ -842,7 +842,7 @@ border-color: rgb(0, 85, 255);</string>
        <widget class="QPushButton" name="btn_DeleteData_main">
         <property name="geometry">
          <rect>
-          <x>155</x>
+          <x>150</x>
           <y>270</y>
           <width>91</width>
           <height>32</height>
@@ -891,11 +891,11 @@ border-color: rgb(0, 85, 255);</string>
          <string>ชนิดภาชนะ</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="btn_RandomWeight">
+       <widget class="QPushButton" name="btn_ClearWeight">
         <property name="geometry">
          <rect>
-          <x>155</x>
-          <y>235</y>
+          <x>150</x>
+          <y>230</y>
           <width>91</width>
           <height>32</height>
          </rect>
@@ -904,7 +904,7 @@ border-color: rgb(0, 85, 255);</string>
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>สุ่มน้ำหนัก</string>
+         <string>เคลียร์</string>
         </property>
        </widget>
       </widget>
@@ -1065,9 +1065,9 @@ border-color: rgb(0, 85, 255);</string>
        <widget class="QLabel" name="lbl_Order_Date_main">
         <property name="geometry">
          <rect>
-          <x>245</x>
+          <x>225</x>
           <y>50</y>
-          <width>86</width>
+          <width>111</width>
           <height>16</height>
          </rect>
         </property>
@@ -1117,9 +1117,9 @@ border-color: rgb(0, 85, 255);</string>
        <widget class="QLabel" name="lbl_Order_Time_main">
         <property name="geometry">
          <rect>
-          <x>245</x>
+          <x>225</x>
           <y>25</y>
-          <width>86</width>
+          <width>111</width>
           <height>21</height>
          </rect>
         </property>
@@ -1225,7 +1225,7 @@ border-color: rgb(0, 85, 255);</string>
        <widget class="QLabel" name="label_36">
         <property name="geometry">
          <rect>
-          <x>200</x>
+          <x>180</x>
           <y>25</y>
           <width>36</width>
           <height>17</height>
@@ -1257,7 +1257,7 @@ border-color: rgb(0, 85, 255);</string>
        <widget class="QLabel" name="label_35">
         <property name="geometry">
          <rect>
-          <x>208</x>
+          <x>188</x>
           <y>46</y>
           <width>31</width>
           <height>21</height>
@@ -1341,6 +1341,22 @@ border-color: rgb(0, 85, 255);</string>
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
+      </widget>
+      <widget class="QPushButton" name="btn_RandomWeight">
+       <property name="geometry">
+        <rect>
+         <x>750</x>
+         <y>340</y>
+         <width>91</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>สุ่มน้ำหนัก</string>
+       </property>
       </widget>
      </widget>
      <widget class="QPushButton" name="btn_Create_Order">
@@ -2374,9 +2390,9 @@ border-color: rgb(0, 85, 255);</string>
        <property name="geometry">
         <rect>
          <x>275</x>
-         <y>54</y>
+         <y>50</y>
          <width>96</width>
-         <height>21</height>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
@@ -2766,9 +2782,9 @@ border-color: rgb(0, 85, 255);</string>
       <widget class="QLabel" name="lbl_Resulte_TotalPrice">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>135</x>
          <y>185</y>
-         <width>146</width>
+         <width>181</width>
          <height>36</height>
         </rect>
        </property>
@@ -4108,7 +4124,7 @@ border-color: rgb(0, 85, 255);</string>
         <x>730</x>
         <y>65</y>
         <width>536</width>
-        <height>271</height>
+        <height>611</height>
        </rect>
       </property>
       <property name="font">
@@ -4126,7 +4142,7 @@ border-color: rgb(0, 85, 255);</string>
          <x>10</x>
          <y>25</y>
          <width>521</width>
-         <height>236</height>
+         <height>571</height>
         </rect>
        </property>
       </widget>
@@ -4392,7 +4408,7 @@ border-color: rgb(0, 85, 255);</string>
        <rect>
         <x>155</x>
         <y>5</y>
-        <width>186</width>
+        <width>211</width>
         <height>31</height>
        </rect>
       </property>

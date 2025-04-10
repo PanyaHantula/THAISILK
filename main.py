@@ -42,7 +42,7 @@ class SunfordWeightRead(QObject):
                     rx = self.ser.readline().decode('utf-8').strip()
                     if (rx == "?"):
                         rx = self.ser.readline().decode('utf-8').strip()
-                        # print(f"{rx}") 
+                        
                         self.WeightThreadProgress.emit(rx)
             except Exception as e:
                 print(f"Error reading serial: {e}")
@@ -109,10 +109,11 @@ class MainWindow(QMainWindow):
         self.ui.cmb_container.activated.connect(self.changeContanierType)
         self.ui.btn_SaveWasteWeight.clicked.connect(self.RecordWasteWeight)
         self.ui.btn_SaveContainerWeight.clicked.connect(self.RecordContainerWeight)
+        self.ui.btn_ClearWeight.clicked.connect(self.ClearWeight)
         self.GradeSelectSetup()
 
         # Disable btn befor create order
-        # self.ui.btn_RandomWeight.hide()
+        self.ui.btn_RandomWeight.hide()
         self.ui.btn_Save_Main.setDisabled(True)
         self.ui.btn_DeleteData_main.setDisabled(True)
 
@@ -121,8 +122,8 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveContainerWeight.setDisabled(True)
 
         # self.ui.btn_RandomWeight.hide()
-        self.ui.txt_wasteWeight.setDisabled(True)
-        self.ui.txt_ContainerWeight.setDisabled(True)
+        # self.ui.txt_wasteWeight.setDisabled(True)
+        # self.ui.txt_ContainerWeight.setDisabled(True)
         
         #############  Resulte Page #############
         self.ui.btn_CreateResulte.clicked.connect(self.LoadRecordToResultes)
@@ -403,8 +404,8 @@ class MainWindow(QMainWindow):
     ################### RecordWasteWeight function ###################
     def RecordWasteWeight(self):
 
-        self.ui.txt_wasteWeight.setText(self.ui.lbl_weight.text())
-        self.ui.lbl_weight.setText('00.00')
+        # self.ui.txt_wasteWeight.setText(self.ui.lbl_weight.text())
+        # self.ui.lbl_weight.setText('00.00')
         wastWeight = self.ui.txt_wasteWeight.text()
         orderID = self.ui.lbl_OrderID_main.text()
         
@@ -418,8 +419,8 @@ class MainWindow(QMainWindow):
     ################### RecordContainerWeight function ###################
     def RecordContainerWeight(self):
 
-        self.ui.txt_ContainerWeight.setText(self.ui.lbl_weight.text())
-        self.ui.lbl_weight.setText('00.00')
+        # self.ui.txt_ContainerWeight.setText(self.ui.lbl_weight.text())
+        # self.ui.lbl_weight.setText('00.00')
         ContainerWeight = self.ui.txt_ContainerWeight.text()
         orderID = self.ui.lbl_OrderID_main.text()
         
@@ -615,7 +616,7 @@ class MainWindow(QMainWindow):
         Price = float(self.ui.lbl_Resulte_Price.text())
         
         finalPayment = finalWeight * Price
-        self.ui.lbl_Resulte_TotalPrice.setText(str(("{0:.2f}".format(finalPayment))))
+        self.ui.lbl_Resulte_TotalPrice.setText(str(("฿{:,.2f}".format(finalPayment))))
 
         self.ui.btn_UploadReport.setDisabled(False)
     
@@ -661,7 +662,7 @@ class MainWindow(QMainWindow):
                 val = (orderID, weight, basketNumber, grade, weightReject, MaterialType, Price, Staff_ID, customer_ID, building_main, container,containerWeight)
                 self.db.DBweightRecord(val)
                 self.LoadRecordToMain()
-                self.ui.lbl_weight.setText('00.00')
+                self.ui.lbl_weight.setText('00.0')
                 self.ui.lbl_MaterialGrade_main.setText("A")
                 
                 if (self.ui.cmb_container.currentText() == "basket"):
@@ -768,7 +769,11 @@ class MainWindow(QMainWindow):
         self.SunfordThread.start()    # Start Thread
         
     def UpdateWeight(self,weight):
-        self.ui.lbl_weight.setText(weight)
+        try:
+            w = float(weight)
+        except:
+            w = 0.0
+        self.ui.lbl_weight.setText( '%.1f' %(w) )
     
     ################### randomweight ########################## 
     # random Weight when con't connect to meachine
@@ -910,7 +915,6 @@ class MainWindow(QMainWindow):
             self.ui.groupBox_19.setDisabled(True)       # user edit
             self.ui.groupBox_3.hide()                   # hidden uer table
             
-
             # self.ui.groupBox_23.setDisabled(True) 
 
         elif (self.UserLevel == "employee"):
@@ -1311,6 +1315,8 @@ class MainWindow(QMainWindow):
         f.write(val)
         f.close()
 
+    def ClearWeight(self):
+        self.ui.lbl_weight.setText("00.0")
 ############################################
 #  Login Windows
 # - please revise a login method
