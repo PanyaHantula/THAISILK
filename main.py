@@ -11,6 +11,7 @@ from DB import Database
 from gsheet import *
 import pandas as pd
 import datetime
+import time
 import serial
 import random 
 import numpy as np
@@ -63,6 +64,7 @@ class MainWindow(QMainWindow):
         self.db = Database()            
         self.SetUserID_LevelRule(UserID_Login)
         self.loadCustomerTable()
+        self.updateComboboxCustomer()
         self.loadStaffTable()
         self.loadMaterialGrade()
         self.loadMaterialPrice()
@@ -100,7 +102,6 @@ class MainWindow(QMainWindow):
         self.ui.btn_SerialPortSet.clicked.connect(self.SetSerialPort)
         
         ############# main Page setup #############
-        self.ui.btn_customerSelect.clicked.connect(self.SelectCustomerToMainpage)
         self.ui.btn_orderSet.clicked.connect(self.OrderID_Set)
         self.ui.btn_Create_Order.clicked.connect(self.CreateOrder)
         self.ui.btn_RandomWeight.clicked.connect(self.randomweight)
@@ -140,8 +141,10 @@ class MainWindow(QMainWindow):
         self.ui.btn_SaveExcelFile.clicked.connect(self.exportToExcel)
 
         ############ Filter Customer ############
-        self.ui.txt_Search.textChanged.connect(self.filter_table)
-
+        self.ui.txt_Search.textChanged.connect(self.filter_table_fromCustomerPage)
+        self.ui.txt_mainCustomerSearch.textChanged.connect(self.filter_table_fromMainPage)
+        self.ui.cmb_customer_main.currentIndexChanged.connect(self.SelectCustomerToMainpage)
+        
     #################### Load data record by order list ###################
     # Load data record by order list when start program
     def LoadOrderIDList(self):
@@ -466,7 +469,7 @@ class MainWindow(QMainWindow):
         finalWeight = float(self.ui.lbl_Resulte_TotalWeight_Accounting.text())
 
         finalPayment = finalWeight * Price
-        self.ui.lbl_Resulte_TotalPrice.setText(str(("{0:.2f}".format(finalPayment))))
+        self.ui.lbl_Resulte_TotalPrice.setText(str(("฿{0:,.2f}".format(finalPayment))))
 
     ################### Record Weight ###################
     # Load Record data To Resultes page with orderID
@@ -880,7 +883,8 @@ class MainWindow(QMainWindow):
     ################### Clock config ##########################   
     # Get customer detail from DB and display on main page
     def SelectCustomerToMainpage(self):
-        customerID = self.ui.txt_customerID.text()      # get customerID from txtbox
+        customerID = self.ui.cmb_customer_main.currentData()
+        
         try:
             customerDetails = self.db.loadSingleCustomer(customerID)       # Get customer detail from DB 
             # print(customerDetails[0][0])   # display data from DB before pare to lable
@@ -894,9 +898,7 @@ class MainWindow(QMainWindow):
             self.ui.lbl_customer_phone.setText(str(customerDetails[0][6]))
             
         except:
-            QMessageBox.warning(self, "ผิดพลาด", "ไม่มีรหัสผู้ขายนี้อยู่ในฐานข้อมูล")
-
-        self.ui.txt_customerID.clear()      # clear customer txt box
+            pass
 
     ################### Set UserID LevelRule function ##########################    
     def SetUserID_LevelRule (self, userID):
@@ -1249,9 +1251,20 @@ class MainWindow(QMainWindow):
             self.ui.tb_customerDetail.setItem(tablerow,5,QTableWidgetItem(row[5]))
             self.ui.tb_customerDetail.setItem(tablerow,6,QTableWidgetItem(row[6]))
             tablerow += 1
-
-    def filter_table(self):
+    
+    def filter_table_fromCustomerPage(self):
+        self.ui.txt_mainCustomerSearch.setText("")
+        time.sleep(0.1)
         filter_text = self.ui.txt_Search.text().lower()
+        self.filter_table(filter_text)
+
+    def filter_table_fromMainPage(self):
+        self.ui.txt_Search.setText("")
+        time.sleep(0.1)
+        filter_text = self.ui.txt_mainCustomerSearch.text().lower()
+        self.filter_table(filter_text)
+
+    def filter_table(self,filter_text):
         for row in range(self.ui.tb_customerDetail.rowCount()):
             row_visible = False
             for col in range(self.ui.tb_customerDetail.columnCount()):
@@ -1261,6 +1274,30 @@ class MainWindow(QMainWindow):
                     break
             self.ui.tb_customerDetail.setRowHidden(row, not row_visible)
 
+        self.updateComboboxCustomer()
+
+    def updateComboboxCustomer(self):
+        self.ui.cmb_customer_main.clear()
+        entries = set()
+        
+        for row in range(self.ui.tb_customerDetail.rowCount()):
+            if self.ui.tb_customerDetail.isRowHidden(row):
+                continue
+
+            id_item = self.ui.tb_customerDetail.item(row,1)
+            name_item = self.ui.tb_customerDetail.item(row,2)
+
+            if id_item and name_item:
+                customer_ID = id_item.text()
+                name = name_item.text()
+                if customer_ID not in entries:
+                    display_text = f"{customer_ID} - {name}"
+                    self.ui.cmb_customer_main.addItem(display_text,userData=customer_ID)
+                    entries.add(customer_ID)
+
+    def InsertCustomerIDTotextBox(self):
+        self.ui.txt_customerID.setText(self.ui.cmb_customer_main.currentData())
+        
     def add_customer(self):      
         if (self.ui.txt_name_customer_DB.text() != ""):
                 id = self.ui.txt_customerID_DB.text() 
@@ -1372,13 +1409,13 @@ class LoginWindow(QWidget):
         self.close()  # ปิดหน้าต่าง Login
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    login_window = LoginWindow()
-    login_window.show()
-    app.exec()    
-    
-    # # For Testing Program
     # app = QApplication(sys.argv)
-    # MainWindow = MainWindow("0010")
-    # MainWindow.show()
-    # app.exec()  
+    # login_window = LoginWindow()
+    # login_window.show()
+    # app.exec()    
+    
+    # For Testing Program
+    app = QApplication(sys.argv)
+    MainWindow = MainWindow("0010")
+    MainWindow.show()
+    app.exec()  
